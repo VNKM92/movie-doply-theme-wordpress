@@ -1,0 +1,70 @@
+<?php
+/**
+ * The template for displaying archive pages
+ *
+ * @package DoodhTheme
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+get_header();
+?>
+
+<main class="container" style="padding-top: 30px;">
+	<div class="doodh-section-header">
+		<h1 class="doodh-section-title">
+			<i class="fas fa-folder-open" style="color:var(--dt-primary);"></i> 
+			<?php the_archive_title(); ?>
+		</h1>
+	</div>
+
+	<!-- Dynamic Filter Bar -->
+	<?php doodhtheme_render_filter_bar(); ?>
+
+	<!-- Grid -->
+	<div class="doodh-grid">
+		<?php
+		if ( have_posts() ) :
+			while ( have_posts() ) :
+				the_post();
+				$post_id   = get_the_ID();
+				$poster    = doodhtheme_get_poster_url( $post_id );
+				$rating    = doodhtheme_get_rating( $post_id );
+				$year      = doodhtheme_get_release_year( $post_id );
+				$quality   = doodhtheme_get_quality_badge( $post_id );
+				?>
+				<article class="doodh-card">
+					<div class="doodh-card-poster-wrap">
+						<img src="<?php echo esc_url( $poster ); ?>" class="doodh-card-poster" alt="<?php echo esc_attr( doodhtheme_get_poster_alt( $post_id ) ); ?>" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='<?php echo esc_url( doodhtheme_get_fallback_poster_url() ); ?>';">
+						<span class="doodh-badge-top-left doodh-badge-quality"><?php echo esc_html( $quality ); ?></span>
+						<span class="doodh-badge-top-right"><i class="fas fa-star"></i> <?php echo esc_html( $rating ); ?></span>
+						<a href="<?php the_permalink(); ?>" class="doodh-card-overlay">
+							<div class="doodh-play-circle"><i class="fas fa-play"></i></div>
+						</a>
+					</div>
+					<div class="doodh-card-body">
+						<h3 class="doodh-card-title"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+						<div class="doodh-card-meta">
+							<span><?php echo esc_html( $year ); ?></span>
+							<span><?php echo esc_html( doodhtheme_get_runtime_formatted( $post_id ) ); ?></span>
+						</div>
+					</div>
+				</article>
+				<?php
+			endwhile;
+		else :
+			?>
+			<p style="grid-column: 1 / -1; color: var(--dt-text-muted); text-align:center; padding: 40px 0;">
+				<?php esc_html_e( 'No titles found in this archive.', 'doodhtheme' ); ?>
+			</p>
+		<?php endif; ?>
+	</div>
+
+	<!-- Pagination -->
+	<?php doodhtheme_render_pagination(); ?>
+</main>
+
+<?php
+get_footer();

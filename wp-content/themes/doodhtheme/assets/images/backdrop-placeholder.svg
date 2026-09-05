@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <linearGradient id="bdGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="40%" stop-color="#1e1b4b" />
+      <stop offset="70%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <radialGradient id="bdGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#e50914" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bdGrad)" />
+  <circle cx="640" cy="360" r="400" fill="url(#bdGlow)" />
+  <rect x="40" y="40" width="1200" height="640" rx="20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2" />
+  
+  <circle cx="640" cy="330" r="80" fill="#111827" stroke="#e50914" stroke-width="4" />
+  <polygon points="630,300 665,330 630,360" fill="#ffffff" />
+
+  <text x="640" y="460" fill="#ffffff" font-size="32" font-weight="800" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="1">CINEMA STREAMING HD</text>
+  <text x="640" y="500" fill="#94a3b8" font-size="18" font-weight="500" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle">Official Backdrop &amp; High Bitrate Player</text>
+</svg>

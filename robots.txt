@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /wp-includes/
+Disallow: /trackback/
+Disallow: /xmlrpc.php
+Disallow: /feed/
+Disallow: /?s=
+Disallow: /search/
+Disallow: /*?filter=*
+Disallow: /*&filter=*
+
+Sitemap: http://localhost/movie/sitemap.xml
