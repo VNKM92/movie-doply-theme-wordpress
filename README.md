@@ -211,16 +211,34 @@ Located in `inc/duplicate-validator.php`:
 
 ## 🔌 Companion Plugins
 
-### 1. DoodhTheme Core & SEO Plugin
-- **Path**: `wp-content/plugins/doodhtheme-core/doodhtheme-core.php`
+### 1. Doodh SEO Suite (Yoast Alternative)
+- **Path**: `wp-content/plugins/doodh-seo/doodh-seo.php`
+- **Dashboard**: **WP Admin > Doodh SEO**
 - **Features**:
-  - Injects `OpenGraph` tags (`og:title`, `og:description`, `og:image`, `og:type = 'video.movie'`).
-  - Injects `Twitter Cards` (`summary_large_image`).
-  - Injects `Schema.org/Movie` and `Schema.org/TVSeries` structured JSON-LD data.
-  - Automatically pings Google and Bing XML sitemaps when new content is published.
-  - Enables SVG and WebP image upload support in the Media Library.
+  - **Live Google SERP Snippet Preview**: Real-time desktop and mobile preview with dynamic snippet generation, title pixel-width calculation, and progress bars.
+  - **Focus Keyword Content Analysis**: Evaluates focus keyword presence in title, meta description, URL slug, opening paragraph, and calculates optimal keyword density.
+  - **Readability & Content Scorer**: Calculates word counts, sentence lengths, subheadings, and overall SEO Score with colored indicators (Good, OK, Needs Improvement).
+  - **Automated OpenGraph & Twitter Cards**: Social media cards with fallback images and custom sharing titles/descriptions.
+  - **Advanced Schema.org Graph**: JSON-LD structured graph for `WebSite`, `WebPage`, `Movie`, `TVSeries`, `BreadcrumbList`, and `Organization`.
+  - **Webmaster Tools Integration**: Fast verification inputs for Google Search Console, Bing Webmaster, Baidu, and Yandex.
+  - **Social Profiles Integration**: Global organization profile linking for Facebook, Twitter, Instagram, YouTube, and Pinterest.
 
-### 2. Doodh Speed Optimizer & LightSpeed Booster Plugin
+### 2. Doodh Security Shield & Web Application Firewall (WAF)
+- **Path**: `wp-content/plugins/doodh-security-shield/doodh-security-shield.php`
+- **Dashboard**: **WP Admin > Security Shield**
+- **Features**:
+  - **Active Web Application Firewall (WAF)**: Inspects all incoming GET, POST, COOKIE, and User-Agent payloads at early execution (`plugins_loaded` priority `-9999`) and returns HTTP 403 Forbidden with `X-Doodh-Shield: THREAT_BLOCKED`.
+  - **SQL Injection (SQLi) Blocker**: Intercepts UNION SELECT, benchmark/sleep timing attacks, information_schema exploits, and quote escapes.
+  - **Cross-Site Scripting (XSS) Blocker**: Blocks script injection, inline event handlers (`onload`, `onerror`), iframes, and cookie stealers.
+  - **Path Traversal & LFI Blocker**: Blocks directory traversal (`../../`), `/etc/passwd`, `win.ini`, and PHP stream wrapper exploits.
+  - **Bad Bot & Vulnerability Scanner Blocker**: Blocks malicious automated scanners (`sqlmap`, `nikto`, `wpscan`, `acunetix`, `dirbuster`, `masscan`).
+  - **Brute Force Login Defense & Honeypot**: IP-based attempt rate limiting (5 attempts / 60-min lockout) and hidden honeypot fields for bot traps.
+  - **XML-RPC Blocker & User Enumeration Guard**: Disables `xmlrpc.php` to prevent DDoS amplification and blocks author scan `/author=1` & REST user listing.
+  - **HTTP Security Headers**: Injects `X-Frame-Options: SAMEORIGIN`, `X-Content-Type-Options: nosniff`, `X-XSS-Protection`, and `Referrer-Policy`.
+  - **Uploads Directory Lockout**: Automatically maintains `.htaccess` `<Files *.php> deny from all </Files>` in `wp-content/uploads/` to prevent web shell execution.
+  - **Real-Time Security Audit Log**: Dedicated database table (`wp_doodh_security_logs`) logging threat types, client IPs, payloads, and timestamps.
+
+### 3. Doodh Speed Optimizer & LightSpeed Booster Plugin
 - **Path**: `wp-content/plugins/doodh-speed-optimizer/doodh-speed-optimizer.php`
 - **Dashboard**: **WP Admin > Settings > Speed Optimizer**
 - **Features**:
@@ -231,6 +249,15 @@ Located in `inc/duplicate-validator.php`:
   - **Instant Page Hover Preloader**: Preloads internal links into browser cache on mouse hover (> 65ms).
   - **WP Bloat Removal**: Strips emojis, oEmbed scripts, and unused core header tags.
   - **1-Click Purge**: Flush cache from admin top bar or settings page.
+
+### 4. DoodhTheme Core & Schema Plugin
+- **Path**: `wp-content/plugins/doodhtheme-core/doodhtheme-core.php`
+- **Features**:
+  - Injects `OpenGraph` tags (`og:title`, `og:description`, `og:image`, `og:type = 'video.movie'`).
+  - Injects `Twitter Cards` (`summary_large_image`).
+  - Injects `Schema.org/Movie` and `Schema.org/TVSeries` structured JSON-LD data.
+  - Automatically pings Google and Bing XML sitemaps when new content is published.
+  - Enables SVG and WebP image upload support in the Media Library.
 
 ---
 

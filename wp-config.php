@@ -27,6 +27,8 @@ define( 'WP_DEBUG', false );
 define( 'WP_DEBUG_LOG', false );
 define( 'WP_DEBUG_DISPLAY', false );
 
+define( 'DISALLOW_FILE_EDIT', true );
+
 define( 'WP_MEMORY_LIMIT', '512M' );
 define( 'WP_MAX_MEMORY_LIMIT', '512M' );
 
