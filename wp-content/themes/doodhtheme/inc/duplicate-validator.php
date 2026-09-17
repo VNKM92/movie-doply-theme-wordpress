@@ -6,7 +6,7 @@
  * Prevents duplicate TMDb IDs, IMDb IDs, Slugs, and Titles on manual entry,
  * REST API, XML-RPC, and TMDb Importer.
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -281,17 +281,17 @@ function doodhtheme_display_duplicate_admin_notice() {
 		?>
 		<div class="notice notice-warning is-dismissible">
 			<p>
-				<strong><?php esc_html_e( 'Notice - Potential Duplicate Detected:', 'doodhtheme' ); ?></strong>
+				<strong><?php esc_html_e( 'Notice - Potential Duplicate Detected:', 'vmtheme' ); ?></strong>
 				<?php
 				echo sprintf(
-					esc_html__( 'A %s with this %s already exists in your database: "%s" (Post ID: #%d).', 'doodhtheme' ),
+					esc_html__( 'A %s with this %s already exists in your database: "%s" (Post ID: #%d).', 'vmtheme' ),
 					esc_html( $d['post_type'] ),
 					esc_html( strtoupper( $d['reason'] ) ),
 					esc_html( $d['post_title'] ),
 					(int) $d['post_id']
 				);
 				?>
-				<a href="<?php echo esc_url( $d['edit_url'] ); ?>" style="font-weight:700; margin-left:6px;"><?php esc_html_e( 'Click here to edit existing post &rarr;', 'doodhtheme' ); ?></a>
+				<a href="<?php echo esc_url( $d['edit_url'] ); ?>" style="font-weight:700; margin-left:6px;"><?php esc_html_e( 'Click here to edit existing post &rarr;', 'vmtheme' ); ?></a>
 			</p>
 		</div>
 		<?php

@@ -1,0 +1,31 @@
+# VMTheme - Complete LLM & Agentic AI Technical Reference Manual
+
+## API & Agent Integration Guidelines
+VMTheme exposes structured endpoints and machine-readable data designed for AI agents, LLMs, and assistive search engines (OpenAI Search, Perplexity, Gemini, Claude, Copilot).
+
+### 1. Agent Discovery Endpoint
+- URL: /wp-json/vmtheme/v1/agent-summary
+- Method: GET
+- Response Format: JSON
+- Fields: brand_name, catalog_totals, top_trending_movies, top_trending_tv, genres_list, years_list.
+
+### 2. Live Title Search Endpoint
+- URL: /wp-json/vmtheme/v1/search
+- Method: GET
+- Query Params:
+  - q: Search query string (title, actor name, or genre)
+  - type: movies, tvshows, or all
+  - limit: Number of results (default 10)
+- Response: Array of structured titles with title, url, year, rating, quality, genres, poster.
+
+### 3. Content Taxonomy Reference
+- Post Types:
+  - movies: Standalone cinema films.
+  - tvshows: Multi-season television series.
+  - episodes: Individual episodic releases linked to TV Shows.
+- Taxonomies:
+  - genres: Genre classifications.
+  - dtcast: Actor / Cast filmographies.
+  - dtdirector: Film and TV directors.
+  - dtquality: Video stream resolutions (4K UHD, 1080p Full HD, 720p HD).
+  - release-year: Year of premiere.

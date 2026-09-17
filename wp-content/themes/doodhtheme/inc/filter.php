@@ -2,7 +2,7 @@
 /**
  * Dynamic Filter and Archive Query Handler
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -29,18 +29,18 @@ function doodhtheme_render_filter_bar( $current_type = 'movies' ) {
 			
 			<!-- Type Selector -->
 			<div class="doodh-filter-group">
-				<label><i class="fas fa-layer-group"></i> <?php esc_html_e( 'Type', 'doodhtheme' ); ?></label>
+				<label><i class="fas fa-layer-group"></i> <?php esc_html_e( 'Type', 'vmtheme' ); ?></label>
 				<select name="post_type" class="doodh-filter-select">
-					<option value="movies" <?php selected( $sel_type, 'movies' ); ?>><?php esc_html_e( 'Movies', 'doodhtheme' ); ?></option>
-					<option value="tvshows" <?php selected( $sel_type, 'tvshows' ); ?>><?php esc_html_e( 'TV Shows', 'doodhtheme' ); ?></option>
+					<option value="movies" <?php selected( $sel_type, 'movies' ); ?>><?php esc_html_e( 'Movies', 'vmtheme' ); ?></option>
+					<option value="tvshows" <?php selected( $sel_type, 'tvshows' ); ?>><?php esc_html_e( 'TV Shows', 'vmtheme' ); ?></option>
 				</select>
 			</div>
 
 			<!-- Genre Selector -->
 			<div class="doodh-filter-group">
-				<label><i class="fas fa-tags"></i> <?php esc_html_e( 'Genre', 'doodhtheme' ); ?></label>
+				<label><i class="fas fa-tags"></i> <?php esc_html_e( 'Genre', 'vmtheme' ); ?></label>
 				<select name="genre" class="doodh-filter-select">
-					<option value=""><?php esc_html_e( 'All Genres', 'doodhtheme' ); ?></option>
+					<option value=""><?php esc_html_e( 'All Genres', 'vmtheme' ); ?></option>
 					<?php if ( ! is_wp_error( $genres ) && ! empty( $genres ) ) : ?>
 						<?php foreach ( $genres as $g ) : ?>
 							<option value="<?php echo esc_attr( $g->slug ); ?>" <?php selected( $sel_genre, $g->slug ); ?>>
@@ -53,9 +53,9 @@ function doodhtheme_render_filter_bar( $current_type = 'movies' ) {
 
 			<!-- Year Selector -->
 			<div class="doodh-filter-group">
-				<label><i class="fas fa-calendar-alt"></i> <?php esc_html_e( 'Year', 'doodhtheme' ); ?></label>
+				<label><i class="fas fa-calendar-alt"></i> <?php esc_html_e( 'Year', 'vmtheme' ); ?></label>
 				<select name="release_year" class="doodh-filter-select">
-					<option value=""><?php esc_html_e( 'All Years', 'doodhtheme' ); ?></option>
+					<option value=""><?php esc_html_e( 'All Years', 'vmtheme' ); ?></option>
 					<?php if ( ! is_wp_error( $years ) && ! empty( $years ) ) : ?>
 						<?php foreach ( $years as $y ) : ?>
 							<option value="<?php echo esc_attr( $y->slug ); ?>" <?php selected( $sel_year, $y->slug ); ?>>
@@ -72,9 +72,9 @@ function doodhtheme_render_filter_bar( $current_type = 'movies' ) {
 
 			<!-- Quality Selector -->
 			<div class="doodh-filter-group">
-				<label><i class="fas fa-tv"></i> <?php esc_html_e( 'Quality', 'doodhtheme' ); ?></label>
+				<label><i class="fas fa-tv"></i> <?php esc_html_e( 'Quality', 'vmtheme' ); ?></label>
 				<select name="quality" class="doodh-filter-select">
-					<option value=""><?php esc_html_e( 'All Qualities', 'doodhtheme' ); ?></option>
+					<option value=""><?php esc_html_e( 'All Qualities', 'vmtheme' ); ?></option>
 					<?php if ( ! is_wp_error( $qualities ) && ! empty( $qualities ) ) : ?>
 						<?php foreach ( $qualities as $q ) : ?>
 							<option value="<?php echo esc_attr( $q->slug ); ?>" <?php selected( $sel_quality, $q->slug ); ?>>
@@ -87,19 +87,19 @@ function doodhtheme_render_filter_bar( $current_type = 'movies' ) {
 
 			<!-- Order / Sort -->
 			<div class="doodh-filter-group">
-				<label><i class="fas fa-sort-amount-down"></i> <?php esc_html_e( 'Sort By', 'doodhtheme' ); ?></label>
+				<label><i class="fas fa-sort-amount-down"></i> <?php esc_html_e( 'Sort By', 'vmtheme' ); ?></label>
 				<select name="order_by" class="doodh-filter-select">
-					<option value="date_desc" <?php selected( $sel_order, 'date_desc' ); ?>><?php esc_html_e( 'Recently Added', 'doodhtheme' ); ?></option>
-					<option value="rating_desc" <?php selected( $sel_order, 'rating_desc' ); ?>><?php esc_html_e( 'Highest Rating', 'doodhtheme' ); ?></option>
-					<option value="title_asc" <?php selected( $sel_order, 'title_asc' ); ?>><?php esc_html_e( 'Title (A - Z)', 'doodhtheme' ); ?></option>
-					<option value="title_desc" <?php selected( $sel_order, 'title_desc' ); ?>><?php esc_html_e( 'Title (Z - A)', 'doodhtheme' ); ?></option>
+					<option value="date_desc" <?php selected( $sel_order, 'date_desc' ); ?>><?php esc_html_e( 'Recently Added', 'vmtheme' ); ?></option>
+					<option value="rating_desc" <?php selected( $sel_order, 'rating_desc' ); ?>><?php esc_html_e( 'Highest Rating', 'vmtheme' ); ?></option>
+					<option value="title_asc" <?php selected( $sel_order, 'title_asc' ); ?>><?php esc_html_e( 'Title (A - Z)', 'vmtheme' ); ?></option>
+					<option value="title_desc" <?php selected( $sel_order, 'title_desc' ); ?>><?php esc_html_e( 'Title (Z - A)', 'vmtheme' ); ?></option>
 				</select>
 			</div>
 
 			<!-- Submit Button -->
 			<div class="doodh-filter-action">
 				<button type="submit" class="doodh-btn-filter">
-					<i class="fas fa-sliders-h"></i> <?php esc_html_e( 'Filter', 'doodhtheme' ); ?>
+					<i class="fas fa-sliders-h"></i> <?php esc_html_e( 'Filter', 'vmtheme' ); ?>
 				</button>
 			</div>
 		</form>

@@ -1,0 +1,85 @@
+[15-Sep-2026 04:18:16 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[15-Sep-2026 04:18:23 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[15-Sep-2026 04:19:07 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[15-Sep-2026 04:19:35 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[15-Sep-2026 04:19:51 UTC] Automatic updates starting...
+[15-Sep-2026 04:19:53 UTC] Automatic updates complete.
+[16-Sep-2026 09:18:12 UTC] Automatic updates starting...
+[16-Sep-2026 09:18:14 UTC] Automatic updates complete.
+[16-Sep-2026 18:26:11 UTC] Automatic updates starting...
+[16-Sep-2026 18:26:13 UTC] Automatic updates complete.
+[17-Sep-2026 10:20:05 UTC] Automatic updates starting...
+[17-Sep-2026 10:20:07 UTC] Automatic updates complete.
+[17-Sep-2026 12:00:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function vmtheme_agent_get_summary() in C:\Users\vinay\.gemini\antigravity\brain\5043a9e8-2e2c-470a-bf56-94dd296d2ffb\scratch\test_endpoints.php:12
+Stack trace:
+#0 {main}
+  thrown in C:\Users\vinay\.gemini\antigravity\brain\5043a9e8-2e2c-470a-bf56-94dd296d2ffb\scratch\test_endpoints.php on line 12
+[17-Sep-2026 12:01:22 UTC] PHP Warning:  Undefined array key "sections" in C:\Users\vinay\.gemini\antigravity\brain\5043a9e8-2e2c-470a-bf56-94dd296d2ffb\scratch\test_endpoints.php on line 9
+[17-Sep-2026 12:01:22 UTC] PHP Fatal error:  Uncaught TypeError: array_filter(): Argument #1 ($array) must be of type array, null given in C:\Users\vinay\.gemini\antigravity\brain\5043a9e8-2e2c-470a-bf56-94dd296d2ffb\scratch\test_endpoints.php:9
+Stack trace:
+#0 C:\Users\vinay\.gemini\antigravity\brain\5043a9e8-2e2c-470a-bf56-94dd296d2ffb\scratch\test_endpoints.php(9): array_filter(NULL, Object(Closure))
+#1 {main}
+  thrown in C:\Users\vinay\.gemini\antigravity\brain\5043a9e8-2e2c-470a-bf56-94dd296d2ffb\scratch\test_endpoints.php on line 9
+[17-Sep-2026 12:01:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function vmtheme_output_schema() in C:\Users\vinay\.gemini\antigravity\brain\5043a9e8-2e2c-470a-bf56-94dd296d2ffb\scratch\test_endpoints.php:41
+Stack trace:
+#0 {main}
+  thrown in C:\Users\vinay\.gemini\antigravity\brain\5043a9e8-2e2c-470a-bf56-94dd296d2ffb\scratch\test_endpoints.php on line 41
+[17-Sep-2026 12:14:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wp_create_category() in C:\xampp\htdocs\movie\wp-content\themes\doodhtheme\inc\blog-system.php:311
+Stack trace:
+#0 C:\xampp\htdocs\movie\wp-includes\class-wp-hook.php(353): vmtheme_seed_sample_blog_posts_if_empty('')
+#1 C:\xampp\htdocs\movie\wp-includes\class-wp-hook.php(377): WP_Hook->apply_filters(NULL, Array)
+#2 C:\xampp\htdocs\movie\wp-includes\plugin.php(523): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\movie\wp-settings.php(779): do_action('init')
+#4 C:\xampp\htdocs\movie\wp-config.php(39): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\movie\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\movie\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\movie\wp-content\themes\doodhtheme\inc\blog-system.php on line 311
+[17-Sep-2026 12:15:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wp_create_category() in C:\xampp\htdocs\movie\wp-content\themes\doodhtheme\inc\blog-system.php:311
+Stack trace:
+#0 C:\xampp\htdocs\movie\wp-includes\class-wp-hook.php(353): vmtheme_seed_sample_blog_posts_if_empty('')
+#1 C:\xampp\htdocs\movie\wp-includes\class-wp-hook.php(377): WP_Hook->apply_filters(NULL, Array)
+#2 C:\xampp\htdocs\movie\wp-includes\plugin.php(523): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\movie\wp-settings.php(779): do_action('init')
+#4 C:\xampp\htdocs\movie\wp-config.php(39): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\movie\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\movie\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\movie\wp-content\themes\doodhtheme\inc\blog-system.php on line 311
+[17-Sep-2026 12:16:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wp_create_category() in C:\xampp\htdocs\movie\wp-content\themes\doodhtheme\inc\blog-system.php:311
+Stack trace:
+#0 C:\xampp\htdocs\movie\wp-includes\class-wp-hook.php(353): vmtheme_seed_sample_blog_posts_if_empty('')
+#1 C:\xampp\htdocs\movie\wp-includes\class-wp-hook.php(377): WP_Hook->apply_filters(NULL, Array)
+#2 C:\xampp\htdocs\movie\wp-includes\plugin.php(523): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\movie\wp-settings.php(779): do_action('init')
+#4 C:\xampp\htdocs\movie\wp-config.php(39): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\movie\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\movie\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\movie\wp-content\themes\doodhtheme\inc\blog-system.php on line 311
+[17-Sep-2026 12:17:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wp_create_category() in C:\xampp\htdocs\movie\wp-content\themes\doodhtheme\inc\blog-system.php:311
+Stack trace:
+#0 C:\xampp\htdocs\movie\wp-includes\class-wp-hook.php(353): vmtheme_seed_sample_blog_posts_if_empty('')
+#1 C:\xampp\htdocs\movie\wp-includes\class-wp-hook.php(377): WP_Hook->apply_filters(NULL, Array)
+#2 C:\xampp\htdocs\movie\wp-includes\plugin.php(523): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\movie\wp-settings.php(779): do_action('init')
+#4 C:\xampp\htdocs\movie\wp-config.php(39): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\movie\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\movie\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\movie\wp-content\themes\doodhtheme\inc\blog-system.php on line 311
+[17-Sep-2026 12:17:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wp_create_category() in C:\xampp\htdocs\movie\wp-content\themes\doodhtheme\inc\blog-system.php:311
+Stack trace:
+#0 C:\xampp\htdocs\movie\wp-includes\class-wp-hook.php(353): vmtheme_seed_sample_blog_posts_if_empty('')
+#1 C:\xampp\htdocs\movie\wp-includes\class-wp-hook.php(377): WP_Hook->apply_filters(NULL, Array)
+#2 C:\xampp\htdocs\movie\wp-includes\plugin.php(523): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\movie\wp-settings.php(779): do_action('init')
+#4 C:\xampp\htdocs\movie\wp-config.php(39): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\movie\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#6 C:\Users\vinay\.gemini\antigravity\brain\5043a9e8-2e2c-470a-bf56-94dd296d2ffb\scratch\test_blog_system.php(2): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+  thrown in C:\xampp\htdocs\movie\wp-content\themes\doodhtheme\inc\blog-system.php on line 311
+[17-Sep-2026 12:25:43 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in C:\xampp\htdocs\movie\wp-content\plugins\doodhtheme-core\doodhtheme-core.php on line 56
+[17-Sep-2026 12:25:43 UTC] PHP Warning:  Undefined array key "SERVER_NAME" in C:\xampp\htdocs\movie\wp-includes\general-template.php on line 4094
+[17-Sep-2026 12:25:43 UTC] PHP Warning:  Undefined array key "SERVER_NAME" in C:\xampp\htdocs\movie\wp-includes\general-template.php on line 4094
+[17-Sep-2026 12:25:43 UTC] PHP Warning:  Undefined array key "SERVER_NAME" in C:\xampp\htdocs\movie\wp-includes\general-template.php on line 4094

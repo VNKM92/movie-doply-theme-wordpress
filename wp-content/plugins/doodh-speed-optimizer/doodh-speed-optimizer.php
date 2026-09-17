@@ -68,6 +68,12 @@ class Doodh_Speed_Optimizer {
 		add_action( 'comment_post', array( $this, 'purge_cache' ) );
 		add_action( 'wp_update_nav_menu', array( $this, 'purge_cache' ) );
 		add_action( 'customize_save_after', array( $this, 'purge_cache' ) );
+		add_action( 'doodhtheme_purge_speed_cache', array( $this, 'purge_cache' ) );
+		add_action( 'update_option_doodh_enable_downloads_global', array( $this, 'purge_cache' ) );
+		add_action( 'update_option_doodh_enable_downloads_movies', array( $this, 'purge_cache' ) );
+		add_action( 'update_option_doodh_enable_downloads_tvshows', array( $this, 'purge_cache' ) );
+		add_action( 'update_option_doodh_enable_downloads_episodes', array( $this, 'purge_cache' ) );
+		add_action( 'update_option_doodh_enable_downloads_post', array( $this, 'purge_cache' ) );
 
 		// Admin Dashboard
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );

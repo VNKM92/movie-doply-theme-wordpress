@@ -1,49 +1,64 @@
 <?php
 /**
- * Plugin Name: DoodhTheme Core & High-Performance SEO Engine
- * Plugin URI: https://doodhtheme.com/
+ * Plugin Name: VMTheme Core & High-Performance SEO Engine
+ * Plugin URI: https://vmtheme.com/
  * Description: Essential production companion plugin providing automated OpenGraph, Twitter Cards, Schema.org Rich Snippets, Real-time Search Engine Sitemap Pinging, and core video streaming optimizations.
  * Version: 2.5.0
- * Author: DoodhTheme Team
- * Author URI: https://doodhtheme.com/
+ * Author: VMTheme Team
+ * Author URI: https://vmtheme.com/
  * License: GPLv2 or later
- * Text Domain: doodhtheme-core
+ * Text Domain: vmtheme-core
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DOODH_CORE_VERSION', '2.5.0' );
-define( 'DOODH_CORE_DIR', plugin_dir_path( __FILE__ ) );
-define( 'DOODH_CORE_URI', plugin_dir_url( __FILE__ ) );
+define( 'VM_CORE_VERSION', '2.5.0' );
+define( 'VM_CORE_DIR', plugin_dir_path( __FILE__ ) );
+define( 'VM_CORE_URI', plugin_dir_url( __FILE__ ) );
+if ( ! defined( 'DOODH_CORE_VERSION' ) ) {
+	define( 'DOODH_CORE_VERSION', VM_CORE_VERSION );
+}
+if ( ! defined( 'DOODH_CORE_DIR' ) ) {
+	define( 'DOODH_CORE_DIR', VM_CORE_DIR );
+}
+if ( ! defined( 'DOODH_CORE_URI' ) ) {
+	define( 'DOODH_CORE_URI', VM_CORE_URI );
+}
 
 /**
  * 1. Allow SVG and WebP Uploads in WordPress Media Library
  */
-function doodhtheme_core_mime_types( $mimes ) {
+function vmtheme_core_mime_types( $mimes ) {
 	$mimes['svg']  = 'image/svg+xml';
 	$mimes['webp'] = 'image/webp';
 	return $mimes;
 }
-add_filter( 'upload_mimes', 'doodhtheme_core_mime_types' );
+add_filter( 'upload_mimes', 'vmtheme_core_mime_types' );
+
+if ( ! function_exists( 'doodhtheme_core_mime_types' ) ) {
+	function doodhtheme_core_mime_types( $mimes ) {
+		return vmtheme_core_mime_types( $mimes );
+	}
+}
 
 /**
  * 2. Automatic OpenGraph & Twitter Cards Meta Tags in Head
  */
-function doodhtheme_core_render_seo_meta_tags() {
+function vmtheme_core_render_seo_meta_tags() {
 	if ( is_admin() ) {
 		return;
 	}
 
-	$brand_name = function_exists( 'doodhtheme_get_brand_name' ) ? doodhtheme_get_brand_name() : get_bloginfo( 'name' );
-	$brand_desc = function_exists( 'doodhtheme_get_brand_tagline' ) ? doodhtheme_get_brand_tagline() : get_bloginfo( 'description' );
+	$brand_name = function_exists( 'vmtheme_get_brand_name' ) ? vmtheme_get_brand_name() : ( function_exists( 'doodhtheme_get_brand_name' ) ? doodhtheme_get_brand_name() : get_bloginfo( 'name' ) );
+	$brand_desc = function_exists( 'vmtheme_get_brand_tagline' ) ? vmtheme_get_brand_tagline() : ( function_exists( 'doodhtheme_get_brand_tagline' ) ? doodhtheme_get_brand_tagline() : get_bloginfo( 'description' ) );
 	$current_url = esc_url( ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
 
 	$og_title = $brand_name . ' - ' . $brand_desc;
 	$og_desc  = $brand_desc;
 	$og_type  = 'website';
-	$og_image = function_exists( 'doodhtheme_get_fallback_backdrop_url' ) ? doodhtheme_get_fallback_backdrop_url() : '';
+	$og_image = function_exists( 'vmtheme_get_fallback_backdrop_url' ) ? vmtheme_get_fallback_backdrop_url() : ( function_exists( 'doodhtheme_get_fallback_backdrop_url' ) ? doodhtheme_get_fallback_backdrop_url() : '' );
 
 	if ( is_singular() ) {
 		$post_id  = get_the_ID();
@@ -52,7 +67,9 @@ function doodhtheme_core_render_seo_meta_tags() {
 		$og_desc  = mb_substr( $og_desc, 0, 160 ) . '...';
 		$og_type  = is_singular( 'movies' ) ? 'video.movie' : ( is_singular( 'tvshows' ) ? 'video.tv_show' : 'article' );
 
-		if ( function_exists( 'doodhtheme_get_backdrop_url' ) ) {
+		if ( function_exists( 'vmtheme_get_backdrop_url' ) ) {
+			$og_image = vmtheme_get_backdrop_url( $post_id );
+		} elseif ( function_exists( 'doodhtheme_get_backdrop_url' ) ) {
 			$og_image = doodhtheme_get_backdrop_url( $post_id );
 		}
 	} elseif ( is_tax() ) {
@@ -82,15 +99,21 @@ function doodhtheme_core_render_seo_meta_tags() {
 	<?php endif; ?>
 
 	<link rel="canonical" href="<?php echo esc_url( $current_url ); ?>">
-	<!-- / End DoodhTheme Core SEO -->
+	<!-- / End VMTheme Core SEO -->
 	<?php
 }
-add_action( 'wp_head', 'doodhtheme_core_render_seo_meta_tags', 1 );
+add_action( 'wp_head', 'vmtheme_core_render_seo_meta_tags', 1 );
+
+if ( ! function_exists( 'doodhtheme_core_render_seo_meta_tags' ) ) {
+	function doodhtheme_core_render_seo_meta_tags() {
+		vmtheme_core_render_seo_meta_tags();
+	}
+}
 
 /**
  * 3. Instant Search Engine Sitemap Ping on Post Publication
  */
-function doodhtheme_core_ping_search_engines( $post_id, $post, $update ) {
+function vmtheme_core_ping_search_engines( $post_id, $post, $update ) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
@@ -113,4 +136,11 @@ function doodhtheme_core_ping_search_engines( $post_id, $post, $update ) {
 		'blocking' => false,
 	) );
 }
-add_action( 'save_post', 'doodhtheme_core_ping_search_engines', 20, 3 );
+add_action( 'save_post', 'vmtheme_core_ping_search_engines', 20, 3 );
+
+if ( ! function_exists( 'doodhtheme_core_ping_search_engines' ) ) {
+	function doodhtheme_core_ping_search_engines( $post_id, $post, $update ) {
+		vmtheme_core_ping_search_engines( $post_id, $post, $update );
+	}
+}
+

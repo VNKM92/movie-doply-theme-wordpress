@@ -1,436 +1,610 @@
-# 🎬 DoodhTheme — Production-Grade Movie & TV Streaming Platform
+# 🎬 VMTheme (DoodhTheme) — Enterprise Movie & TV Streaming Platform
 
-**DoodhTheme** is an enterprise-grade, high-performance WordPress movie and TV show streaming, database, and catalog system built from the ground up for high traffic, 95+ Google PageSpeed scores, Core Web Vitals compliance, and advanced SEO.
+[![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue.svg)](https://wordpress.org)
+[![PHP](https://img.shields.io/badge/PHP-7.4%20|%208.0%20|%208.1%20|%208.2%20|%208.3-777BB4.svg)](https://php.net)
+[![SEO Ready](https://img.shields.io/badge/SEO-Schema.org%20JSON--LD-success.svg)](#-seo-schemaorg--structured-data-engine)
+[![LLM & AI Agent Ready](https://img.shields.io/badge/AI%20Agent-llms.txt%20%2B%20REST%20API-purple.svg)](#-llm--ai-browser-agentic-architecture)
+[![License](https://img.shields.io/badge/License-GPL%20v2%2B-orange.svg)](#)
+
+**VMTheme (DoodhTheme)** is a production-ready, enterprise-grade WordPress theme and ecosystem engineered for high-traffic movie, TV series, anime streaming portals, video catalogs, and cinema databases. It combines senior-level software architecture, native TMDb/IMDb delta data synchronization, automated Schema.org rich snippets, machine-readable LLM/AI agent endpoints, a modular Homepage Section Manager, high-performance disk caching, and multi-vector cybersecurity.
 
 ---
 
 ## 📑 Table of Contents
-1. [System Architecture & Overview](#-system-architecture--overview)
-2. [Project & File Directory Structure](#-project--file-directory-structure)
-3. [Database Architecture & Custom Schema](#-database-architecture--custom-schema)
-   - [Custom Post Types (CPTs)](#custom-post-types-cpts)
-   - [Custom Taxonomies](#custom-taxonomies)
-   - [Post Meta Keys Reference](#post-meta-keys-reference)
-   - [Term Meta Keys Reference](#term-meta-keys-reference)
-4. [TMDb & IMDb Auto-Importer & Delta Sync Engine](#-tmdb--imdb-auto-importer--delta-sync-engine)
-5. [Duplicate Prevention & Data Validator](#-duplicate-prevention--data-validator)
-6. [Companion Plugins](#-companion-plugins)
-   - [DoodhTheme Core & SEO](#1-doodhtheme-core--seo-plugin)
-   - [Doodh Speed Optimizer & LightSpeed Booster](#2-doodh-speed-optimizer--lightspeed-booster-plugin)
-7. [Theme Template Hierarchy & Custom Templates](#-theme-template-hierarchy--custom-templates)
-8. [Reviews, Ratings & Community Aggregate System](#-reviews-ratings--community-aggregate-system)
-9. [Dynamic XML Sitemaps & robots.txt Architecture](#-dynamic-xml-sitemaps--robotstxt-architecture)
-10. [301 Redirect Engine & 404 Auto-Healing](#-301-redirect-engine--404-auto-healing)
-11. [Dynamic Brand & Identity Engine](#-dynamic-brand--identity-engine)
-12. [Media Fallbacks & Responsive Pagination Component](#-media-fallbacks--responsive-pagination-component)
-13. [Developer Guide & How to Build New Features](#-developer-guide--how-to-build-new-features)
-    - [Adding a New Streaming Player Server](#1-adding-a-new-streaming-player-server)
-    - [Adding a New AJAX Endpoint](#2-adding-a-new-ajax-endpoint)
-    - [Creating a New Custom Page Template](#3-creating-a-new-custom-page-template)
-    - [Interacting with the Cache Engine](#4-interacting-with-the-cache-engine)
-14. [Automated Test Suites & Verification](#-automated-test-suites--verification)
+
+1. [Architectural Overview & Core Tech Stack](#-architectural-overview--core-tech-stack)
+2. [Project & File Hierarchy Structure](#-project--file-hierarchy-structure)
+3. [Database Architecture & Data Design](#-database-architecture--data-design)
+   - [Custom Post Types (CPTs) & Rewrites](#custom-post-types-cpts--rewrites)
+   - [Custom Taxonomies & Rewrites](#custom-taxonomies--rewrites)
+   - [Entity-Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
+   - [Complete Post Meta Dictionary](#complete-post-meta-dictionary)
+   - [Term Meta Dictionary](#term-meta-dictionary)
+4. [TMDb & IMDb Data Ingestion & Delta Sync Engine](#-tmdb--imdb-data-ingestion--delta-sync-engine)
+   - [API Endpoints & Integration](#api-endpoints--integration)
+   - [Field Mapping Specification](#field-mapping-specification)
+   - [Delta Synchronization & Review Ingestion](#delta-synchronization--review-ingestion)
+   - [4-Tier Duplicate Prevention & Data Validator](#4-tier-duplicate-prevention--data-validator)
+5. [SEO, Schema.org & Structured Data Engine](#-seo-schemaorg--structured-data-engine)
+   - [JSON-LD Structured Data Graph](#json-ld-structured-data-graph)
+   - [SERP BreadcrumbList Architecture](#serp-breadcrumblist-architecture)
+   - [Dynamic XML Sitemaps & robots.txt](#dynamic-xml-sitemaps--robotstxt)
+6. [LLM & AI Browser Agentic Architecture](#-llm--ai-browser-agentic-architecture)
+   - [Standard Discovery Manifests (`llms.txt` & `llms-full.txt`)](#standard-discovery-manifests-llmstxt--llms-fulltxt)
+   - [Agentic Machine-Readable REST APIs](#agentic-machine-readable-rest-apis)
+   - [AI Crawler Permission Matrix](#ai-crawler-permission-matrix)
+7. [Dynamic Homepage Section Manager](#-dynamic-homepage-section-manager)
+   - [Admin Control Dashboard](#admin-control-dashboard)
+   - [Section Hierarchy & Configurable Controls](#section-hierarchy--configurable-controls)
+   - [Graceful Conditional Rendering Pipeline](#graceful-conditional-rendering-pipeline)
+8. [Core Modules & Streaming Features](#-core-modules--streaming-features)
+   - [Multi-Server Video Player & Embed Switcher](#multi-server-video-player--embed-switcher)
+   - [Downloads Manager](#downloads-manager)
+   - [Instant Debounced AJAX Search](#instant-debounced-ajax-search)
+   - [Community Reviews & Weighted Rating Engine](#community-reviews--weighted-rating-engine)
+   - [Client-Side Watchlist (LocalStorage)](#client-side-watchlist-localstorage)
+   - [301 Redirects & 404 Auto-Healing](#301-redirects--404-auto-healing)
+   - [Dynamic Brand & Identity Engine](#dynamic-brand--identity-engine)
+9. [Companion Security & Performance Plugins](#-companion-security--performance-plugins)
+   - [Doodh Security Shield (WAF & Firewall)](#1-doodh-security-shield-waf--firewall)
+   - [Doodh Speed Optimizer (Caching & CLS)](#2-doodh-speed-optimizer-caching--cls)
+   - [Doodh SEO Suite](#3-doodh-seo-suite)
+10. [Installation, Configuration & Git Deployment](#-installation-configuration--git-deployment)
+11. [Developer Extension Guide](#-developer-extension-guide)
 
 ---
 
-## 🏛 System Architecture & Overview
+## 🏛 Architectural Overview & Core Tech Stack
 
-- **CMS**: WordPress 6.x+
-- **Active Theme**: `doodhtheme` (Parent Theme) / `doodhtheme-child`
-- **Active Plugins**:
-  1. `doodh-seo` (Full Yoast-style SEO Suite: Live Google SERP Snippet Preview, Focus Keyword Analyzer, Schema.org Graph, Webmaster Tools, and Social Meta)
-  2. `doodhtheme-core` (SEO metadata, OpenGraph, Twitter Cards, Schema.org video tags, sitemap ping)
-  3. `doodh-speed-optimizer` (Disk Page Caching, HTML/CSS/JS minification, script deferral, image CLS optimization, hover preloading)
-- **Catalog Size**: 3,540 total published records (1,164 Movies, 583 TV Shows, 583 Seasons, 1,199 Episodes, 11 Pages).
-- **Uniqueness**: 100% Unique title validation with 0 duplicates across the entire catalog.
+```mermaid
+graph TD
+    User["Web & Mobile Users"] --> CDN["Cloudflare / Nginx Reverse Proxy"]
+    AIAgents["AI Agents (Perplexity / ChatGPT / Claude)"] --> CDN
+    
+    CDN --> WAF["Doodh Security Shield (WAF Layer)"]
+    WAF --> Cache["Doodh Speed Cache (<25ms Hit)"]
+    
+    Cache -- Cache Miss --> WP["WordPress Core (PHP 8.x)"]
+    
+    subgraph "VMTheme Ecosystem"
+        WP --> Router["Template Hierarchy Router"]
+        WP --> RestAPI["Agentic REST API (/vmtheme/v1/)"]
+        WP --> HomeMgr["Homepage Section Manager"]
+        WP --> TMDb["TMDb / IMDb Sync Engine"]
+        WP --> SEO["Schema.org & SEO Engine"]
+    end
+    
+    subgraph "Storage & Data Layer"
+        WP --> MySQL[(MySQL / MariaDB)]
+        TMDb <--> TMDbAPI["The Movie Database (TMDb) API"]
+    end
+```
+
+- **Core Engine**: WordPress 6.x+, PHP 7.4 to 8.3+ compatible.
+- **Active Theme Architecture**: `doodhtheme` (Parent Theme engine) + `doodhtheme-child` (Customizations layer).
+- **Branding Compatibility**: Dual prefix support (`VMTheme` / `DoodhTheme`) ensuring 100% backward and forward compatibility.
+- **Performance Targets**: Sub-25ms page delivery with caching, 0.00 CLS (Cumulative Layout Shift), 95+ PageSpeed scores.
+- **Data Integrity**: 4-point collision validator ensuring 0 duplicate titles, slugs, or TMDb/IMDb IDs.
 
 ---
 
-## 📂 Project & File Directory Structure
+## 📂 Project & File Hierarchy Structure
 
 ```text
-c:\xampp\htdocs\movie\
-├── index.php
-├── wp-config.php
-├── robots.txt                                # Dynamic Crawl-optimized robots.txt
+c:\xampp\htdocs\movie/
+├── index.php                                 # WordPress bootstrap
+├── wp-config.php                             # Database & environment configurations
+├── robots.txt                                # SEO & AI-Crawler optimized crawler rules
+├── llms.txt                                  # Machine-readable LLM Agent discoverability manifest
+├── llms-full.txt                             # Full API reference & data contract for AI Agents
 ├── wp-content/
-│   ├── cache/
-│   │   └── doodh-speed/                     # Disk Page Cache output directory
 │   ├── plugins/
-│   │   ├── doodhtheme-core/                 # Companion SEO & schema plugin
-│   │   │   └── doodhtheme-core.php
-│   │   └── doodh-speed-optimizer/           # Caching, Minification & Speed plugin
-│   │       └── doodh-speed-optimizer.php
+│   │   ├── doodh-seo/                        # Yoast-alternative SEO suite & keyword analyzer
+│   │   ├── doodh-security-shield/            # High-priority WAF, SQLi/XSS guard & login defense
+│   │   ├── doodh-speed-optimizer/            # Disk page cache, JS deferral & CLS optimizer
+│   │   └── doodhtheme-core/                  # Core post types, OpenGraph & sitemap ping hooks
 │   └── themes/
-│       └── doodhtheme/
-│           ├── style.css                    # Main Theme Header & Stylesheet
-│           ├── functions.php                # Core setup, asset enqueue, helpers, pagination
-│           ├── header.php                   # Responsive header, search bar, dropdowns
-│           ├── footer.php                   # Footer links, DMCA disclaimer, copyright
-│           ├── index.php                    # Modern Homepage layout & carousels
-│           ├── archive.php                  # Base Archive fallback template
-│           ├── archive-movies.php           # Movies Archive with live filter bar
-│           ├── archive-tvshows.php          # TV Shows Archive with season counters
-│           ├── single.php                   # Default single post template
-│           ├── single-movies.php            # Single Movie page (Player, Cast, Downloads, Reviews)
-│           ├── single-tvshows.php           # Single TV Series page (Seasons tabs, Episodes grid)
-│           ├── single-episodes.php          # Single Episode player & Next/Prev navigation
-│           ├── search.php                   # Search results catalog with quick refine
-│           ├── taxonomy.php                 # Genre, Year, Quality taxonomy archive
-│           ├── taxonomy-dtcast.php          # Actor Bio hero & filmography grid
-│           ├── taxonomy-dtdirector.php      # Director Bio hero & directed works grid
-│           ├── page.php                     # Default Static Page template
-│           ├── page-about.php               # About Us custom template (Stats & Mission)
-│           ├── page-contact.php             # Contact Us with AJAX validation form
-│           ├── page-dmca.php                # DMCA copyright compliance template
-│           ├── page-genres.php              # Genres Directory grid template
-│           ├── page-years.php               # Release Years timeline (1990-2026)
-│           ├── page-top-imdb.php            # Top 100 Leaderboard (Paginated #1-#100)
-│           ├── page-watchlist.php           # LocalStorage Client Watchlist template
-│           ├── page-request.php             # User Title Request form template
-│           ├── 404.php                      # Custom 404 error page with search
-│           ├── assets/
-│           │   ├── css/
-│           │   │   └── doodhtheme.css       # Complete responsive CSS styling suite
-│           │   ├── js/
-│           │   │   └── doodhtheme.js        # Live AJAX search, rating, watchlist, player
-│           │   └── images/
-│           │       ├── poster-placeholder.svg    # Vector 300x450 poster fallback
-│           │       ├── backdrop-placeholder.svg  # Vector 1280x720 backdrop fallback
-│           │       └── avatar-placeholder.svg    # Vector 200x200 person avatar fallback
-│           └── inc/
-│               ├── post-types.php           # Register CPTs: movies, tvshows, seasons, episodes
-│               ├── taxonomies.php           # Register Taxonomies: genres, release-year, dtquality, dtcast, dtdirector
-│               ├── meta-boxes.php           # Custom admin metaboxes for streaming links & IDs
-│               ├── filter.php               # Multi-parameter AJAX & query string filter
-│               ├── player.php               # Multi-server streaming embed & HTML5 video player
-│               ├── reviews-system.php       # User review posting, 10-star rating, spam control
-│               ├── duplicate-validator.php  # TMDb/IMDb ID, Title, and Slug duplicate prevention
-│               ├── brand-settings.php       # Dynamic brand name, logo, footer badge customizer
-│               ├── redirects-manager.php    # 301 Redirects & 404 Auto-Healing Manager
-│               ├── sitemap-seo.php          # Dynamic XML Sitemap Index & Google Image extension
-│               ├── tmdb-fetcher.php         # TMDb API fetcher, reviews sync & delta updater
-│               ├── ads-manager.php          # Header, Player, Grid, and Footer Ad Slots
-│               ├── ajax-search.php          # Instant Debounced Live Search backend
-│               └── rating-watchlist.php     # Ajax rating handler and watchlist hooks
+│       ├── doodhtheme/                       # Parent Theme Engine
+│       │   ├── style.css                     # Main theme stylesheet & metadata
+│       │   ├── functions.php                 # Core theme setup, enqueues & module bootstrap
+│       │   ├── header.php                    # Responsive navbar, search bar & AI manifest tags
+│       │   ├── footer.php                    # Responsive footer, legal navigation & DMCA disclaimers
+│       │   ├── index.php                     # Modular Homepage executing Homepage Section Manager
+│       │   ├── archive-movies.php            # Movies archive with multi-parameter filter
+│       │   ├── archive-tvshows.php           # TV Shows catalog with season counters
+│       │   ├── single-movies.php             # Movie detail page (Player, Cast, Downloads, Reviews)
+│       │   ├── single-tvshows.php            # TV Series hub (Seasons tabbed, Episodes list)
+│       │   ├── single-episodes.php           # Episode streaming player with Next/Prev navigators
+│       │   ├── taxonomy.php                  # Taxonomy archive (Genre, Release Year, Quality)
+│       │   ├── taxonomy-dtcast.php           # Actor bio hero & filmography catalog
+│       │   ├── taxonomy-dtdirector.php       # Director bio hero & directed works grid
+│       │   ├── search.php                    # Search results layout with live refinement
+│       │   ├── 404.php                       # Error template with search auto-suggest
+│       │   ├── page-top-imdb.php             # Top 100 IMDb Leaderboard (#1-#100 rank badges)
+│       │   ├── page-genres.php               # Visual 3D gradient genres hub
+│       │   ├── page-years.php                # Release timeline (1990-2026)
+│       │   ├── page-watchlist.php            # LocalStorage client-side bookmark manager
+│       │   ├── page-about.php                # Platform overview & stats
+│       │   ├── page-contact.php              # AJAX contact form handler
+│       │   ├── page-dmca.php                 # DMCA copyright compliance policy
+│       │   ├── page-request.php              # Title request submission form
+│       │   ├── assets/
+│       │   │   ├── css/
+│       │   │   │   └── doodhtheme.css        # Master responsive layout, glassmorphic UI & modals
+│       │   │   ├── js/
+│       │   │   │   └── doodhtheme.js         # Real-time search, rating handler, player & watchlist
+│       │   │   └── images/
+│       │   │       ├── poster-placeholder.svg    # 300x450 fallback SVG
+│       │   │       ├── backdrop-placeholder.svg  # 1280x720 16:9 fallback SVG
+│       │   │       └── avatar-placeholder.svg    # 200x200 Actor/Director fallback SVG
+│       │   └── inc/
+│       │       ├── agentic-api.php           # LLM/AI Agent REST APIs (/vmtheme/v1/)
+│       │       ├── homepage-manager.php      # Homepage layout manager & WP Admin dashboard
+│       │       ├── seo-schema.php            # Schema.org JSON-LD graph & BreadcrumbList
+│       │       ├── tmdb-fetcher.php          # TMDb/IMDb API sync, auto-importer & reviews sync
+│       │       ├── duplicate-validator.php   # 4-Field unique collision prevention guard
+│       │       ├── post-types.php            # CPTs: movies, tvshows, seasons, episodes
+│       │       ├── taxonomies.php            # Taxonomies: genres, release-year, quality, cast, director
+│       │       ├── meta-boxes.php            # Custom Admin metaboxes (IDs, links, player sources)
+│       │       ├── player.php                # Multi-server streaming embed & HTML5 player
+│       │       ├── downloads-manager.php     # Multi-quality download links engine
+│       │       ├── reviews-system.php        # 10-Star user reviews & weighted rating calculator
+│       │       ├── ajax-search.php           # Fast instant AJAX search endpoint
+│       │       ├── filter.php                # Multi-parameter AJAX & URL filter query parser
+│       │       ├── brand-settings.php        # Dynamic Brand Name, Logo & identity manager
+│       │       ├── sitemap-seo.php           # Dynamic XML sitemaps with Google Image tags
+│       │       ├── redirects-manager.php     # 301 Redirect engine & 404 dead link healer
+│       │       ├── ads-manager.php           # Strategic header, player, grid & footer ad slots
+│       │       └── user-auth.php             # User login, registration & watchlist sync
+│       └── doodhtheme-child/                 # Child Theme for persistent customizations
+│           ├── style.css
+│           └── functions.php
 ```
 
 ---
 
-## 🗄 Database Architecture & Custom Schema
+## 🗄 Database Architecture & Data Design
 
-### Custom Post Types (CPTs)
-Registered in `inc/post-types.php`:
+### Custom Post Types (CPTs) & Rewrites
 
-| Post Type | Slug | Description | Rewrite Slug |
+| Post Type | Singular / Plural Name | DB Identifier | URL Rewrite Pattern | Template Handler |
+| :--- | :--- | :--- | :--- | :--- |
+| **Movies** | Movie / Movies | `movies` | `/movie/%postname%/` | `single-movies.php` |
+| **TV Shows** | TV Show / TV Shows | `tvshows` | `/tvshows/%postname%/` | `single-tvshows.php` |
+| **Seasons** | Season / Seasons | `seasons` | `/seasons/%postname%/` | `single-tvshows.php` |
+| **Episodes** | Episode / Episodes | `episodes` | `/episode/%postname%/` | `single-episodes.php` |
+
+### Custom Taxonomies & Rewrites
+
+| Taxonomy Slug | UI Label | Associated CPTs | URL Rewrite Pattern | Hierarchical |
+| :--- | :--- | :--- | :--- | :--- |
+| **`genres`** | Genres | `movies`, `tvshows` | `/genre/%term%/` | Yes (True) |
+| **`release-year`** | Release Year | `movies`, `tvshows` | `/release-year/%term%/` | No (False) |
+| **`dtquality`** | Video Quality | `movies`, `tvshows`, `episodes` | `/quality/%term%/` | No (False) |
+| **`dtcast`** | Actors / Cast | `movies`, `tvshows` | `/cast/%term%/` | No (False) |
+| **`dtdirector`** | Directors | `movies`, `tvshows` | `/director/%term%/` | No (False) |
+
+---
+
+### Entity-Relationship Diagram (ERD)
+
+```mermaid
+erDiagram
+    TV_SHOW ||--o{ SEASON : contains
+    SEASON ||--o{ EPISODE : contains
+    
+    MOVIE ||--o{ REVIEW : has
+    TV_SHOW ||--o{ REVIEW : has
+    EPISODE ||--o{ REVIEW : has
+    
+    MOVIE }|--|{ GENRE : classified_by
+    TV_SHOW }|--|{ GENRE : classified_by
+    
+    MOVIE }|--|{ ACTOR : stars
+    TV_SHOW }|--|{ ACTOR : stars
+    
+    MOVIE }|--|{ DIRECTOR : directed_by
+    TV_SHOW }|--|{ DIRECTOR : created_by
+    
+    MOVIE }|--|| QUALITY : streams_in
+    EPISODE }|--|| QUALITY : streams_in
+    
+    MOVIE ||--o{ STREAM_SERVER : provides
+    EPISODE ||--o{ STREAM_SERVER : provides
+    
+    MOVIE ||--o{ DOWNLOAD_LINK : provides
+    EPISODE ||--o{ DOWNLOAD_LINK : provides
+
+    MOVIE {
+        bigint ID PK
+        string post_title
+        string post_name
+        text post_content
+        string tmdb_id
+        string imdb_id
+        float rating
+        int votes
+        date release_date
+        int runtime
+    }
+
+    TV_SHOW {
+        bigint ID PK
+        string post_title
+        string post_name
+        text post_content
+        string tmdb_id
+        string imdb_id
+        float rating
+        int total_seasons
+        int total_episodes
+    }
+
+    SEASON {
+        bigint ID PK
+        bigint parent_tv_id FK
+        int season_number
+        string post_title
+    }
+
+    EPISODE {
+        bigint ID PK
+        bigint parent_tv_id FK
+        int season_number
+        int episode_number
+        string post_title
+        string still_url
+    }
+```
+
+---
+
+### Complete Post Meta Dictionary
+
+All custom data points are indexed in `wp_postmeta`:
+
+| Meta Key | Data Type | Applicable CPTs | Description & Example |
 | :--- | :--- | :--- | :--- |
-| **`movies`** | `movies` | Feature-length movies & films | `/movie/%postname%/` |
-| **`tvshows`** | `tvshows` | TV Series & Anime | `/tvshows/%postname%/` |
-| **`seasons`** | `seasons` | TV Show Seasons (Container) | `/seasons/%postname%/` |
-| **`episodes`** | `episodes` | Individual TV Episodes | `/episode/%postname%/` |
+| **`_doodh_tmdb_id`** | `INTEGER` | `movies`, `tvshows` | Unique The Movie Database ID (e.g. `157336`) |
+| **`_doodh_imdb_id`** | `VARCHAR(20)` | `movies`, `tvshows` | Unique IMDb alphanumeric ID (e.g. `tt0816692`) |
+| **`_doodh_poster_url`** | `TEXT (URL)` | `movies`, `tvshows` | Vertical 2:3 poster URL (`https://image.tmdb.org/t/p/w500/...`) |
+| **`_doodh_backdrop_url`**| `TEXT (URL)` | `movies`, `tvshows` | Widescreen 16:9 backdrop banner (`https://image.tmdb.org/t/p/original/...`) |
+| **`_doodh_rating`** | `FLOAT(3,1)` | `movies`, `tvshows`, `episodes` | Aggregate score (1.0 to 10.0, e.g. `8.7`) |
+| **`_doodh_votes`** | `INTEGER` | `movies`, `tvshows`, `episodes` | Total count of aggregate user & TMDb votes (e.g. `24500`) |
+| **`_doodh_release_date`** | `DATE` | `movies`, `tvshows`, `episodes` | Air / release date formatted `YYYY-MM-DD` |
+| **`_doodh_runtime`** | `INTEGER` | `movies`, `episodes` | Duration in minutes (e.g. `169` -> formats to `2h 49m`) |
+| **`_doodh_quality`** | `VARCHAR(30)` | `movies`, `tvshows`, `episodes` | Quality badge (`4K Ultra HD`, `1080p FHD`, `720p HD`, `CAM`) |
+| **`_doodh_trailer`** | `TEXT (URL)` | `movies`, `tvshows` | Official YouTube/Vimeo embed trailer URL |
+| **`_doodh_tagline`** | `TEXT` | `movies`, `tvshows` | Short promotional slogan |
+| **`_doodh_player_servers`**| `SERIALIZED ARRAY` | `movies`, `episodes` | Array of stream sources: `[['name'=>'Server 1', 'url'=>'https://...'], ...]` |
+| **`_doodh_download_links`**| `SERIALIZED ARRAY` | `movies`, `episodes` | Download sources: `[['label'=>'1080p', 'url'=>'https://...', 'size'=>'2.4 GB']]` |
+| **`_doodh_tv_id`** | `BIGINT` | `seasons`, `episodes` | Parent `tvshows` Post ID |
+| **`_doodh_season_number`** | `INTEGER` | `seasons`, `episodes` | Season index number (1, 2, 3...) |
+| **`_doodh_episode_number`**| `INTEGER` | `episodes` | Episode index number (1, 2, 3...) |
+| **`_doodh_still_url`** | `TEXT (URL)` | `episodes` | 16:9 episode thumbnail still URL |
 
-### Custom Taxonomies
-Registered in `inc/taxonomies.php`:
+### Term Meta Dictionary
 
-| Taxonomy Slug | Name | Associated Post Types | Rewrite Slug |
+Stored in `wp_termmeta`:
+
+| Term Meta Key | Taxonomy | Data Type | Description |
 | :--- | :--- | :--- | :--- |
-| **`genres`** | Genres | `movies`, `tvshows` | `/genre/%term%/` |
-| **`release-year`** | Release Year | `movies`, `tvshows` | `/release-year/%term%/` |
-| **`dtquality`** | Quality (4K, 1080p, HD) | `movies`, `tvshows`, `episodes` | `/quality/%term%/` |
-| **`dtcast`** | Actors / Cast | `movies`, `tvshows` | `/cast/%term%/` |
-| **`dtdirector`** | Directors / Creators | `movies`, `tvshows` | `/director/%term%/` |
+| **`_dt_actor_photo`** | `dtcast` | `TEXT (URL)` | Headshot photo URL for actors (`https://image.tmdb.org/...`) |
+| **`_dt_director_photo`** | `dtdirector` | `TEXT (URL)` | Portrait photo URL for directors/creators |
 
 ---
 
-### Post Meta Keys Reference
+## 🔄 TMDb & IMDb Data Ingestion & Delta Sync Engine
 
-| Meta Key | Data Type | Description |
-| :--- | :--- | :--- |
-| **`_doodh_tmdb_id`** | Integer | Unique The Movie Database (TMDb) ID |
-| **`_doodh_imdb_id`** | String | Unique IMDb ID (e.g., `tt0816692`) |
-| **`_doodh_poster_url`** | String (URL) | High-res vertical movie poster image URL |
-| **`_doodh_backdrop_url`** | String (URL) | Wide 16:9 banner / backdrop image URL |
-| **`_doodh_rating`** | Float | Aggregate weighted rating score (e.g. `8.7`) |
-| **`_doodh_votes`** | Integer | Total count of ratings / reviews |
-| **`_doodh_release_date`** | String (Date) | Release date formatted `YYYY-MM-DD` |
-| **`_doodh_runtime`** | Integer | Duration in minutes (e.g., `169`) |
-| **`_doodh_quality`** | String | Quality badge text (`4K Ultra HD`, `1080p FHD`, `720p HD`) |
-| **`_doodh_trailer`** | String (URL) | YouTube embed trailer URL |
-| **`_doodh_tagline`** | String | Movie promotional slogan |
-| **`_doodh_player_servers`** | Array (Serialized) | Multi-server stream links `array( array('name'=>'Server 1', 'url'=>'...'), ... )` |
-| **`_doodh_download_links`** | Array (Serialized) | Download links `array( array('label'=>'1080p', 'url'=>'...', 'size'=>'2.4 GB'), ... )` |
-| **`_doodh_tv_id`** | Integer | Parent TV Show post ID (used on `episodes` and `seasons`) |
-| **`_doodh_season_number`**| Integer | Season index number (1, 2, 3...) |
-| **`_doodh_episode_number`**| Integer | Episode index number (1, 2, 3...) |
-| **`_doodh_still_url`** | String (URL) | 16:9 episode thumbnail still URL |
+Located in [`inc/tmdb-fetcher.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/tmdb-fetcher.php):
 
-### Term Meta Keys Reference
+### API Endpoints & Integration
 
-| Term Meta Key | Taxonomy | Description |
-| :--- | :--- | :--- |
-| **`_dt_actor_photo`** | `dtcast` | Headshot portrait URL for actors/cast members |
-| **`_dt_director_photo`**| `dtdirector` | Portrait photo URL for directors/creators |
+The fetcher communicates with The Movie Database (TMDb) v3 API via authenticated HTTPS requests using `wp_remote_get()`:
+- **Movies**: `https://api.themoviedb.org/3/movie/{tmdb_id}?api_key={key}&append_to_response=credits,reviews,videos,similar`
+- **TV Series**: `https://api.themoviedb.org/3/tv/{tmdb_id}?api_key={key}&append_to_response=credits,reviews,videos,similar`
+- **Seasons/Episodes**: `https://api.themoviedb.org/3/tv/{tmdb_id}/season/{season_number}?api_key={key}`
+- **People / Cast Bio**: `https://api.themoviedb.org/3/person/{person_id}?api_key={key}`
 
----
+### Field Mapping Specification
 
-## 🔄 TMDb & IMDb Auto-Importer & Delta Sync Engine
+```text
+TMDb API Response Payload                    WordPress Target
+─────────────────────────────────────────────────────────────────────────────
+response.title / response.name         ───►  wp_posts.post_title
+response.overview                      ───►  wp_posts.post_content
+response.id                            ───►  _doodh_tmdb_id (Meta)
+response.imdb_id                       ───►  _doodh_imdb_id (Meta)
+response.poster_path                   ───►  _doodh_poster_url (https://image.tmdb.org/t/p/w500/...)
+response.backdrop_path                 ───►  _doodh_backdrop_url (https://image.tmdb.org/t/p/original/...)
+response.vote_average                  ───►  _doodh_rating (Meta)
+response.vote_count                    ───►  _doodh_votes (Meta)
+response.release_date / first_air_date ───►  _doodh_release_date (Meta) & 'release-year' Taxonomy
+response.runtime                       ───►  _doodh_runtime (Meta)
+response.tagline                       ───►  _doodh_tagline (Meta)
+response.genres[].name                 ───►  'genres' Taxonomy terms
+response.credits.cast[].name           ───►  'dtcast' Taxonomy terms + _dt_actor_photo (Term Meta)
+response.credits.crew[Director].name   ───►  'dtdirector' Taxonomy terms + _dt_director_photo
+response.videos.results[Trailer]       ───►  _doodh_trailer (Meta)
+```
 
-Located in `inc/tmdb-fetcher.php`:
+### Delta Synchronization & Review Ingestion
+1. **Delta Updates (Zero Overwrite Loss)**: When syncing an existing title, custom streaming links, custom download mirrors, and editorial descriptions are preserved. Only metadata (ratings, vote counts, newly aired episodes) is synchronized.
+2. **Automated Review Ingestion**: TMDb community reviews are ingested into `wp_comments` (`comment_type = 'review'`).
+3. **Weighted Rating Recalculation**:
+   $$\text{Final Score} = \frac{(\text{TMDb Rating} \times \text{TMDb Votes}) + \sum(\text{Local User Ratings})}{\text{TMDb Votes} + \text{Local User Votes}}$$
 
-### Core Capabilities:
-1. **Automated Data Fetching**:
-   - Queries `https://api.themoviedb.org/3/movie/{id}` or `/tv/{id}` with `append_to_response=credits,reviews,videos`.
-   - Populates title, synopsis, release date, runtime, poster, backdrop, genres, cast, and director.
-2. **Delta Content Synchronization**:
-   - If a movie or TV show already exists in the database, the importer **does not duplicate** the record. Instead, it performs a delta sync:
-     - Updates synopsis if modified.
-     - Updates ratings, vote counts, and posters.
-     - Syncs newly aired seasons and episodes automatically.
-3. **Automated Review Ingestion**:
-   - Fetches community reviews from TMDb.
-   - Inserts verified reviews into the WordPress comment table (`comment_type = 'review'`).
-   - Automatically recalculates the weighted aggregate rating stored in `_doodh_rating` and `_doodh_votes`.
-
----
-
-## 🛡 Duplicate Prevention & Data Validator
-
-Located in `inc/duplicate-validator.php`:
-
-1. **Multi-Key Strict Validation**:
-   - Validates uniqueness across **4 separate fields**:
-     1. TMDb ID (`_doodh_tmdb_id`)
-     2. IMDb ID (`_doodh_imdb_id`)
-     3. Post Title (`post_title`)
-     4. Post Slug (`post_name`)
-2. **Live AJAX Checker in WP Admin**:
-   - When creating or editing posts in `wp-admin/post-new.php`, a real-time validation indicator warns administrators if a title or TMDb ID already exists.
-3. **Database Guard Hook**:
-   - Intercepts `wp_insert_post_data` and halts duplicate creation during manual post creation, REST API requests, or bulk imports.
+### 4-Tier Duplicate Prevention & Data Validator
+Located in [`inc/duplicate-validator.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/duplicate-validator.php):
+- **TMDb ID Guard**: Rejects import if `_doodh_tmdb_id` is already bound to another post.
+- **IMDb ID Guard**: Rejects import if `_doodh_imdb_id` matches an existing entry.
+- **Title Collision Guard**: Checks normalized alphanumeric title string against existing published posts.
+- **Slug Guard**: Validates `post_name` uniqueness to avoid `-2`, `-3` slug permutations.
+- **Live Admin UI Indicator**: An interactive AJAX check fires on `wp-admin/post-new.php` as the editor types.
 
 ---
 
-## 🔌 Companion Plugins
+## 🔍 SEO, Schema.org & Structured Data Engine
 
-### 1. Doodh SEO Suite (Yoast Alternative)
-- **Path**: `wp-content/plugins/doodh-seo/doodh-seo.php`
-- **Dashboard**: **WP Admin > Doodh SEO**
-- **Features**:
-  - **Live Google SERP Snippet Preview**: Real-time desktop and mobile preview with dynamic snippet generation, title pixel-width calculation, and progress bars.
-  - **Focus Keyword Content Analysis**: Evaluates focus keyword presence in title, meta description, URL slug, opening paragraph, and calculates optimal keyword density.
-  - **Readability & Content Scorer**: Calculates word counts, sentence lengths, subheadings, and overall SEO Score with colored indicators (Good, OK, Needs Improvement).
-  - **Automated OpenGraph & Twitter Cards**: Social media cards with fallback images and custom sharing titles/descriptions.
-  - **Advanced Schema.org Graph**: JSON-LD structured graph for `WebSite`, `WebPage`, `Movie`, `TVSeries`, `BreadcrumbList`, and `Organization`.
-  - **Webmaster Tools Integration**: Fast verification inputs for Google Search Console, Bing Webmaster, Baidu, and Yandex.
-  - **Social Profiles Integration**: Global organization profile linking for Facebook, Twitter, Instagram, YouTube, and Pinterest.
+Located in [`inc/seo-schema.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/seo-schema.php):
 
-### 2. Doodh Security Shield & Web Application Firewall (WAF)
-- **Path**: `wp-content/plugins/doodh-security-shield/doodh-security-shield.php`
-- **Dashboard**: **WP Admin > Security Shield**
-- **Features**:
-  - **Active Web Application Firewall (WAF)**: Inspects all incoming GET, POST, COOKIE, and User-Agent payloads at early execution (`plugins_loaded` priority `-9999`) and returns HTTP 403 Forbidden with `X-Doodh-Shield: THREAT_BLOCKED`.
-  - **SQL Injection (SQLi) Blocker**: Intercepts UNION SELECT, benchmark/sleep timing attacks, information_schema exploits, and quote escapes.
-  - **Cross-Site Scripting (XSS) Blocker**: Blocks script injection, inline event handlers (`onload`, `onerror`), iframes, and cookie stealers.
-  - **Path Traversal & LFI Blocker**: Blocks directory traversal (`../../`), `/etc/passwd`, `win.ini`, and PHP stream wrapper exploits.
-  - **Bad Bot & Vulnerability Scanner Blocker**: Blocks malicious automated scanners (`sqlmap`, `nikto`, `wpscan`, `acunetix`, `dirbuster`, `masscan`).
-  - **Brute Force Login Defense & Honeypot**: IP-based attempt rate limiting (5 attempts / 60-min lockout) and hidden honeypot fields for bot traps.
-  - **XML-RPC Blocker & User Enumeration Guard**: Disables `xmlrpc.php` to prevent DDoS amplification and blocks author scan `/author=1` & REST user listing.
-  - **HTTP Security Headers**: Injects `X-Frame-Options: SAMEORIGIN`, `X-Content-Type-Options: nosniff`, `X-XSS-Protection`, and `Referrer-Policy`.
-  - **Uploads Directory Lockout**: Automatically maintains `.htaccess` `<Files *.php> deny from all </Files>` in `wp-content/uploads/` to prevent web shell execution.
-  - **Real-Time Security Audit Log**: Dedicated database table (`wp_doodh_security_logs`) logging threat types, client IPs, payloads, and timestamps.
+### JSON-LD Structured Data Graph
 
-### 3. Doodh Speed Optimizer & LightSpeed Booster Plugin
-- **Path**: `wp-content/plugins/doodh-speed-optimizer/doodh-speed-optimizer.php`
-- **Dashboard**: **WP Admin > Settings > Speed Optimizer**
-- **Features**:
-  - **Disk Page Caching**: Serves pre-rendered HTML in $< 25\text{ms}$ with `X-Doodh-Cache: HIT`.
-  - **HTML/CSS/JS Minification**: Compresses whitespace and strips comments, reducing document payload by 15–35%.
-  - **Image & CLS Optimizer**: Auto-injects native `loading="lazy"`, `decoding="async"`, and dimensions (`300x450`) to guarantee **CLS 0.00**.
-  - **JavaScript Deferral**: Defer non-critical scripts to eliminate render blocking.
-  - **Instant Page Hover Preloader**: Preloads internal links into browser cache on mouse hover (> 65ms).
-  - **WP Bloat Removal**: Strips emojis, oEmbed scripts, and unused core header tags.
-  - **1-Click Purge**: Flush cache from admin top bar or settings page.
+Automated JSON-LD graphs are injected into the `<head>` of every page matching Google's latest Rich Results specifications:
 
-### 4. DoodhTheme Core & Schema Plugin
-- **Path**: `wp-content/plugins/doodhtheme-core/doodhtheme-core.php`
-- **Features**:
-  - Injects `OpenGraph` tags (`og:title`, `og:description`, `og:image`, `og:type = 'video.movie'`).
-  - Injects `Twitter Cards` (`summary_large_image`).
-  - Injects `Schema.org/Movie` and `Schema.org/TVSeries` structured JSON-LD data.
-  - Automatically pings Google and Bing XML sitemaps when new content is published.
-  - Enables SVG and WebP image upload support in the Media Library.
+1. **Movie Schema (`schema.org/Movie`)**:
+   - `name`, `image`, `description`, `dateCreated`, `datePublished`, `director`, `actor`, `genre`, `duration` (ISO 8601 `PT2H49M`), `trailer` (`VideoObject`).
+   - `aggregateRating`: `ratingValue`, `bestRating: 10`, `worstRating: 1`, `ratingCount`.
+2. **TV Series Schema (`schema.org/TVSeries`)**:
+   - `name`, `image`, `description`, `numberOfSeasons`, `numberOfEpisodes`, `containsSeason`.
+3. **TV Episode Schema (`schema.org/TVEpisode`)**:
+   - `episodeNumber`, `partOfSeason`, `partOfSeries`, `timeRequired`.
+4. **Website & SearchAction Schema (`schema.org/WebSite`)**:
+   - Injects `SearchAction` enabling Google Sitelinks Search Box directly from SERP.
+5. **Organization Schema (`schema.org/Organization`)**:
+   - Dynamic brand metadata, logo, and social profile links.
+
+### SERP BreadcrumbList Architecture
+
+Every Movie, Show, and Episode generates hierarchical `BreadcrumbList` schemas:
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://domain.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Movies", "item": "https://domain.com/movie/" },
+    { "@type": "ListItem", "position": 3, "name": "Interstellar (2014)", "item": "https://domain.com/movie/interstellar-2014/" }
+  ]
+}
+```
+
+### Dynamic XML Sitemaps & robots.txt
+
+Located in [`inc/sitemap-seo.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/sitemap-seo.php) and [`robots.txt`](file:///c:/xampp/htdocs/movie/robots.txt):
+- **Sitemap Index**: `https://domain.com/sitemap.xml`
+  - `/sitemap-movies.xml` (Includes Google `<image:image>` poster and backdrop tags)
+  - `/sitemap-tvshows.xml`
+  - `/sitemap-episodes.xml`
+  - `/sitemap-taxonomies.xml` (Genres, Years, Quality, Actors, Directors)
+  - `/sitemap-pages.xml` (Static pages, DMCA, About, Contact)
 
 ---
 
-## 🎨 Theme Template Hierarchy & Custom Templates
+## 🤖 LLM & AI Browser Agentic Architecture
 
-| Template File | Usage / Route | Key Components |
-| :--- | :--- | :--- |
-| **`index.php`** | Front page (`/`) | Hero backdrop, Top 10 carousel, Latest Movies, TV series grid |
-| **`archive-movies.php`** | `/movies/` | Movies archive grid, multi-parameter filter bar, responsive pagination |
-| **`archive-tvshows.php`**| `/tvshows/` | TV Shows archive grid, season counters, responsive pagination |
-| **`single-movies.php`** | `/movie/{slug}/` | Streaming player, server switcher, downloads, starring cast, reviews |
-| **`single-tvshows.php`** | `/tvshows/{slug}/`| Backdrop, season tabs, episode grid, cast profile, related series |
-| **`single-episodes.php`**| `/episode/{slug}/`| Episode video player, Next/Prev navigation buttons, episode synopsis |
-| **`taxonomy.php`** | `/genre/`, `/release-year/`, `/quality/` | Filtered catalog grid, archive breadcrumbs, responsive pagination |
-| **`taxonomy-dtcast.php`** | `/cast/{name}/` | Actor portrait hero, bio, full filmography grid |
-| **`taxonomy-dtdirector.php`** | `/director/{name}/` | Director portrait hero, creator bio, directed catalog grid |
-| **`search.php`** | `/?s={query}` | Search query title, count meta, refine search bar, results grid |
-| **`page-top-imdb.php`** | `/top-imdb/` | Top 100 Leaderboard, paginated 25/page, gold/silver/bronze badges |
-| **`page-genres.php`** | `/genres/` | 3D gradient genre cards, icons, title counts |
-| **`page-years.php`** | `/years/` | Release years timeline (1990–2026), premiere badges |
-| **`page-watchlist.php`** | `/watchlist/` | Client-side LocalStorage saved titles grid |
-| **`page-about.php`** | `/about-us/` | Platform stats, mission statement, tech stack highlights |
-| **`page-contact.php`** | `/contact-us/` | Dynamic AJAX contact form, validation, contact details |
-| **`page-dmca.php`** | `/dmca/` | Copyright compliance & takedown guidelines |
+The platform provides first-class support for AI browsing agents (Perplexity, ChatGPT Search, Claude, Google Gemini):
 
----
+### Standard Discovery Manifests (`llms.txt` & `llms-full.txt`)
+- **[`llms.txt`](file:///c:/xampp/htdocs/movie/llms.txt)**: Root-level AI discoverability manifest outlining system capabilities, streaming catalog size, and direct REST API endpoints.
+- **[`llms-full.txt`](file:///c:/xampp/htdocs/movie/llms-full.txt)**: Complete API contract, query parameters, taxonomy reference, and JSON response models.
+- **`<link rel="alternate" type="text/markdown" title="LLM Agent Manifest" href="/llms.txt">`**: Embedded in [`header.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/header.php).
 
-## ⭐ Reviews, Ratings & Community Aggregate System
+### Agentic Machine-Readable REST APIs
+Located in [`inc/agentic-api.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/agentic-api.php):
 
-Located in `inc/reviews-system.php`:
+#### 1. Catalog Summary & Analytics
+- **Endpoint**: `GET /wp-json/vmtheme/v1/agent-summary`
+- **Response**: Platform metadata, counts (`total_movies`, `total_tvshows`, `total_episodes`), top genres, and featured cinema titles.
 
-- **Interactive Review Modal & Form**:
-  - 10-star rating picker with hover and active states.
-  - AJAX submission with nonce security and rate limiting.
-- **Score Calculation Algorithm**:
-  $$\text{Aggregate Rating} = \frac{\sum(\text{TMDb Score} \times \text{TMDb Votes}) + \sum(\text{User Ratings})}{\text{TMDb Votes} + \text{User Votes}}$$
-  The recalculated score is stored in `_doodh_rating` and instantly propagates across all badges, schema markup, and sitemaps.
-
----
-
-## 🗺 Dynamic XML Sitemaps & robots.txt Architecture
-
-Located in `inc/sitemap-seo.php`:
-
-- **Master Sitemap Index**: `http://localhost/movie/sitemap.xml`
-  - `/sitemap-movies.xml` (Movie URLs + Google Image `<image:image>` extensions)
-  - `/sitemap-tvshows.xml` (TV Show URLs + Posters)
-  - `/sitemap-episodes.xml` (Episode URLs)
-  - `/sitemap-taxonomies.xml` (Genres, Years, Quality, Cast, Directors)
-  - `/sitemap-pages.xml` (Legal and static directory pages)
-- **Dynamic `robots.txt`**: Directly points Googlebot and Bingbot to the master XML sitemap with strict disallow rules for `/wp-admin/` and private query endpoints.
-
----
-
-## 🔀 301 Redirect Engine & 404 Auto-Healing
-
-Located in `inc/redirects-manager.php`:
-- **Admin Location**: **WP Admin > Appearance > 301 & 404 Redirects**
-- **Features**:
-  - Add permanent 301 redirects from old/broken URLs to new destination links.
-  - Automatically captures 404 page hits with visitor count and referrers.
-  - One-click "Create Redirect" action to heal dead incoming backlinks.
-
----
-
-## 🏷 Dynamic Brand & Identity Engine
-
-Located in `inc/brand-settings.php`:
-- **Admin Location**: **WP Admin > Appearance > Brand & Identity**
-- **Features**:
-  - Customize Brand Name, Tagline, Header Logo URL, Footer Badge, and Copyright text dynamically.
-  - Any branding change propagates immediately across templates, footer disclaimers, OpenGraph metadata, Schema markup, and image SEO alt tags without editing code.
-
----
-
-## 🖼 Media Fallbacks & Responsive Pagination Component
-
-### Vector SVG Image Fallbacks
-Located in `assets/images/`:
-- `poster-placeholder.svg` (Dark slate vector placeholder with film reel icon for 300x450 posters)
-- `backdrop-placeholder.svg` (16:9 widescreen placeholder for backdrops and episode stills)
-- `avatar-placeholder.svg` (Circular vector placeholder for actors and directors)
-- Every `<img>` tag includes an inline fail-safe:
-  ```html
-  <img src="<?php echo esc_url($poster); ?>" onerror="this.onerror=null;this.src='<?php echo esc_url(doodhtheme_get_fallback_poster_url()); ?>';" ...>
+#### 2. High-Speed AI Search Engine
+- **Endpoint**: `GET /wp-json/vmtheme/v1/search?q={query}&type={movies|tvshows}&limit={limit}`
+- **Zero DOM Scraping**: Delivers clean, structured JSON:
+  ```json
+  {
+    "total_found": 1,
+    "query": "Inception",
+    "results": [
+      {
+        "id": 104,
+        "title": "Inception",
+        "type": "movies",
+        "year": "2010",
+        "imdb_rating": 8.8,
+        "quality": "4K Ultra HD",
+        "genres": ["Action", "Sci-Fi", "Adventure"],
+        "synopsis": "A thief who steals corporate secrets...",
+        "poster_url": "https://...",
+        "url": "https://domain.com/movie/inception-2010/"
+      }
+    ]
+  }
   ```
 
-### Responsive Pagination Helper
-Call `doodhtheme_render_pagination($query)` in any template:
-```php
-<?php doodhtheme_render_pagination(); ?>
-```
-Generates glassmorphic, pill-shaped pagination controls with mobile adaptive breakpoints ($\le 640\text{px}$ and $\le 380\text{px}$).
+### AI Crawler Permission Matrix
+Configured in [`robots.txt`](file:///c:/xampp/htdocs/movie/robots.txt):
+- **Allowed AI Agents**: `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `Applebot-Extended`, `CCBot`.
 
 ---
 
-## 👨‍💻 Developer Guide & How to Build New Features
+## 🎛 Dynamic Homepage Section Manager
 
-### 1. Adding a New Streaming Player Server
-To add a new video embed server (e.g. `VidCloud`, `StreamTape`, `DoodStream`), edit `inc/player.php`:
+Located in [`inc/homepage-manager.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/homepage-manager.php):
+
+### Admin Control Dashboard
+Navigate to **WP Admin → Theme → Homepage Manager**:
+
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│ 🎬 VMTheme Homepage Section Manager                                    │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ON] Spotlight Search Bar                                              │
+│      Title: "Search 10,000+ Movies, TV Shows & Stars"                  │
+│      Quick Tags: Action, Sci-Fi, Avengers, Avatar, Anime, Horror, 4K   │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ON] Hero Showcase Banner                                              │
+│      Mode: (o) Latest Cinema  ( ) Highest Rated  ( ) Custom Post IDs   │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ON] Trending Movies Grid                                              │
+│      Items: [ 12 ] | Order By: [ Date Added ▼ ]                        │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ON] Popular TV Shows Grid                                             │
+│      Items: [ 12 ] | Order By: [ Date Added ▼ ]                        │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ON] Top 100 IMDb Blockbusters                                         │
+│      Items: [ 6  ] | Min Rating: [ 8.0 ★ ]                             │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ON] Curated Collection 1 (e.g. 4K Ultra HD Cinema)                    │
+│      Type: [ Movies ] | Genre: [ All ] | Items: [ 8 ]                  │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ON] Curated Collection 2 (e.g. Trending Anime & Animation)            │
+│      Type: [ TV Shows ] | Genre: [ Animation ] | Items: [ 8 ]          │
+├────────────────────────────────────────────────────────────────────────┤
+│ [OFF] Curated Collection 3 (Optional Custom Category)                  │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ON] Cinema FAQ Accordion (6 Interactive Questions & Answers)          │
+├────────────────────────────────────────────────────────────────────────┤
+│ [ON] High-Conversion CTA Banner (Free VIP Streaming Call-to-Action)    │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### Graceful Conditional Rendering Pipeline
+- Every dynamic section executes a strict validation check:
+  ```php
+  if ( ! empty( $section['enabled'] ) && $query->have_posts() ) {
+      // Render Section Container
+  }
+  ```
+- **Zero Empty Divs**: If a section is toggled OFF or its database query returns 0 records, the engine suppresses all enclosing HTML, section titles, and wrappers.
+
+---
+
+## ⚡ Core Modules & Streaming Features
+
+### Multi-Server Video Player & Embed Switcher
+Located in [`inc/player.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/player.php):
+- Supports multiple server mirrors (`VidCloud`, `FastStream 4K`, `VIP Server`, `DoodStream`).
+- Seamless server switching via AJAX without page reloads.
+- Responsive 16:9 iframe container with theatre mode and light switch toggle.
+
+### Downloads Manager
+Located in [`inc/downloads-manager.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/downloads-manager.php):
+- Categorized download links by resolution (`4K 2160p`, `1080p FHD`, `720p HD`).
+- Displays file sizes (e.g. `2.4 GB`), audio channels, and direct mirror links.
+
+### Instant Debounced AJAX Search
+Located in [`inc/ajax-search.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/ajax-search.php):
+- 250ms debounced input listener querying `wp_ajax_nopriv_doodh_live_search`.
+- Returns interactive instant dropdown with poster thumbnails, release year, IMDb rating badge, and direct URL.
+
+### Community Reviews & Weighted Rating Engine
+Located in [`inc/reviews-system.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/reviews-system.php):
+- 10-Star interactive star rating modal.
+- Anti-spam nonce protection and IP rate-limiting.
+
+### Client-Side Watchlist (LocalStorage)
+- Instant 1-click bookmarking on all cards and single pages.
+- Zero database overhead: saves data in browser LocalStorage and renders on `/watchlist/`.
+
+### 301 Redirects & 404 Auto-Healing
+Located in [`inc/redirects-manager.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/redirects-manager.php):
+- Admin panel to create permanent 301 redirects.
+- Automatic 404 hit logger capturing broken backlink attempts with 1-click healing.
+
+### Dynamic Brand & Identity Engine
+Located in [`inc/brand-settings.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/brand-settings.php):
+- Customize Brand Name, Logo URL, Tagline, and Footer Badge without editing template files.
+
+---
+
+## 🛡 Companion Security & Performance Plugins
+
+### 1. Doodh Security Shield (WAF & Firewall)
+- **Path**: `wp-content/plugins/doodh-security-shield/`
+- **Execution**: Runs at early `plugins_loaded` priority `-9999`.
+- **Protections**: SQL Injection (SQLi) blocker, Cross-Site Scripting (XSS) filter, Path Traversal / LFI guard, bad bot & scanner blocker (`sqlmap`, `nikto`, `wpscan`), brute force rate-limiter, XML-RPC blocker, and upload directory `.htaccess` PHP execution lock.
+
+### 2. Doodh Speed Optimizer (Caching & CLS)
+- **Path**: `wp-content/plugins/doodh-speed-optimizer/`
+- **Features**: Ultra-fast disk page caching ($< 25\text{ms}$ TTFB), HTML/CSS/JS minifier, automatic image dimension injector for **CLS 0.00**, JavaScript deferral, and hover preloading.
+
+### 3. Doodh SEO Suite
+- **Path**: `wp-content/plugins/doodh-seo/`
+- **Features**: Live Google SERP preview, focus keyword content analysis, readability scorer, OpenGraph & Twitter Cards.
+
+---
+
+## 🚀 Installation, Configuration & Git Deployment
+
+### 1. Repository Setup & Cloning
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/movie-streaming-platform.git .
+
+# Ensure proper WordPress file permissions
+chmod -R 755 wp-content/themes/
+chmod -R 777 wp-content/cache/
+```
+
+### 2. Theme & Plugins Activation
+1. Log into **WP Admin → Appearance → Themes**.
+2. Activate **DoodhTheme Child** (which inherits **DoodhTheme** master engine).
+3. Navigate to **WP Admin → Plugins** and activate companion plugins:
+   - `Doodh Security Shield`
+   - `Doodh Speed Optimizer`
+   - `Doodh SEO Suite`
+   - `DoodhTheme Core`
+
+### 3. Permalinks Configuration
+Go to **WP Admin → Settings → Permalinks**, select **Post name** (`/%postname%/`), and click **Save Changes** to flush rewrite rules for custom post types (`/movie/`, `/tvshows/`, `/episode/`).
+
+---
+
+## 👨‍💻 Developer Extension Guide
+
+### Adding a New Streaming Video Server
+Edit [`inc/player.php`](file:///c:/xampp/htdocs/movie/wp-content/themes/doodhtheme/inc/player.php):
 ```php
-function doodhtheme_get_default_servers($post_id) {
+function vmtheme_get_default_servers( $post_id ) {
+    $tmdb_id = get_post_meta( $post_id, '_doodh_tmdb_id', true );
+    $imdb_id = get_post_meta( $post_id, '_doodh_imdb_id', true );
+
     return array(
-        array( 'name' => 'Fast Stream 4K', 'type' => 'iframe', 'url' => 'https://vidsrc.to/embed/movie/' . get_post_meta($post_id, '_doodh_tmdb_id', true) ),
-        array( 'name' => 'VidCloud HD',    'type' => 'iframe', 'url' => 'https://vidcloud.icu/embed/' . get_post_meta($post_id, '_doodh_imdb_id', true) ),
-        array( 'name' => 'VIP VIP Server', 'type' => 'iframe', 'url' => 'https://autoembed.to/movie/tmdb/' . get_post_meta($post_id, '_doodh_tmdb_id', true) ),
+        array( 'name' => 'Fast 4K Server', 'type' => 'iframe', 'url' => 'https://vidsrc.to/embed/movie/' . $tmdb_id ),
+        array( 'name' => 'Ultra HD Mirror', 'type' => 'iframe', 'url' => 'https://vidcloud.icu/embed/' . $imdb_id ),
+        array( 'name' => 'VIP Stream',      'type' => 'iframe', 'url' => 'https://autoembed.to/movie/tmdb/' . $tmdb_id ),
     );
 }
 ```
 
-### 2. Adding a New AJAX Endpoint
-Register the action in `inc/` or `functions.php`:
-```php
-add_action( 'wp_ajax_doodhtheme_custom_action', 'doodhtheme_handle_custom_action' );
-add_action( 'wp_ajax_nopriv_doodhtheme_custom_action', 'doodhtheme_handle_custom_action' );
+### Querying the AI Agentic Endpoint Programmatically
+```bash
+# Get Platform Intelligence Summary
+curl -X GET "https://domain.com/wp-json/vmtheme/v1/agent-summary"
 
-function doodhtheme_handle_custom_action() {
-    check_ajax_referer( 'doodhtheme_nonce', 'nonce' );
-    $item_id = (int) $_POST['item_id'];
-    
-    // Perform custom business logic
-    wp_send_json_success( array( 'message' => 'Operation successful!' ) );
-}
+# Search movies for AI Agents
+curl -X GET "https://domain.com/wp-json/vmtheme/v1/search?q=Interstellar&type=movies&limit=5"
 ```
 
-### 3. Creating a New Custom Page Template
-Create `page-{custom-name}.php` in the theme directory:
-```php
-<?php
-/**
- * Template Name: Trending Weekly Highlights
- * @package DoodhTheme
- */
-get_header();
-?>
-<main class="container" style="padding-top: 35px;">
-    <div class="doodh-section-header">
-        <h1 class="doodh-section-title"><?php the_title(); ?></h1>
-    </div>
-    <div class="doodh-grid">
-        <!-- Loop posts -->
-    </div>
-    <?php doodhtheme_render_pagination(); ?>
-</main>
-<?php
-get_footer();
-```
-
-### 4. Interacting with the Cache Engine
-Programmatically clear or query page cache in plugins/sidecars:
-```php
-if ( class_exists( 'Doodh_Speed_Optimizer' ) ) {
-    $optimizer = Doodh_Speed_Optimizer::get_instance();
-    $flushed = $optimizer->purge_cache(); // Flushes all HTML cache
-    $stats   = $optimizer->get_cache_stats(); // Returns array('count' => 12, 'size' => '450 KB')
-}
+### Running Automated Verification Tests
+```bash
+php scratch/test_endpoints.php
 ```
 
 ---
 
-## 🧪 Automated Test Suites & Verification
+## 📄 License & Attribution
 
-Run the test runners from the command line:
-
-```bash
-# 1. Full Comprehensive 25-Test Platform Suite
-php scratch/full_system_test.php
-
-# 2. Pagination & Image Fallbacks Verification Suite
-php scratch/test_pagination_and_images.php
-
-# 3. Speed Optimizer & Caching Benchmark Suite
-php scratch/test_speed_optimizer.php
-```
-
-All 3 automated test suites currently report **100% PASS** rates.
+- **Engine**: VMTheme / DoodhTheme Senior Engineering
+- **License**: GPL v2 or later
+- **Data Source**: TMDb API (The Movie Database) & IMDb

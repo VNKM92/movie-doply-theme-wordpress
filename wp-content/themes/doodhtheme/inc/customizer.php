@@ -2,7 +2,7 @@
 /**
  * Customizer and Theme Options for DoodhTheme
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,9 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 function doodhtheme_customize_register( $wp_customize ) {
 	// Section: Theme Appearance & Colors
 	$wp_customize->add_section( 'doodhtheme_design_section', array(
-		'title'       => __( 'DoodhTheme Styling & Colors', 'doodhtheme' ),
+		'title'       => __( 'DoodhTheme Styling & Colors', 'vmtheme' ),
 		'priority'    => 30,
-		'description' => __( 'Customize theme branding and accent colors.', 'doodhtheme' ),
+		'description' => __( 'Customize theme branding and accent colors.', 'vmtheme' ),
 	) );
 
 	// Accent Color
@@ -26,16 +26,16 @@ function doodhtheme_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'doodh_accent_color', array(
-		'label'    => __( 'Primary Accent Color', 'doodhtheme' ),
+		'label'    => __( 'Primary Accent Color', 'vmtheme' ),
 		'section'  => 'doodhtheme_design_section',
 		'settings' => 'doodh_accent_color',
 	) ) );
 
 	// Section: Homepage Hero & Slider
 	$wp_customize->add_section( 'doodhtheme_hero_section', array(
-		'title'       => __( 'Homepage Hero Banner', 'doodhtheme' ),
+		'title'       => __( 'Homepage Hero Banner', 'vmtheme' ),
 		'priority'    => 35,
-		'description' => __( 'Configure the top featured slider / hero banner.', 'doodhtheme' ),
+		'description' => __( 'Configure the top featured slider / hero banner.', 'vmtheme' ),
 	) );
 
 	// Hero Title
@@ -44,7 +44,7 @@ function doodhtheme_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 	$wp_customize->add_control( 'doodh_hero_title', array(
-		'label'    => __( 'Hero Main Title', 'doodhtheme' ),
+		'label'    => __( 'Hero Main Title', 'vmtheme' ),
 		'section'  => 'doodhtheme_hero_section',
 		'type'     => 'text',
 	) );
@@ -55,14 +55,14 @@ function doodhtheme_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 	$wp_customize->add_control( 'doodh_hero_subtitle', array(
-		'label'    => __( 'Hero Subtitle', 'doodhtheme' ),
+		'label'    => __( 'Hero Subtitle', 'vmtheme' ),
 		'section'  => 'doodhtheme_hero_section',
 		'type'     => 'textarea',
 	) );
 
 	// Section: Footer & DMCA Disclaimer
 	$wp_customize->add_section( 'doodhtheme_footer_section', array(
-		'title'       => __( 'Footer & Legal Disclaimer', 'doodhtheme' ),
+		'title'       => __( 'Footer & Legal Disclaimer', 'vmtheme' ),
 		'priority'    => 40,
 	) );
 
@@ -72,7 +72,7 @@ function doodhtheme_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_textarea_field',
 	) );
 	$wp_customize->add_control( 'doodh_dmca_text', array(
-		'label'    => __( 'DMCA / Legal Notice', 'doodhtheme' ),
+		'label'    => __( 'DMCA / Legal Notice', 'vmtheme' ),
 		'section'  => 'doodhtheme_footer_section',
 		'type'     => 'textarea',
 	) );
@@ -83,7 +83,7 @@ function doodhtheme_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 	$wp_customize->add_control( 'doodh_copyright_text', array(
-		'label'    => __( 'Copyright Text', 'doodhtheme' ),
+		'label'    => __( 'Copyright Text', 'vmtheme' ),
 		'section'  => 'doodhtheme_footer_section',
 		'type'     => 'text',
 	) );

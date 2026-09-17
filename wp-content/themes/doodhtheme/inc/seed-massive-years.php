@@ -3,7 +3,7 @@
  * Massive 100 Posts Per Year Dataset Seeder (2010 to 2026)
  * Generates 100 high-quality production titles for each year with posters, backdrops, cast, crew, trailers, servers, and downloads.
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

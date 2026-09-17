@@ -2,7 +2,7 @@
 /**
  * Template Name: Release Years Timeline
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -35,8 +35,8 @@ if ( ! is_wp_error( $year_terms ) && ! empty( $year_terms ) ) {
 <main class="container" style="padding-top: 35px;">
 	<div class="doodh-section-header">
 		<div>
-			<h1 class="doodh-section-title"><i class="fas fa-calendar-alt" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Release Years Timeline (1990 - 2026)', 'doodhtheme' ); ?></h1>
-			<p style="color:var(--dt-text-muted); font-size:14px; margin-top:4px;"><?php esc_html_e( 'Browse your favorite movies and TV shows sorted year by year from modern classics to upcoming releases.', 'doodhtheme' ); ?></p>
+			<h1 class="doodh-section-title"><i class="fas fa-calendar-alt" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Release Years Timeline (1990 - 2026)', 'vmtheme' ); ?></h1>
+			<p style="color:var(--dt-text-muted); font-size:14px; margin-top:4px;"><?php esc_html_e( 'Browse your favorite movies and TV shows sorted year by year from modern classics to upcoming releases.', 'vmtheme' ); ?></p>
 		</div>
 	</div>
 
@@ -49,10 +49,10 @@ if ( ! is_wp_error( $year_terms ) && ! empty( $year_terms ) ) {
 			$is_upcoming = ( $yr >= 2025 );
 			?>
 			<a href="<?php echo esc_url( $url ); ?>" class="doodh-year-card <?php echo $is_upcoming ? 'doodh-year-upcoming' : ''; ?>">
-				<div class="doodh-year-badge"><?php echo $is_upcoming ? esc_html__( 'Premiere', 'doodhtheme' ) : esc_html__( 'Year', 'doodhtheme' ); ?></div>
+				<div class="doodh-year-badge"><?php echo $is_upcoming ? esc_html__( 'Premiere', 'vmtheme' ) : esc_html__( 'Year', 'vmtheme' ); ?></div>
 				<h2 class="doodh-year-num"><?php echo esc_html( $yr ); ?></h2>
 				<span class="doodh-year-count">
-					<i class="fas fa-film"></i> <?php printf( esc_html__( '%d Titles', 'doodhtheme' ), $count ); ?>
+					<i class="fas fa-film"></i> <?php printf( esc_html__( '%d Titles', 'vmtheme' ), $count ); ?>
 				</span>
 			</a>
 		<?php endfor; ?>

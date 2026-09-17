@@ -5,7 +5,7 @@
  * Fully dynamic XML Sitemaps with Google Image Extensions, strict de-duplication,
  * and high-performance search engine indexing.
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -51,10 +51,12 @@ function doodhtheme_render_sitemap() {
 		$latest_movie = $wpdb->get_var( "SELECT post_modified_gmt FROM {$wpdb->posts} WHERE post_type = 'movies' AND post_status = 'publish' ORDER BY post_modified_gmt DESC LIMIT 1" );
 		$latest_tv    = $wpdb->get_var( "SELECT post_modified_gmt FROM {$wpdb->posts} WHERE post_type = 'tvshows' AND post_status = 'publish' ORDER BY post_modified_gmt DESC LIMIT 1" );
 		$latest_ep    = $wpdb->get_var( "SELECT post_modified_gmt FROM {$wpdb->posts} WHERE post_type = 'episodes' AND post_status = 'publish' ORDER BY post_modified_gmt DESC LIMIT 1" );
+		$latest_post  = $wpdb->get_var( "SELECT post_modified_gmt FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' ORDER BY post_modified_gmt DESC LIMIT 1" );
 
 		$movie_date = $latest_movie ? date( 'c', strtotime( $latest_movie ) ) : date( 'c' );
 		$tv_date    = $latest_tv ? date( 'c', strtotime( $latest_tv ) ) : date( 'c' );
 		$ep_date    = $latest_ep ? date( 'c', strtotime( $latest_ep ) ) : date( 'c' );
+		$post_date  = $latest_post ? date( 'c', strtotime( $latest_post ) ) : date( 'c' );
 		$now_date   = date( 'c' );
 		?>
 		<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -69,6 +71,10 @@ function doodhtheme_render_sitemap() {
 			<sitemap>
 				<loc><?php echo esc_url( home_url( '/sitemap-episodes.xml' ) ); ?></loc>
 				<lastmod><?php echo esc_html( $ep_date ); ?></lastmod>
+			</sitemap>
+			<sitemap>
+				<loc><?php echo esc_url( home_url( '/sitemap-posts.xml' ) ); ?></loc>
+				<lastmod><?php echo esc_html( $post_date ); ?></lastmod>
 			</sitemap>
 			<sitemap>
 				<loc><?php echo esc_url( home_url( '/sitemap-taxonomies.xml' ) ); ?></loc>
@@ -88,8 +94,8 @@ function doodhtheme_render_sitemap() {
 
 	$emitted_urls = array();
 
-	if ( in_array( $sitemap, array( 'movies', 'tvshows', 'episodes', 'pages' ) ) ) {
-		$post_type = ( $sitemap === 'pages' ) ? 'page' : $sitemap;
+	if ( in_array( $sitemap, array( 'movies', 'tvshows', 'episodes', 'pages', 'posts' ) ) ) {
+		$post_type = ( $sitemap === 'pages' ) ? 'page' : ( ( $sitemap === 'posts' ) ? 'post' : $sitemap );
 		
 		// Query strictly unique published posts
 		$results = $wpdb->get_results( $wpdb->prepare(
@@ -207,15 +213,15 @@ function doodhtheme_render_breadcrumbs() {
 	}
 
 	echo '<nav class="doodh-breadcrumbs" aria-label="Breadcrumb">';
-	echo '<a href="' . esc_url( home_url( '/' ) ) . '"><i class="fas fa-home"></i> ' . esc_html__( 'Home', 'doodhtheme' ) . '</a>';
+	echo '<a href="' . esc_url( home_url( '/' ) ) . '"><i class="fas fa-home"></i> ' . esc_html__( 'Home', 'vmtheme' ) . '</a>';
 	echo '<span class="doodh-sep">/</span>';
 
 	if ( is_singular( 'movies' ) ) {
-		echo '<a href="' . esc_url( get_post_type_archive_link( 'movies' ) ) . '">' . esc_html__( 'Movies', 'doodhtheme' ) . '</a>';
+		echo '<a href="' . esc_url( get_post_type_archive_link( 'movies' ) ) . '">' . esc_html__( 'Movies', 'vmtheme' ) . '</a>';
 		echo '<span class="doodh-sep">/</span>';
 		echo '<span>' . esc_html( get_the_title() ) . '</span>';
 	} elseif ( is_singular( 'tvshows' ) ) {
-		echo '<a href="' . esc_url( get_post_type_archive_link( 'tvshows' ) ) . '">' . esc_html__( 'TV Shows', 'doodhtheme' ) . '</a>';
+		echo '<a href="' . esc_url( get_post_type_archive_link( 'tvshows' ) ) . '">' . esc_html__( 'TV Shows', 'vmtheme' ) . '</a>';
 		echo '<span class="doodh-sep">/</span>';
 		echo '<span>' . esc_html( get_the_title() ) . '</span>';
 	} elseif ( is_singular( 'episodes' ) ) {

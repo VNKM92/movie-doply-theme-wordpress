@@ -2,7 +2,7 @@
 /**
  * Movies Archive Template
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +14,7 @@ get_header();
 
 <main class="container" style="padding-top: 30px;">
 	<div class="doodh-section-header">
-		<h1 class="doodh-section-title"><i class="fas fa-film" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Browse Movies', 'doodhtheme' ); ?></h1>
+		<h1 class="doodh-section-title"><i class="fas fa-film" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Browse Movies', 'vmtheme' ); ?></h1>
 	</div>
 
 	<!-- Dynamic Filter Bar -->
@@ -54,7 +54,7 @@ get_header();
 		else :
 			?>
 			<p style="grid-column: 1 / -1; color: var(--dt-text-muted); text-align:center; padding: 40px 0;">
-				<?php esc_html_e( 'No movies found matching your filters.', 'doodhtheme' ); ?>
+				<?php esc_html_e( 'No movies found matching your filters.', 'vmtheme' ); ?>
 			</p>
 		<?php endif; ?>
 	</div>

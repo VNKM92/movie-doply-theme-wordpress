@@ -2,7 +2,7 @@
 /**
  * Template Name: Genres Directory
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -43,8 +43,8 @@ $genre_icons = array(
 <main class="container" style="padding-top: 35px;">
 	<div class="doodh-section-header">
 		<div>
-			<h1 class="doodh-section-title"><i class="fas fa-tags" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Movie & TV Show Genres', 'doodhtheme' ); ?></h1>
-			<p style="color:var(--dt-text-muted); font-size:14px; margin-top:4px;"><?php esc_html_e( 'Explore endless movies and TV series categorized by genre.', 'doodhtheme' ); ?></p>
+			<h1 class="doodh-section-title"><i class="fas fa-tags" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Movie & TV Show Genres', 'vmtheme' ); ?></h1>
+			<p style="color:var(--dt-text-muted); font-size:14px; margin-top:4px;"><?php esc_html_e( 'Explore endless movies and TV series categorized by genre.', 'vmtheme' ); ?></p>
 		</div>
 	</div>
 
@@ -60,14 +60,14 @@ $genre_icons = array(
 					<div class="doodh-genre-icon"><i class="<?php echo esc_attr( $icon ); ?>"></i></div>
 					<div class="doodh-genre-info">
 						<h3 class="doodh-genre-name"><?php echo esc_html( $g->name ); ?></h3>
-						<span class="doodh-genre-count"><?php printf( esc_html__( '%d Titles', 'doodhtheme' ), $g->count ); ?></span>
+						<span class="doodh-genre-count"><?php printf( esc_html__( '%d Titles', 'vmtheme' ), $g->count ); ?></span>
 					</div>
 					<i class="fas fa-chevron-right doodh-genre-arrow"></i>
 				</a>
 			<?php endforeach; ?>
 		<?php else : ?>
 			<p style="color:var(--dt-text-muted); text-align:center; grid-column:1/-1; padding:40px 0;">
-				<?php esc_html_e( 'No genres registered yet. Run the 1-click seeder in WP Admin.', 'doodhtheme' ); ?>
+				<?php esc_html_e( 'No genres registered yet. Run the 1-click seeder in WP Admin.', 'vmtheme' ); ?>
 			</p>
 		<?php endif; ?>
 	</div>

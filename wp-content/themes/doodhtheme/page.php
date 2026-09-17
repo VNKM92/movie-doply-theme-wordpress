@@ -2,7 +2,7 @@
 /**
  * The template for displaying standard pages
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,8 +27,8 @@ get_header();
 			<header class="entry-header" style="margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 20px;">
 				<h1 class="entry-title" style="font-size: 32px; font-weight: 800; color: #fff; margin: 0; line-height: 1.2;"><?php the_title(); ?></h1>
 				<div style="font-size: 13px; color: var(--dt-text-muted); margin-top: 8px;">
-					<i class="far fa-clock"></i> <?php esc_html_e( 'Last Updated:', 'doodhtheme' ); ?> <?php echo esc_html( get_the_modified_date( 'F j, Y' ) ); ?> &bull; 
-					<i class="fas fa-shield-alt"></i> <?php echo esc_html( doodhtheme_get_brand_name() ); ?> <?php esc_html_e( 'Official Policy', 'doodhtheme' ); ?>
+					<i class="far fa-clock"></i> <?php esc_html_e( 'Last Updated:', 'vmtheme' ); ?> <?php echo esc_html( get_the_modified_date( 'F j, Y' ) ); ?> &bull; 
+					<i class="fas fa-shield-alt"></i> <?php echo esc_html( doodhtheme_get_brand_name() ); ?> <?php esc_html_e( 'Official Policy', 'vmtheme' ); ?>
 				</div>
 			</header>
 

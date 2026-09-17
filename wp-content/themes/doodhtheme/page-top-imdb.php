@@ -2,7 +2,7 @@
 /**
  * Template Name: Top 100 IMDb Leaderboard
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,8 +31,8 @@ $top_query = new WP_Query( array(
 <main class="container" style="padding-top: 35px;">
 	<div class="doodh-section-header">
 		<div>
-			<h1 class="doodh-section-title"><i class="fas fa-trophy" style="color:var(--dt-accent-yellow);"></i> <?php esc_html_e( 'Top 100 Highest-Rated Titles', 'doodhtheme' ); ?></h1>
-			<p style="color:var(--dt-text-muted); font-size:14px; margin-top:4px;"><?php esc_html_e( 'The highest-rated blockbuster movies and acclaimed TV series of all time.', 'doodhtheme' ); ?></p>
+			<h1 class="doodh-section-title"><i class="fas fa-trophy" style="color:var(--dt-accent-yellow);"></i> <?php esc_html_e( 'Top 100 Highest-Rated Titles', 'vmtheme' ); ?></h1>
+			<p style="color:var(--dt-text-muted); font-size:14px; margin-top:4px;"><?php esc_html_e( 'The highest-rated blockbuster movies and acclaimed TV series of all time.', 'vmtheme' ); ?></p>
 		</div>
 	</div>
 
@@ -50,7 +50,7 @@ $top_query = new WP_Query( array(
 				$year      = doodhtheme_get_release_year( $item_id );
 				$quality   = doodhtheme_get_quality_badge( $item_id );
 				$type      = get_post_type();
-				$type_name = ( $type === 'movies' ) ? __( 'Movie', 'doodhtheme' ) : __( 'TV Show', 'doodhtheme' );
+				$type_name = ( $type === 'movies' ) ? __( 'Movie', 'vmtheme' ) : __( 'TV Show', 'vmtheme' );
 				?>
 				<div class="doodh-leaderboard-item">
 					<!-- Rank Number / Medal -->
@@ -86,7 +86,7 @@ $top_query = new WP_Query( array(
 							<span>(<?php echo esc_html( number_format( $votes ) ); ?>)</span>
 						</div>
 						<a href="<?php the_permalink(); ?>" class="doodh-btn-primary" style="padding:6px 14px; font-size:12px;">
-							<i class="fas fa-play"></i> <?php esc_html_e( 'Watch', 'doodhtheme' ); ?>
+							<i class="fas fa-play"></i> <?php esc_html_e( 'Watch', 'vmtheme' ); ?>
 						</a>
 					</div>
 				</div>
@@ -103,7 +103,7 @@ $top_query = new WP_Query( array(
 		else :
 			?>
 			<p style="color:var(--dt-text-muted); text-align:center; padding:50px 0;">
-				<?php esc_html_e( 'No titles found. Please run the 1-Click Data Seeder to populate the Top 100.', 'doodhtheme' ); ?>
+				<?php esc_html_e( 'No titles found. Please run the 1-Click Data Seeder to populate the Top 100.', 'vmtheme' ); ?>
 			</p>
 			</div>
 		<?php endif; ?>

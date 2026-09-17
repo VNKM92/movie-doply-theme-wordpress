@@ -2,7 +2,7 @@
 /**
  * AdSense & Monetization Ad Management System
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,8 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function doodhtheme_ads_admin_menu() {
 	add_theme_page(
-		__( 'Ad Management', 'doodhtheme' ),
-		__( 'Ad Settings & Monetization', 'doodhtheme' ),
+		__( 'Ad Management', 'vmtheme' ),
+		__( 'Ad Settings & Monetization', 'vmtheme' ),
 		'manage_options',
 		'doodh-ad-settings',
 		'doodhtheme_ads_settings_page'
@@ -36,7 +36,7 @@ function doodhtheme_ads_settings_page() {
 		update_option( 'doodh_ad_footer_sticky', wp_unslash( $_POST['doodh_ad_footer_sticky'] ?? '' ) );
 		update_option( 'doodh_ad_popunder_url', esc_url_raw( $_POST['doodh_ad_popunder_url'] ?? '' ) );
 		update_option( 'doodh_ad_anti_adblock', isset( $_POST['doodh_ad_anti_adblock'] ) ? 1 : 0 );
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Monetization & Ad settings saved successfully!', 'doodhtheme' ) . '</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Monetization & Ad settings saved successfully!', 'vmtheme' ) . '</p></div>';
 	}
 
 	$ad_header        = get_option( 'doodh_ad_header', '' );
@@ -49,39 +49,39 @@ function doodhtheme_ads_settings_page() {
 	$ad_anti_adblock  = get_option( 'doodh_ad_anti_adblock', 0 );
 	?>
 	<div class="wrap">
-		<h1><i class="dashicons dashicons-money-alt" style="color:#46b450;"></i> <?php esc_html_e( 'AdSense & Ad Monetization Manager', 'doodhtheme' ); ?></h1>
-		<p class="description"><?php esc_html_e( 'Paste your Google AdSense, PropellerAds, Adsterra, native ads, or custom HTML/banner code into the slots below.', 'doodhtheme' ); ?></p>
+		<h1><i class="dashicons dashicons-money-alt" style="color:#46b450;"></i> <?php esc_html_e( 'AdSense & Ad Monetization Manager', 'vmtheme' ); ?></h1>
+		<p class="description"><?php esc_html_e( 'Paste your Google AdSense, PropellerAds, Adsterra, native ads, or custom HTML/banner code into the slots below.', 'vmtheme' ); ?></p>
 
 		<form method="post" action="" style="max-width:900px; margin-top:20px;">
 			<?php wp_nonce_field( 'doodh_save_ads_nonce' ); ?>
 
 			<!-- Header Ad Slot -->
 			<div style="background:#fff; border:1px solid #ccd0d4; padding:20px; border-radius:8px; margin-bottom:20px;">
-				<h3><i class="dashicons dashicons-align-center"></i> <?php esc_html_e( 'Header Top Banner Ad (728x90 / Responsive)', 'doodhtheme' ); ?></h3>
-				<p class="description"><?php esc_html_e( 'Displays below the primary navbar on all pages.', 'doodhtheme' ); ?></p>
+				<h3><i class="dashicons dashicons-align-center"></i> <?php esc_html_e( 'Header Top Banner Ad (728x90 / Responsive)', 'vmtheme' ); ?></h3>
+				<p class="description"><?php esc_html_e( 'Displays below the primary navbar on all pages.', 'vmtheme' ); ?></p>
 				<textarea name="doodh_ad_header" rows="4" style="width:100%; font-family:monospace;"><?php echo esc_textarea( $ad_header ); ?></textarea>
 			</div>
 
 			<!-- Above Video Player Ad -->
 			<div style="background:#fff; border:1px solid #ccd0d4; padding:20px; border-radius:8px; margin-bottom:20px;">
-				<h3><i class="dashicons dashicons-controls-play"></i> <?php esc_html_e( 'Above Video Player Billboard Ad', 'doodhtheme' ); ?></h3>
-				<p class="description"><?php esc_html_e( 'High-CTR ad placed directly above the multi-server video player screen.', 'doodhtheme' ); ?></p>
+				<h3><i class="dashicons dashicons-controls-play"></i> <?php esc_html_e( 'Above Video Player Billboard Ad', 'vmtheme' ); ?></h3>
+				<p class="description"><?php esc_html_e( 'High-CTR ad placed directly above the multi-server video player screen.', 'vmtheme' ); ?></p>
 				<textarea name="doodh_ad_player_top" rows="4" style="width:100%; font-family:monospace;"><?php echo esc_textarea( $ad_player_top ); ?></textarea>
 			</div>
 
 			<!-- Below Video Player Ad -->
 			<div style="background:#fff; border:1px solid #ccd0d4; padding:20px; border-radius:8px; margin-bottom:20px;">
-				<h3><i class="dashicons dashicons-arrow-down-alt"></i> <?php esc_html_e( 'Below Video Player Ad', 'doodhtheme' ); ?></h3>
-				<p class="description"><?php esc_html_e( 'Displays immediately under the video player and server tabs.', 'doodhtheme' ); ?></p>
+				<h3><i class="dashicons dashicons-arrow-down-alt"></i> <?php esc_html_e( 'Below Video Player Ad', 'vmtheme' ); ?></h3>
+				<p class="description"><?php esc_html_e( 'Displays immediately under the video player and server tabs.', 'vmtheme' ); ?></p>
 				<textarea name="doodh_ad_player_bottom" rows="4" style="width:100%; font-family:monospace;"><?php echo esc_textarea( $ad_player_bottom ); ?></textarea>
 			</div>
 
 			<!-- In-Grid Native Stream Card Ad -->
 			<div style="background:#fff; border:1px solid #ccd0d4; padding:20px; border-radius:8px; margin-bottom:20px;">
-				<h3><i class="dashicons dashicons-grid-view"></i> <?php esc_html_e( 'In-Grid Native Stream Card Ad', 'doodhtheme' ); ?></h3>
-				<p class="description"><?php esc_html_e( 'Native ad card injected directly into the movie & TV show grids on the homepage and archive pages.', 'doodhtheme' ); ?></p>
+				<h3><i class="dashicons dashicons-grid-view"></i> <?php esc_html_e( 'In-Grid Native Stream Card Ad', 'vmtheme' ); ?></h3>
+				<p class="description"><?php esc_html_e( 'Native ad card injected directly into the movie & TV show grids on the homepage and archive pages.', 'vmtheme' ); ?></p>
 				<div style="margin-bottom:10px;">
-					<label><strong><?php esc_html_e( 'Inject every:', 'doodhtheme' ); ?></strong></label>
+					<label><strong><?php esc_html_e( 'Inject every:', 'vmtheme' ); ?></strong></label>
 					<input type="number" name="doodh_ad_grid_interval" value="<?php echo esc_attr( $ad_grid_interval ); ?>" min="4" max="24" style="width:70px;"> cards
 				</div>
 				<textarea name="doodh_ad_grid" rows="4" style="width:100%; font-family:monospace;" placeholder="<a href='...' target='_blank'><img src='...' /></a>"><?php echo esc_textarea( $ad_grid ); ?></textarea>
@@ -89,29 +89,29 @@ function doodhtheme_ads_settings_page() {
 
 			<!-- Sticky Floating Bottom Ad -->
 			<div style="background:#fff; border:1px solid #ccd0d4; padding:20px; border-radius:8px; margin-bottom:20px;">
-				<h3><i class="dashicons dashicons-tag"></i> <?php esc_html_e( 'Sticky Floating Footer Banner Ad (Mobile & Desktop)', 'doodhtheme' ); ?></h3>
-				<p class="description"><?php esc_html_e( 'Anchored to the bottom of the viewport with an instant dismiss [X] button.', 'doodhtheme' ); ?></p>
+				<h3><i class="dashicons dashicons-tag"></i> <?php esc_html_e( 'Sticky Floating Footer Banner Ad (Mobile & Desktop)', 'vmtheme' ); ?></h3>
+				<p class="description"><?php esc_html_e( 'Anchored to the bottom of the viewport with an instant dismiss [X] button.', 'vmtheme' ); ?></p>
 				<textarea name="doodh_ad_footer_sticky" rows="3" style="width:100%; font-family:monospace;"><?php echo esc_textarea( $ad_footer_sticky ); ?></textarea>
 			</div>
 
 			<!-- Popunder / Direct Link Ad -->
 			<div style="background:#fff; border:1px solid #ccd0d4; padding:20px; border-radius:8px; margin-bottom:20px;">
-				<h3><i class="dashicons dashicons-external"></i> <?php esc_html_e( 'Popunder / Direct Link Ad Trigger', 'doodhtheme' ); ?></h3>
-				<p class="description"><?php esc_html_e( 'Opens in a new tab when a visitor clicks the Play button on a movie or TV stream for the first time.', 'doodhtheme' ); ?></p>
+				<h3><i class="dashicons dashicons-external"></i> <?php esc_html_e( 'Popunder / Direct Link Ad Trigger', 'vmtheme' ); ?></h3>
+				<p class="description"><?php esc_html_e( 'Opens in a new tab when a visitor clicks the Play button on a movie or TV stream for the first time.', 'vmtheme' ); ?></p>
 				<input type="url" name="doodh_ad_popunder_url" value="<?php echo esc_attr( $ad_popunder_url ); ?>" class="regular-text" placeholder="https://your-ad-network-direct-link.com" style="width:100%;">
 			</div>
 
 			<!-- Anti-Adblock Warning Notice -->
 			<div style="background:#fff; border:1px solid #ccd0d4; padding:20px; border-radius:8px; margin-bottom:20px;">
-				<h3><i class="dashicons dashicons-shield"></i> <?php esc_html_e( 'Anti-AdBlock Banner Notice', 'doodhtheme' ); ?></h3>
+				<h3><i class="dashicons dashicons-shield"></i> <?php esc_html_e( 'Anti-AdBlock Banner Notice', 'vmtheme' ); ?></h3>
 				<label>
 					<input type="checkbox" name="doodh_ad_anti_adblock" value="1" <?php checked( $ad_anti_adblock, 1 ); ?>>
-					<?php esc_html_e( 'Show polite notice asking users to disable AdBlock to support free 4K streaming.', 'doodhtheme' ); ?>
+					<?php esc_html_e( 'Show polite notice asking users to disable AdBlock to support free 4K streaming.', 'vmtheme' ); ?>
 				</label>
 			</div>
 
 			<p class="submit">
-				<input type="submit" name="doodh_save_ads" class="button button-primary button-hero" value="<?php esc_attr_e( 'Save All Ad Settings', 'doodhtheme' ); ?>">
+				<input type="submit" name="doodh_save_ads" class="button button-primary button-hero" value="<?php esc_attr_e( 'Save All Ad Settings', 'vmtheme' ); ?>">
 			</p>
 		</form>
 	</div>
@@ -143,7 +143,7 @@ function doodhtheme_display_ad( $slot = 'header' ) {
 	}
 
 	echo '<div class="doodh-ad-slot doodh-ad-' . esc_attr( $slot ) . '">';
-	echo '<div class="doodh-ad-label">' . esc_html__( 'Advertisement', 'doodhtheme' ) . '</div>';
+	echo '<div class="doodh-ad-label">' . esc_html__( 'Advertisement', 'vmtheme' ) . '</div>';
 	echo $code; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo '</div>';
 }

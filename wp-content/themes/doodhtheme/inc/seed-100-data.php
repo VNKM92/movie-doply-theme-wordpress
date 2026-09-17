@@ -2,7 +2,7 @@
 /**
  * 100 Production-Grade Movies & TV Shows Dataset (2010 to 2026)
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -2,7 +2,7 @@
 /**
  * 1-Click Demo & 100 Titles Data Importer
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,8 +16,8 @@ require_once DOODHTHEME_DIR . '/inc/seed-100-data.php';
  */
 function doodhtheme_demo_importer_menu() {
 	add_theme_page(
-		__( 'DoodhTheme Data Seeder', 'doodhtheme' ),
-		__( 'Seed 100 Movies & Shows', 'doodhtheme' ),
+		__( 'DoodhTheme Data Seeder', 'vmtheme' ),
+		__( 'Seed 100 Movies & Shows', 'vmtheme' ),
 		'manage_options',
 		'doodhtheme-demo-importer',
 		'doodhtheme_render_demo_importer_page'
@@ -37,14 +37,14 @@ function doodhtheme_render_demo_importer_page() {
 	<div class="wrap" style="max-width:900px;">
 		<h1 style="display:flex; align-items:center; gap:10px;">
 			<span class="dashicons dashicons-video-alt2" style="font-size:32px; width:32px; height:32px; color:#e50914;"></span> 
-			<?php esc_html_e( 'DoodhTheme Production Data Seeder (100 Titles: 2010 - 2026)', 'doodhtheme' ); ?>
+			<?php esc_html_e( 'DoodhTheme Production Data Seeder (100 Titles: 2010 - 2026)', 'vmtheme' ); ?>
 		</h1>
 		<p style="font-size:15px; color:#64748b;">
-			<?php esc_html_e( 'Populate your WordPress streaming database with 100 handpicked, real-world blockbuster movies and critically acclaimed TV shows categorized from 2010 to 2026. Includes 4K posters, backdrops, runtimes, ratings, trailers, 4 multi-server stream embeds, and 3 download links per title.', 'doodhtheme' ); ?>
+			<?php esc_html_e( 'Populate your WordPress streaming database with 100 handpicked, real-world blockbuster movies and critically acclaimed TV shows categorized from 2010 to 2026. Includes 4K posters, backdrops, runtimes, ratings, trailers, 4 multi-server stream embeds, and 3 download links per title.', 'vmtheme' ); ?>
 		</p>
 		
 		<div style="background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:25px; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05); margin-top:25px;">
-			<h2 style="color:#0f172a; margin-top:0;"><i class="dashicons dashicons-database-import" style="color:#e50914;"></i> <?php esc_html_e( '100 Curated Production Titles Overview', 'doodhtheme' ); ?></h2>
+			<h2 style="color:#0f172a; margin-top:0;"><i class="dashicons dashicons-database-import" style="color:#e50914;"></i> <?php esc_html_e( '100 Curated Production Titles Overview', 'vmtheme' ); ?></h2>
 			
 			<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px; margin:20px 0;">
 				<div style="background:#f8fafc; padding:15px; border-radius:6px; border-left:4px solid #e50914;">
@@ -68,7 +68,7 @@ function doodhtheme_render_demo_importer_page() {
 			<form method="post">
 				<?php wp_nonce_field( 'doodhtheme_seed_100_action', 'doodhtheme_seed_100_nonce' ); ?>
 				<button type="submit" class="button button-primary button-hero" style="background:#e50914; border-color:#b80710; font-weight:700; display:flex; align-items:center; gap:8px;">
-					<span class="dashicons dashicons-cloud-upload"></span> <?php esc_html_e( 'Seed 100 Production Movies & Shows Now', 'doodhtheme' ); ?>
+					<span class="dashicons dashicons-cloud-upload"></span> <?php esc_html_e( 'Seed 100 Production Movies & Shows Now', 'vmtheme' ); ?>
 				</button>
 			</form>
 		</div>

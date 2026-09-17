@@ -2,7 +2,7 @@
 /**
  * Single Movie Template with Interactive Cast, Crew, Multi-Server Player, Ads, and Reviews
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -77,7 +77,7 @@ while ( have_posts() ) :
 					<!-- Director Card -->
 					<?php if ( ! is_wp_error( $directors ) && ! empty( $directors ) ) : ?>
 						<div class="doodh-director-highlight">
-							<strong><i class="fas fa-video"></i> <?php esc_html_e( 'Director:', 'doodhtheme' ); ?></strong>
+							<strong><i class="fas fa-video"></i> <?php esc_html_e( 'Director:', 'vmtheme' ); ?></strong>
 							<?php foreach ( $directors as $d ) : ?>
 								<a href="<?php echo esc_url( get_term_link( $d ) ); ?>" class="doodh-director-link">
 									<i class="fas fa-user-tie"></i> <?php echo esc_html( $d->name ); ?>
@@ -97,7 +97,7 @@ while ( have_posts() ) :
 		<!-- Multi-Server Video Player -->
 		<section class="doodh-section">
 			<div class="doodh-section-header">
-				<h2 class="doodh-section-title"><i class="fas fa-play" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Watch Movie Online', 'doodhtheme' ); ?></h2>
+				<h2 class="doodh-section-title"><i class="fas fa-play" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Watch Movie Online', 'vmtheme' ); ?></h2>
 				<div style="display:flex; gap:10px;">
 					<?php doodhtheme_render_watchlist_btn( $movie_id ); ?>
 				</div>
@@ -114,7 +114,7 @@ while ( have_posts() ) :
 		<!-- Interactive Cast & Actors Section -->
 		<section class="doodh-section">
 			<div class="doodh-section-header">
-				<h3 class="doodh-section-title"><i class="fas fa-users" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Top Cast & Characters', 'doodhtheme' ); ?></h3>
+				<h3 class="doodh-section-title"><i class="fas fa-users" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Top Cast & Characters', 'vmtheme' ); ?></h3>
 			</div>
 
 			<div class="doodh-cast-grid">
@@ -147,7 +147,7 @@ while ( have_posts() ) :
 							</a>
 							<div class="doodh-cast-info">
 								<h5 class="doodh-cast-name"><a href="<?php echo esc_url( get_term_link( $act ) ); ?>"><?php echo esc_html( $act->name ); ?></a></h5>
-								<span class="doodh-cast-role"><?php esc_html_e( 'Actor', 'doodhtheme' ); ?></span>
+								<span class="doodh-cast-role"><?php esc_html_e( 'Actor', 'vmtheme' ); ?></span>
 							</div>
 						</div>
 					<?php endforeach;
@@ -156,14 +156,21 @@ while ( have_posts() ) :
 			</div>
 		</section>
 
-		<!-- Related Titles Interlinking -->
+		<!-- User Star Reviews & Ratings Module -->
+		<?php doodhtheme_render_reviews_section( $movie_id ); ?>
+
+		<!-- ══════════════════════════════════════════════════════════════
+		     Similar Movies / You May Also Like (After Ratings & Reviews)
+		     ══════════════════════════════════════════════════════════════ -->
 		<?php
 		$genre_ids = ! empty( $genres ) && ! is_wp_error( $genres ) ? wp_list_pluck( $genres, 'term_id' ) : array();
 		$related_args = array(
 			'post_type'      => 'movies',
-			'posts_per_page' => 6,
+			'posts_per_page' => 12,
+			'post_status'    => 'publish',
 			'post__not_in'   => array( $movie_id ),
 		);
+
 		if ( ! empty( $genre_ids ) ) {
 			$related_args['tax_query'] = array(
 				array(
@@ -177,11 +184,31 @@ while ( have_posts() ) :
 		}
 
 		$related_query = new WP_Query( $related_args );
+
+		// Fallback to latest movies if genre matches are fewer than 6
+		if ( $related_query->post_count < 6 ) {
+			$fallback_args = array(
+				'post_type'      => 'movies',
+				'posts_per_page' => 12,
+				'post_status'    => 'publish',
+				'post__not_in'   => array( $movie_id ),
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+			);
+			$related_query = new WP_Query( $fallback_args );
+		}
+
 		if ( $related_query->have_posts() ) :
 			?>
-			<section class="doodh-section">
+			<section class="doodh-section doodh-similar-movies-section" style="margin-top:40px;">
 				<div class="doodh-section-header">
-					<h3 class="doodh-section-title"><i class="fas fa-layer-group" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'You May Also Like', 'doodhtheme' ); ?></h3>
+					<h3 class="doodh-section-title">
+						<i class="fas fa-layer-group" style="color:var(--dt-primary);"></i> 
+						<?php esc_html_e( 'You May Also Like', 'vmtheme' ); ?>
+					</h3>
+					<a href="<?php echo esc_url( get_post_type_archive_link( 'movies' ) ); ?>" class="doodh-view-all">
+						<?php esc_html_e( 'View All Movies', 'vmtheme' ); ?> <i class="fas fa-arrow-right"></i>
+					</a>
 				</div>
 				<div class="doodh-grid doodh-grid-movies">
 					<?php
@@ -206,6 +233,7 @@ while ( have_posts() ) :
 								<h4 class="doodh-card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 								<div class="doodh-card-meta">
 									<span><i class="far fa-calendar-alt"></i> <?php echo esc_html( $rel_year ); ?></span>
+									<span><i class="fas fa-film"></i> <?php esc_html_e( 'Movie', 'vmtheme' ); ?></span>
 								</div>
 							</div>
 						</article>
@@ -216,10 +244,6 @@ while ( have_posts() ) :
 				</div>
 			</section>
 		<?php endif; ?>
-
-		<!-- User Star Reviews & Ratings Module -->
-		<?php doodhtheme_render_reviews_section( $movie_id ); ?>
-
 	</main>
 
 	<?php

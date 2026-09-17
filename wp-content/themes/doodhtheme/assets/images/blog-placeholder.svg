@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="blogBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070b14" />
+      <stop offset="35%" stop-color="#111827" />
+      <stop offset="70%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#0b0f19" />
+    </linearGradient>
+    <linearGradient id="blogAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e50914" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    <radialGradient id="blogGlow" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#e50914" stop-opacity="0.25" />
+      <stop offset="60%" stop-color="#6366f1" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="blogGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#blogBgGrad)" />
+  <rect width="1200" height="675" fill="url(#blogGrid)" />
+  <circle cx="600" cy="300" r="420" fill="url(#blogGlow)" />
+
+  <!-- Outer Glass Frame -->
+  <rect x="50" y="45" width="1100" height="585" rx="24" fill="rgba(255,255,255,0.015)" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+
+  <!-- Center Icon Graphic -->
+  <g transform="translate(600, 260)">
+    <!-- Outer Ring -->
+    <circle cx="0" cy="0" r="84" fill="rgba(17, 24, 39, 0.85)" stroke="url(#blogAccent)" stroke-width="3.5" />
+    
+    <!-- Film Reel & Editorial Document SVG Icon -->
+    <path d="M-36 -32 h72 r8 8 v64 r-8 8 h-72 r-8 -8 v-64 r8 -8 Z" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.9" />
+    <line x1="-24" y1="-16" x2="24" y2="-16" stroke="#e50914" stroke-width="3.5" stroke-linecap="round" />
+    <line x1="-24" y1="-2" x2="16" y2="-2" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+    <line x1="-24" y1="12" x2="24" y2="12" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+    <line x1="-24" y1="26" x2="0" y2="26" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Quill / Sparkle Badge -->
+    <circle cx="34" cy="-28" r="14" fill="#e50914" />
+    <path d="M30 -32 L38 -28 L30 -24 Z" fill="#ffffff" />
+  </g>
+
+  <!-- Category Pill Badge -->
+  <rect x="500" y="390" width="200" height="32" rx="16" fill="rgba(229, 9, 20, 0.18)" stroke="rgba(229, 9, 20, 0.5)" stroke-width="1" />
+  <text x="600" y="411" fill="#f87171" font-size="13" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="2">CINEMA JOURNAL</text>
+
+  <!-- Main Headline -->
+  <text x="600" y="475" fill="#ffffff" font-size="34" font-weight="800" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" letter-spacing="0.5">EXCLUSIVE CINEMA INSIGHTS &amp; REVIEWS</text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="520" fill="#94a3b8" font-size="18" font-weight="500" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle">In-depth Industry Analysis, Director Spotlights &amp; Box Office Trends</text>
+
+  <!-- Bottom Accent Bar -->
+  <rect x="520" y="565" width="160" height="4" rx="2" fill="url(#blogAccent)" />
+</svg>

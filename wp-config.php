@@ -23,9 +23,9 @@ define( 'NONCE_SALT',       'iQ0-%5r:4?*gW6*xS9+cY2(tU8*d_1!f-7&lP3)vH5,zK0(mN2,
 
 $table_prefix = 'wp_';
 
-define( 'WP_DEBUG', false );
-define( 'WP_DEBUG_LOG', false );
-define( 'WP_DEBUG_DISPLAY', false );
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'WP_DEBUG_DISPLAY', true );
 
 define( 'DISALLOW_FILE_EDIT', true );
 

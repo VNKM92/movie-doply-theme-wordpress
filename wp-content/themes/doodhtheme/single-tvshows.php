@@ -2,7 +2,7 @@
 /**
  * Single TV Show Template with Cast Avatars, Seasons/Episodes Grid, Ads, and User Reviews
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -73,9 +73,9 @@ while ( have_posts() ) :
 						<span class="doodh-badge-imdb"><i class="fas fa-star"></i> <?php echo esc_html( $rating ); ?> <em>(<?php echo number_format( (int) $votes ); ?>)</em></span>
 						<span class="doodh-badge-quality" style="background:#2563eb;"><?php echo esc_html( $status ); ?></span>
 						<span class="doodh-tag-pill"><i class="far fa-calendar-alt"></i> <?php echo esc_html( $year ); ?></span>
-						<span class="doodh-tag-pill"><i class="fas fa-layer-group"></i> <?php printf( esc_html__( '%d Seasons', 'doodhtheme' ), count( $seasons_episodes ) ); ?></span>
+						<span class="doodh-tag-pill"><i class="fas fa-layer-group"></i> <?php printf( esc_html__( '%d Seasons', 'vmtheme' ), count( $seasons_episodes ) ); ?></span>
 						<?php if ( $total_episodes ) : ?>
-							<span class="doodh-tag-pill"><i class="fas fa-list"></i> <?php printf( esc_html__( '%d Episodes', 'doodhtheme' ), $total_episodes ); ?></span>
+							<span class="doodh-tag-pill"><i class="fas fa-list"></i> <?php printf( esc_html__( '%d Episodes', 'vmtheme' ), $total_episodes ); ?></span>
 						<?php endif; ?>
 					</div>
 
@@ -96,7 +96,7 @@ while ( have_posts() ) :
 					<!-- Creators -->
 					<?php if ( ! is_wp_error( $directors ) && ! empty( $directors ) ) : ?>
 						<div class="doodh-director-highlight">
-							<strong><i class="fas fa-user-gear"></i> <?php esc_html_e( 'Created by:', 'doodhtheme' ); ?></strong>
+							<strong><i class="fas fa-user-gear"></i> <?php esc_html_e( 'Created by:', 'vmtheme' ); ?></strong>
 							<?php foreach ( $directors as $d ) : ?>
 								<a href="<?php echo esc_url( get_term_link( $d ) ); ?>" class="doodh-director-link">
 									<i class="fas fa-clapperboard"></i> <?php echo esc_html( $d->name ); ?>
@@ -116,7 +116,7 @@ while ( have_posts() ) :
 		<!-- Seasons & Episodes Section -->
 		<section class="doodh-section doodh-tv-seasons-box">
 			<div class="doodh-section-header">
-				<h2 class="doodh-section-title"><i class="fas fa-list-ol" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Seasons & Episodes', 'doodhtheme' ); ?></h2>
+				<h2 class="doodh-section-title"><i class="fas fa-list-ol" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Seasons & Episodes', 'vmtheme' ); ?></h2>
 				<div>
 					<?php doodhtheme_render_watchlist_btn( $tv_id ); ?>
 				</div>
@@ -127,7 +127,7 @@ while ( have_posts() ) :
 				<?php $first_tab = true; ?>
 				<?php foreach ( array_keys( $seasons_episodes ) as $season_num ) : ?>
 					<button type="button" class="doodh-season-tab-btn <?php echo $first_tab ? 'active' : ''; ?>" data-season="<?php echo esc_attr( $season_num ); ?>">
-						<i class="fas fa-folder"></i> <?php printf( esc_html__( 'Season %d', 'doodhtheme' ), $season_num ); ?>
+						<i class="fas fa-folder"></i> <?php printf( esc_html__( 'Season %d', 'vmtheme' ), $season_num ); ?>
 					</button>
 					<?php $first_tab = false; ?>
 				<?php endforeach; ?>
@@ -150,24 +150,27 @@ while ( have_posts() ) :
 										<span class="doodh-ep-play-icon"><i class="fas fa-play"></i></span>
 									</div>
 									<div class="doodh-ep-info">
-										<span class="doodh-ep-num"><?php printf( esc_html__( 'Episode %d', 'doodhtheme' ), $ep_num ); ?></span>
+										<span class="doodh-ep-num"><?php printf( esc_html__( 'Episode %d', 'vmtheme' ), $ep_num ); ?></span>
 										<h4 class="doodh-ep-title"><?php echo esc_html( $ep_name ); ?></h4>
 									</div>
 								</a>
 							<?php endforeach; ?>
 						</div>
 					<?php else : ?>
-						<p style="color:var(--dt-text-muted); padding:20px 0;"><?php esc_html_e( 'Episodes for this season are being updated soon.', 'doodhtheme' ); ?></p>
+						<p style="color:var(--dt-text-muted); padding:20px 0;"><?php esc_html_e( 'Episodes for this season are being updated soon.', 'vmtheme' ); ?></p>
 					<?php endif; ?>
 				</div>
 				<?php $first_group = false; ?>
 			<?php endforeach; ?>
 		</section>
 
+		<!-- Downloads Box (Season Pack / Series Downloads) -->
+		<?php doodhtheme_render_downloads( $tv_id ); ?>
+
 		<!-- Interactive Cast & Actors Section -->
 		<section class="doodh-section">
 			<div class="doodh-section-header">
-				<h3 class="doodh-section-title"><i class="fas fa-users" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Starring Cast', 'doodhtheme' ); ?></h3>
+				<h3 class="doodh-section-title"><i class="fas fa-users" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Starring Cast', 'vmtheme' ); ?></h3>
 			</div>
 
 			<div class="doodh-cast-grid">
@@ -200,7 +203,7 @@ while ( have_posts() ) :
 							</a>
 							<div class="doodh-cast-info">
 								<h5 class="doodh-cast-name"><a href="<?php echo esc_url( get_term_link( $act ) ); ?>"><?php echo esc_html( $act->name ); ?></a></h5>
-								<span class="doodh-cast-role"><?php esc_html_e( 'Actor', 'doodhtheme' ); ?></span>
+								<span class="doodh-cast-role"><?php esc_html_e( 'Actor', 'vmtheme' ); ?></span>
 							</div>
 						</div>
 					<?php endforeach;
@@ -209,34 +212,74 @@ while ( have_posts() ) :
 			</div>
 		</section>
 
-		<!-- Related TV Shows -->
+		<!-- User Star Reviews & Ratings Module -->
+		<?php doodhtheme_render_reviews_section( $tv_id ); ?>
+
+		<!-- ══════════════════════════════════════════════════════════════
+		     Similar TV Series (Shown After Ratings & Reviews)
+		     ══════════════════════════════════════════════════════════════ -->
 		<?php
 		$genre_ids = ! empty( $genres ) && ! is_wp_error( $genres ) ? wp_list_pluck( $genres, 'term_id' ) : array();
-		$related_query = new WP_Query( array(
+		$related_args = array(
 			'post_type'      => 'tvshows',
-			'posts_per_page' => 6,
+			'posts_per_page' => 12,
+			'post_status'    => 'publish',
 			'post__not_in'   => array( $tv_id ),
-			'orderby'        => 'rand',
-		) );
+		);
+
+		if ( ! empty( $genre_ids ) ) {
+			$related_args['tax_query'] = array(
+				array(
+					'taxonomy' => 'genres',
+					'field'    => 'term_id',
+					'terms'    => $genre_ids,
+				),
+			);
+		} else {
+			$related_args['orderby'] = 'rand';
+		}
+
+		$related_query = new WP_Query( $related_args );
+
+		// Fallback to latest TV shows if genre matches are fewer than 6
+		if ( $related_query->post_count < 6 ) {
+			$fallback_args = array(
+				'post_type'      => 'tvshows',
+				'posts_per_page' => 12,
+				'post_status'    => 'publish',
+				'post__not_in'   => array( $tv_id ),
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+			);
+			$related_query = new WP_Query( $fallback_args );
+		}
 
 		if ( $related_query->have_posts() ) :
 			?>
-			<section class="doodh-section">
+			<section class="doodh-section doodh-similar-tvshows-section" style="margin-top:40px;">
 				<div class="doodh-section-header">
-					<h3 class="doodh-section-title"><i class="fas fa-layer-group" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Similar TV Series', 'doodhtheme' ); ?></h3>
+					<h3 class="doodh-section-title">
+						<i class="fas fa-layer-group" style="color:var(--dt-primary);"></i> 
+						<?php esc_html_e( 'Similar TV Series You May Like', 'vmtheme' ); ?>
+					</h3>
+					<a href="<?php echo esc_url( get_post_type_archive_link( 'tvshows' ) ); ?>" class="doodh-view-all">
+						<?php esc_html_e( 'View All TV Series', 'vmtheme' ); ?> <i class="fas fa-arrow-right"></i>
+					</a>
 				</div>
 				<div class="doodh-grid doodh-grid-movies">
 					<?php
 					while ( $related_query->have_posts() ) :
 						$related_query->the_post();
-						$rel_id     = get_the_ID();
-						$rel_poster = doodhtheme_get_poster_url( $rel_id );
-						$rel_rating = doodhtheme_get_rating( $rel_id );
-						$rel_year   = doodhtheme_get_release_year( $rel_id );
+						$rel_id      = get_the_ID();
+						$rel_poster  = doodhtheme_get_poster_url( $rel_id );
+						$rel_rating  = doodhtheme_get_rating( $rel_id );
+						$rel_year    = doodhtheme_get_release_year( $rel_id );
+						$rel_seasons = (int) get_post_meta( $rel_id, '_doodh_total_seasons', true ) ?: 1;
 						?>
 						<article class="doodh-card">
 							<div class="doodh-poster">
 								<img src="<?php echo esc_url( $rel_poster ); ?>" alt="<?php echo esc_attr( doodhtheme_get_poster_alt( $rel_id ) ); ?>" loading="lazy" decoding="async" width="300" height="450" onerror="this.onerror=null;this.src='<?php echo esc_url( doodhtheme_get_fallback_poster_url() ); ?>';">
+								<span class="doodh-badge-quality" style="background:#2563eb;"><?php printf( esc_html__( 'SS %d', 'vmtheme' ), $rel_seasons ); ?></span>
 								<span class="doodh-badge-rating"><i class="fas fa-star"></i> <?php echo esc_html( $rel_rating ); ?></span>
 								<div class="doodh-poster-overlay">
 									<a href="<?php the_permalink(); ?>" class="doodh-play-btn" aria-label="<?php the_title_attribute(); ?>"><i class="fas fa-play"></i></a>
@@ -246,6 +289,7 @@ while ( have_posts() ) :
 								<h4 class="doodh-card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 								<div class="doodh-card-meta">
 									<span><i class="far fa-calendar-alt"></i> <?php echo esc_html( $rel_year ); ?></span>
+									<span><i class="fas fa-tv"></i> <?php esc_html_e( 'Series', 'vmtheme' ); ?></span>
 								</div>
 							</div>
 						</article>
@@ -256,9 +300,6 @@ while ( have_posts() ) :
 				</div>
 			</section>
 		<?php endif; ?>
-
-		<!-- User Star Reviews & Ratings Module -->
-		<?php doodhtheme_render_reviews_section( $tv_id ); ?>
 	</main>
 
 	<?php

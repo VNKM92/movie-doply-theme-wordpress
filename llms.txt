@@ -1,0 +1,27 @@
+# VMTheme - Movies & TV Series Platform
+> A premier streaming, movie catalog, and TV series database platform providing detailed metadata, trailers, cast profiles, IMDb ratings, and high-speed streaming links.
+
+## Overview
+- **Site Name**: VMTheme
+- **Tagline**: Watch HD Movies & TV Shows Online Free
+- **Catalog Size**: 3,500+ Movies, TV Shows, Seasons, and Episodes
+- **Quality**: Ultra HD 4K, 1080p Full HD, 720p HD
+- **API Endpoint**: /wp-json/vmtheme/v1/agent-summary
+- **Search Endpoint**: /wp-json/vmtheme/v1/search?q={query}
+
+## Content Structure
+- **Movies**: /movies/ — Complete catalog of movies with runtime, genres, cast, director, release year, trailer, and streaming options.
+- **TV Shows**: /tvshows/ — Comprehensive TV series catalog with season and episode hierarchy.
+- **Top 100 IMDb**: /top-imdb/ — Highest rated cinema blockbusters and acclaimed series.
+- **Genres**: /genres/ — Indexed by Action, Sci-Fi, Drama, Animation, Horror, Comedy, Thriller, and more.
+- **Release Years**: /years/ — Catalog filtered by decade and specific release year.
+- **Title Requests**: /request/ — Community user request submission system.
+
+## Agentic AI REST Endpoints
+- GET /wp-json/vmtheme/v1/agent-summary: Summary of platform metadata, total counts, trending titles, and recent additions.
+- GET /wp-json/vmtheme/v1/search?q={query}&type={movies|tvshows}: Structured search API optimized for LLMs and agentic browsers.
+
+## Full Documentation & Feeds
+- Detailed LLM Manifest: /llms-full.txt
+- Dynamic XML Sitemap: /sitemap.xml
+- RSS Feed: /feed/

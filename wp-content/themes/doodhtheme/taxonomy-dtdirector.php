@@ -2,7 +2,7 @@
 /**
  * Taxonomy Template: Director Filmography Profile
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -29,10 +29,10 @@ $post_count = $term->count;
 			<img src="<?php echo esc_url( $director_photo ); ?>" alt="<?php echo esc_attr( doodhtheme_get_poster_alt( null, 'director', $director_name ) ); ?>" loading="lazy" decoding="async" width="160" height="240" onerror="this.onerror=null;this.src='<?php echo esc_url( doodhtheme_get_fallback_avatar_url() ); ?>';">
 		</div>
 		<div class="doodh-person-details">
-			<span class="doodh-badge-quality"><i class="fas fa-video"></i> <?php esc_html_e( 'Film Director / Creator', 'doodhtheme' ); ?></span>
+			<span class="doodh-badge-quality"><i class="fas fa-video"></i> <?php esc_html_e( 'Film Director / Creator', 'vmtheme' ); ?></span>
 			<h1 class="doodh-person-name"><?php echo esc_html( $director_name ); ?></h1>
 			<p class="doodh-person-meta">
-				<span><i class="fas fa-film"></i> <?php echo sprintf( esc_html__( '%d Directed Works in Catalog', 'doodhtheme' ), $post_count ); ?></span>
+				<span><i class="fas fa-film"></i> <?php echo sprintf( esc_html__( '%d Directed Works in Catalog', 'vmtheme' ), $post_count ); ?></span>
 			</p>
 			<?php if ( ! empty( $term->description ) ) : ?>
 				<div class="doodh-person-bio"><?php echo wpautop( esc_html( $term->description ) ); ?></div>
@@ -46,7 +46,7 @@ $post_count = $term->count;
 	<!-- Director Filmography Grid -->
 	<section class="doodh-section" style="margin-top:30px;">
 		<div class="doodh-section-header">
-			<h2 class="doodh-section-title"><i class="fas fa-clapperboard" style="color:var(--dt-primary);"></i> <?php echo sprintf( esc_html__( 'Directed by %s', 'doodhtheme' ), esc_html( $director_name ) ); ?></h2>
+			<h2 class="doodh-section-title"><i class="fas fa-clapperboard" style="color:var(--dt-primary);"></i> <?php echo sprintf( esc_html__( 'Directed by %s', 'vmtheme' ), esc_html( $director_name ) ); ?></h2>
 		</div>
 
 		<?php if ( have_posts() ) : ?>
@@ -82,7 +82,7 @@ $post_count = $term->count;
 							</h3>
 							<div class="doodh-card-meta">
 								<span><i class="far fa-calendar-alt"></i> <?php echo esc_html( $year ); ?></span>
-								<span><i class="<?php echo $is_tv ? 'fas fa-tv' : 'fas fa-film'; ?>"></i> <?php echo $is_tv ? esc_html__( 'Series', 'doodhtheme' ) : esc_html__( 'Movie', 'doodhtheme' ); ?></span>
+								<span><i class="<?php echo $is_tv ? 'fas fa-tv' : 'fas fa-film'; ?>"></i> <?php echo $is_tv ? esc_html__( 'Series', 'vmtheme' ) : esc_html__( 'Movie', 'vmtheme' ); ?></span>
 							</div>
 						</div>
 					</article>
@@ -93,7 +93,7 @@ $post_count = $term->count;
 			<?php doodhtheme_render_pagination(); ?>
 		<?php else : ?>
 			<div class="doodh-no-results">
-				<p><?php esc_html_e( 'No titles currently found for this director.', 'doodhtheme' ); ?></p>
+				<p><?php esc_html_e( 'No titles currently found for this director.', 'vmtheme' ); ?></p>
 			</div>
 		<?php endif; ?>
 	</section>

@@ -2,7 +2,7 @@
 /**
  * Taxonomy Archive Template (Genres, Release Years, Quality, Actors, Directors)
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -64,7 +64,7 @@ $term = get_queried_object();
 		else :
 			?>
 			<p style="grid-column: 1 / -1; color: var(--dt-text-muted); text-align:center; padding: 40px 0;">
-				<?php esc_html_e( 'No titles found in this category.', 'doodhtheme' ); ?>
+				<?php esc_html_e( 'No titles found in this category.', 'vmtheme' ); ?>
 			</p>
 		<?php endif; ?>
 	</div>

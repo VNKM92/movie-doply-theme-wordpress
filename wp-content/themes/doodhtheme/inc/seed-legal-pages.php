@@ -10,7 +10,7 @@
  * 5. Privacy Policy (/privacy-policy/)
  * 6. Terms of Service (/terms/)
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

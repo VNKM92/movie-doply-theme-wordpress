@@ -2,7 +2,7 @@
 /**
  * The template for displaying 404 pages (Not Found)
  *
- * @package DoodhTheme
+ * @package VMTheme
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,17 +18,17 @@ get_header();
 			404
 		</div>
 		<h1 style="font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 15px;">
-			<?php esc_html_e( 'Lost in Streaming Space?', 'doodhtheme' ); ?>
+			<?php esc_html_e( 'Lost in Streaming Space?', 'vmtheme' ); ?>
 		</h1>
 		<p style="color: var(--dt-text-muted); font-size: 16px; margin-bottom: 30px; line-height: 1.6;">
-			<?php esc_html_e( 'The movie, TV show, or page you are looking for does not exist or has been moved.', 'doodhtheme' ); ?>
+			<?php esc_html_e( 'The movie, TV show, or page you are looking for does not exist or has been moved.', 'vmtheme' ); ?>
 		</p>
 		<div style="display: flex; justify-content: center; gap: 15px;">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="doodh-btn-primary">
-				<i class="fas fa-home"></i> <?php esc_html_e( 'Back to Home', 'doodhtheme' ); ?>
+				<i class="fas fa-home"></i> <?php esc_html_e( 'Back to Home', 'vmtheme' ); ?>
 			</a>
 			<a href="<?php echo esc_url( get_post_type_archive_link( 'movies' ) ); ?>" class="doodh-btn-secondary">
-				<i class="fas fa-film"></i> <?php esc_html_e( 'Browse Movies', 'doodhtheme' ); ?>
+				<i class="fas fa-film"></i> <?php esc_html_e( 'Browse Movies', 'vmtheme' ); ?>
 			</a>
 		</div>
 	</div>
