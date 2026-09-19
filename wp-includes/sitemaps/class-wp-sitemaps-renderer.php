@@ -160,7 +160,7 @@ class WP_Sitemaps_Renderer {
 			foreach ( $entry as $name => $value ) {
 				if ( 'loc' === $name ) {
 					$sitemap->addChild( $name, esc_url( $value ) );
-				} elseif ( 'lastmod' === $name ) {
+				} elseif ( '`lastmod`' === $name ) {
 					$sitemap->addChild( $name, esc_xml( $value ) );
 				} else {
 					_doing_it_wrong(

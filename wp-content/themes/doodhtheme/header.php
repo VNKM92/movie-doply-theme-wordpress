@@ -76,12 +76,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<li class="<?php echo ( is_post_type_archive( 'movies' ) || is_singular( 'movies' ) ) ? 'current-menu-item' : ''; ?>">
 						<a href="<?php echo esc_url( get_post_type_archive_link( 'movies' ) ); ?>"><i class="fas fa-film"></i> <?php esc_html_e( 'Movies', 'vmtheme' ); ?></a>
 					</li>
+					  <!-- 
 					<li class="<?php echo ( is_post_type_archive( 'tvshows' ) || is_singular( 'tvshows' ) || is_singular( 'episodes' ) ) ? 'current-menu-item' : ''; ?>">
 						<a href="<?php echo esc_url( get_post_type_archive_link( 'tvshows' ) ); ?>"><i class="fas fa-tv"></i> <?php esc_html_e( 'TV Shows', 'vmtheme' ); ?></a>
 					</li>
 					<li>
 						<a href="<?php echo esc_url( home_url( '/top-imdb/' ) ); ?>"><i class="fas fa-trophy"></i> <?php esc_html_e( 'Top 100', 'vmtheme' ); ?></a>
-					</li>
+					</li>-->   
 
 					<!-- Genres Dropdown -->
 					<li class="doodh-has-dropdown">
@@ -161,15 +162,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<!-- Header Action Buttons -->
 			<div class="doodh-header-actions">
-				<a href="<?php echo esc_url( home_url( '/request/' ) ); ?>" class="doodh-action-icon-btn doodh-hide-mobile" title="<?php esc_attr_e( 'Request Title', 'vmtheme' ); ?>">
+				<!-- <a href="<?php echo esc_url( home_url( '/request/' ) ); ?>" class="doodh-action-icon-btn doodh-hide-mobile" title="<?php esc_attr_e( 'Request Title', 'vmtheme' ); ?>">
 					<i class="fas fa-plus-circle"></i>
 					<span class="doodh-btn-text"><?php esc_html_e( 'Request', 'vmtheme' ); ?></span>
-				</a>
-				<a href="<?php echo esc_url( home_url( '/watchlist/' ) ); ?>" class="doodh-action-icon-btn" id="doodh-watchlist-nav-btn" title="<?php esc_attr_e( 'My Saved Watchlist', 'vmtheme' ); ?>">
+				</a> -->
+				<!-- <a href="<?php echo esc_url( home_url( '/watchlist/' ) ); ?>" class="doodh-action-icon-btn" id="doodh-watchlist-nav-btn" title="<?php esc_attr_e( 'My Saved Watchlist', 'vmtheme' ); ?>">
 					<i class="fas fa-bookmark"></i>
 					<span class="doodh-btn-text"><?php esc_html_e( 'Watchlist', 'vmtheme' ); ?></span>
 					<span class="doodh-watchlist-count-badge" id="doodh-nav-fav-count" style="display:none;">0</span>
-				</a>
+				</a> -->
 
 				<!-- User Account / Auth Trigger -->
 				<?php if ( is_user_logged_in() ) : 

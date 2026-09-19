@@ -1183,4 +1183,406 @@ function doodhtheme_ajax_sync_single_post_reviews_handler() {
 }
 add_action( 'wp_ajax_doodhtheme_ajax_sync_single_reviews', 'doodhtheme_ajax_sync_single_post_reviews_handler' );
 
+/**
+ * Fetch and return normalized TMDb/IMDb movie and TV data structure without saving to DB.
+ * Used for live client-side form auto-filling in WordPress post edit screen.
+ *
+ * @param string|int $query TMDb ID, IMDb ID, or search title
+ * @param string $type Content type ('movie' or 'tv')
+ * @return array|WP_Error
+ */
+function doodhtheme_fetch_tmdb_normalized_payload( $query, $type = 'movie' ) {
+	$api_key = doodhtheme_get_tmdb_api_key();
+	$lang    = get_option( 'doodh_tmdb_lang', 'en-US' );
+
+	$query = trim( (string) $query );
+	if ( empty( $query ) ) {
+		return new WP_Error( 'empty_query', __( 'Please provide a TMDb ID, IMDb ID, or Title.', 'vmtheme' ) );
+	}
+
+	// 1. Resolve TMDb ID
+	$tmdb_id = null;
+	if ( is_numeric( $query ) ) {
+		$tmdb_id = (int) $query;
+	} elseif ( preg_match( '/^tt\d+$/i', $query ) ) {
+		$find_url = "https://api.themoviedb.org/3/find/{$query}?api_key={$api_key}&external_source=imdb_id";
+		$resp = doodhtheme_tmdb_api_get( $find_url, 12 );
+		if ( ! is_wp_error( $resp ) ) {
+			$data = json_decode( wp_remote_retrieve_body( $resp ), true );
+			if ( isset( $data['status_message'] ) && empty( $data['movie_results'] ) && empty( $data['tv_results'] ) ) {
+				return new WP_Error( 'tmdb_api_key_error', sprintf( __( 'TMDb API: %s. Please check or set your TMDb API key in TMDb Importer -> API Settings.', 'vmtheme' ), esc_html( $data['status_message'] ) ) );
+			}
+			if ( ! empty( $data['movie_results'] ) ) {
+				$tmdb_id = $data['movie_results'][0]['id'];
+				$type = 'movie';
+			} elseif ( ! empty( $data['tv_results'] ) ) {
+				$tmdb_id = $data['tv_results'][0]['id'];
+				$type = 'tv';
+			}
+		}
+	} else {
+		// Search by title
+		$search_type = ( $type === 'tv' ) ? 'tv' : 'movie';
+		$search_url  = "https://api.themoviedb.org/3/search/{$search_type}?api_key={$api_key}&query=" . urlencode( $query ) . "&language={$lang}";
+		$resp = doodhtheme_tmdb_api_get( $search_url, 12 );
+		if ( ! is_wp_error( $resp ) ) {
+			$data = json_decode( wp_remote_retrieve_body( $resp ), true );
+			if ( isset( $data['status_message'] ) && empty( $data['results'] ) ) {
+				return new WP_Error( 'tmdb_api_key_error', sprintf( __( 'TMDb API: %s. Please check or set your TMDb API key in TMDb Importer -> API Settings.', 'vmtheme' ), esc_html( $data['status_message'] ) ) );
+			}
+			if ( ! empty( $data['results'][0]['id'] ) ) {
+				$tmdb_id = $data['results'][0]['id'];
+			}
+		}
+	}
+
+	if ( ! $tmdb_id ) {
+		return new WP_Error( 'not_found', __( 'Could not find any matching title on TMDb. Please verify the ID or title spelling.', 'vmtheme' ) );
+	}
+
+	// 2. Fetch full details
+	$endpoint   = ( $type === 'tv' ) ? "tv/{$tmdb_id}" : "movie/{$tmdb_id}";
+	$detail_url = "https://api.themoviedb.org/3/{$endpoint}?api_key={$api_key}&language={$lang}&append_to_response=credits,videos,release_dates,content_ratings,reviews";
+	$resp = doodhtheme_tmdb_api_get( $detail_url, 15 );
+
+	if ( is_wp_error( $resp ) ) {
+		return $resp;
+	}
+
+	$details = json_decode( wp_remote_retrieve_body( $resp ), true );
+	if ( isset( $details['status_message'] ) && empty( $details['id'] ) ) {
+		return new WP_Error( 'tmdb_error', sprintf( __( 'TMDb API: %s', 'vmtheme' ), esc_html( $details['status_message'] ) ) );
+	}
+	if ( empty( $details['id'] ) ) {
+		return new WP_Error( 'invalid_data', __( 'Invalid response received from TMDb API.', 'vmtheme' ) );
+	}
+
+	// 3. Normalize fields
+	$title         = ( $type === 'tv' ) ? ( $details['name'] ?? '' ) : ( $details['title'] ?? '' );
+	$orig_title    = ( $type === 'tv' ) ? ( $details['original_name'] ?? '' ) : ( $details['original_title'] ?? '' );
+	$overview      = $details['overview'] ?? '';
+	$tagline       = $details['tagline'] ?? '';
+	$rating        = number_format( (float) ( $details['vote_average'] ?? 7.5 ), 1 );
+	$votes         = (int) ( $details['vote_count'] ?? 100 );
+	$release_date  = ( $type === 'tv' ) ? ( $details['first_air_date'] ?? '' ) : ( $details['release_date'] ?? '' );
+	$first_air     = $details['first_air_date'] ?? '';
+	$last_air      = $details['last_air_date'] ?? '';
+	$runtime       = ( $type === 'tv' ) ? ( $details['episode_run_time'][0] ?? 45 ) : ( $details['runtime'] ?? 120 );
+	$poster_path   = ! empty( $details['poster_path'] ) ? 'https://image.tmdb.org/t/p/w500' . $details['poster_path'] : '';
+	$backdrop_path = ! empty( $details['backdrop_path'] ) ? 'https://image.tmdb.org/t/p/original' . $details['backdrop_path'] : '';
+	$imdb_id       = $details['imdb_id'] ?? ( $details['external_ids']['imdb_id'] ?? '' );
+	$status        = $details['status'] ?? ( $type === 'tv' ? 'Returning Series' : 'Released' );
+	$year          = ! empty( $release_date ) ? date( 'Y', strtotime( $release_date ) ) : date( 'Y' );
+
+	// YouTube Trailer
+	$trailer_url = '';
+	if ( ! empty( $details['videos']['results'] ) ) {
+		foreach ( $details['videos']['results'] as $vid ) {
+			if ( ( $vid['site'] ?? '' ) === 'YouTube' && ( $vid['type'] ?? '' ) === 'Trailer' ) {
+				$trailer_url = 'https://www.youtube.com/watch?v=' . $vid['key'];
+				break;
+			}
+		}
+		if ( empty( $trailer_url ) ) {
+			foreach ( $details['videos']['results'] as $vid ) {
+				if ( ( $vid['site'] ?? '' ) === 'YouTube' ) {
+					$trailer_url = 'https://www.youtube.com/watch?v=' . $vid['key'];
+					break;
+				}
+			}
+		}
+	}
+
+	// Age Rating / Certification
+	$certification = '';
+	if ( $type === 'movie' && ! empty( $details['release_dates']['results'] ) ) {
+		foreach ( $details['release_dates']['results'] as $rd ) {
+			if ( in_array( $rd['iso_3166_1'] ?? '', array( 'US', 'GB', 'IN' ), true ) && ! empty( $rd['release_dates'] ) ) {
+				foreach ( $rd['release_dates'] as $item ) {
+					if ( ! empty( $item['certification'] ) ) {
+						$certification = $item['certification'];
+						break 2;
+					}
+				}
+			}
+		}
+	} elseif ( $type === 'tv' && ! empty( $details['content_ratings']['results'] ) ) {
+		foreach ( $details['content_ratings']['results'] as $cr ) {
+			if ( in_array( $cr['iso_3166_1'] ?? '', array( 'US', 'GB', 'IN' ), true ) && ! empty( $cr['rating'] ) ) {
+				$certification = $cr['rating'];
+				break;
+			}
+		}
+	}
+	if ( empty( $certification ) ) {
+		$certification = ( $type === 'tv' ) ? 'TV-14' : 'PG-13';
+	}
+
+	// Genres
+	$genres = array();
+	if ( ! empty( $details['genres'] ) ) {
+		$genres = wp_list_pluck( $details['genres'], 'name' );
+	}
+
+	// Cast (Actors with photos & character names)
+	$cast_names = array();
+	$rich_cast  = array();
+	if ( ! empty( $details['credits']['cast'] ) ) {
+		$top_cast = array_slice( $details['credits']['cast'], 0, 15 );
+		foreach ( $top_cast as $actor ) {
+			$a_name = $actor['name'] ?? '';
+			if ( $a_name ) {
+				$cast_names[] = $a_name;
+				$rich_cast[]  = array(
+					'name'      => $a_name,
+					'character' => $actor['character'] ?? '',
+					'photo'     => ! empty( $actor['profile_path'] ) ? 'https://image.tmdb.org/t/p/w185' . $actor['profile_path'] : '',
+				);
+			}
+		}
+	}
+
+	// Directors / Creators
+	$director_names = array();
+	$rich_directors = array();
+	if ( ! empty( $details['credits']['crew'] ) ) {
+		foreach ( $details['credits']['crew'] as $crew ) {
+			if ( ( $crew['job'] ?? '' ) === 'Director' || ( $crew['department'] ?? '' ) === 'Directing' ) {
+				$d_name = $crew['name'] ?? '';
+				if ( $d_name && ! in_array( $d_name, $director_names, true ) ) {
+					$director_names[] = $d_name;
+					$rich_directors[] = array(
+						'name'  => $d_name,
+						'photo' => ! empty( $crew['profile_path'] ) ? 'https://image.tmdb.org/t/p/w185' . $crew['profile_path'] : '',
+					);
+				}
+			}
+		}
+	}
+	if ( $type === 'tv' && ! empty( $details['created_by'] ) ) {
+		foreach ( $details['created_by'] as $creator ) {
+			$c_name = $creator['name'] ?? '';
+			if ( $c_name && ! in_array( $c_name, $director_names, true ) ) {
+				$director_names[] = $c_name;
+				$rich_directors[] = array(
+					'name'  => $c_name,
+					'photo' => ! empty( $creator['profile_path'] ) ? 'https://image.tmdb.org/t/p/w185' . $creator['profile_path'] : '',
+				);
+			}
+		}
+	}
+
+	// Reviews
+	$reviews = array();
+	if ( ! empty( $details['reviews']['results'] ) ) {
+		$top_revs = array_slice( $details['reviews']['results'], 0, 5 );
+		foreach ( $top_revs as $r ) {
+			$author    = $r['author'] ?? 'TMDb Reviewer';
+			$content   = wp_strip_all_tags( $r['content'] ?? '' );
+			$r_rating  = ! empty( $r['author_details']['rating'] ) ? (int) $r['author_details']['rating'] : 9;
+			$avatar    = '';
+			if ( ! empty( $r['author_details']['avatar_path'] ) ) {
+				$av_path = $r['author_details']['avatar_path'];
+				if ( strpos( $av_path, 'http' ) === 0 || strpos( $av_path, '/https' ) === 0 ) {
+					$avatar = ltrim( $av_path, '/' );
+				} else {
+					$avatar = 'https://image.tmdb.org/t/p/w185' . $av_path;
+				}
+			}
+			if ( empty( $avatar ) ) {
+				$avatar = 'https://api.dicebear.com/9.x/adventurer/svg?seed=' . urlencode( $author );
+			}
+
+			$reviews[] = array(
+				'author'     => $author,
+				'rating'     => min( 10, max( 1, $r_rating ) ),
+				'title'      => sprintf( __( 'Review for %s', 'vmtheme' ), $title ),
+				'content'    => $content,
+				'date'       => ! empty( $r['created_at'] ) ? date( 'Y-m-d', strtotime( $r['created_at'] ) ) : current_time( 'Y-m-d' ),
+				'verified'   => 1,
+				'avatar'     => $avatar,
+				'review_url' => $r['url'] ?? '',
+			);
+		}
+	}
+
+	// TV Seasons and Episodes counts
+	$total_seasons  = ( $type === 'tv' && ! empty( $details['seasons'] ) ) ? count( $details['seasons'] ) : ( $details['number_of_seasons'] ?? 1 );
+	$total_episodes = ( $type === 'tv' ) ? ( $details['number_of_episodes'] ?? 10 ) : 0;
+
+	// Streaming Servers Formatter
+	$embed_trailer = doodhtheme_format_youtube_embed( $trailer_url );
+	$servers = array(
+		array( 'name' => 'Server 1 - VIP 4K Stream', 'type' => 'iframe', 'url' => $embed_trailer ),
+		array( 'name' => 'Server 2 - StreamTape HD', 'type' => 'iframe', 'url' => $embed_trailer ),
+		array( 'name' => 'Server 3 - FastCloud 1080p', 'type' => 'iframe', 'url' => $embed_trailer ),
+		array( 'name' => 'Server 4 - Direct Stream', 'type' => 'mp4', 'url' => 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' ),
+	);
+
+	// Downloads
+	$downloads = array(
+		array( 'server' => 'Mega UltraHD', 'quality' => '4K UltraHD', 'size' => '5.8 GB', 'format' => 'MKV', 'url' => 'https://mega.nz/' ),
+		array( 'server' => 'Google Drive', 'quality' => '1080p FHD', 'size' => '2.1 GB', 'format' => 'MKV', 'url' => 'https://drive.google.com/' ),
+		array( 'server' => 'Direct HD', 'quality' => '720p HD', 'size' => '950 MB', 'format' => 'MP4', 'url' => 'https://mega.nz/' ),
+	);
+
+	return array(
+		'tmdb_id'         => (int) $tmdb_id,
+		'imdb_id'         => $imdb_id,
+		'title'           => $title,
+		'original_title'  => $orig_title,
+		'overview'        => $overview,
+		'tagline'         => $tagline,
+		'release_date'    => $release_date,
+		'first_air_date'  => $first_air,
+		'last_air_date'   => $last_air,
+		'year'            => $year,
+		'runtime'         => (int) $runtime,
+		'rating'          => $rating,
+		'votes'           => $votes,
+		'status'          => $status,
+		'certification'   => $certification,
+		'trailer_url'     => $trailer_url,
+		'poster_url'      => $poster_path,
+		'backdrop_url'    => $backdrop_path,
+		'genres'          => $genres,
+		'cast'            => $cast_names,
+		'rich_cast'       => $rich_cast,
+		'directors'       => $director_names,
+		'rich_directors'  => $rich_directors,
+		'total_seasons'   => (int) $total_seasons,
+		'total_episodes'  => (int) $total_episodes,
+		'reviews'         => $reviews,
+		'servers'         => $servers,
+		'downloads'       => $downloads,
+		'type'            => $type,
+	);
+}
+
+/**
+ * AJAX Handler: Fetch Raw TMDb/IMDb Payload for In-Post Form Auto-Filling
+ */
+function doodhtheme_ajax_fetch_tmdb_raw_data_handler() {
+	check_ajax_referer( 'doodh_tmdb_nonce', 'nonce' );
+
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		wp_send_json_error( __( 'Permission denied.', 'vmtheme' ) );
+	}
+
+	$query = sanitize_text_field( $_POST['query'] ?? '' );
+	$type  = sanitize_text_field( $_POST['type'] ?? 'movie' );
+
+	if ( empty( $query ) ) {
+		wp_send_json_error( __( 'Please enter a TMDb ID, IMDb ID, or Movie/TV Show Title.', 'vmtheme' ) );
+	}
+
+	$data = doodhtheme_fetch_tmdb_normalized_payload( $query, $type );
+
+	if ( is_wp_error( $data ) ) {
+		wp_send_json_error( $data->get_error_message() );
+	}
+
+	wp_send_json_success( $data );
+}
+add_action( 'wp_ajax_doodhtheme_ajax_fetch_tmdb_raw_data', 'doodhtheme_ajax_fetch_tmdb_raw_data_handler' );
+
+/**
+ * AJAX Handler: Search TMDb for Titles (Multi-Candidate Live Selection)
+ */
+function doodhtheme_ajax_search_tmdb_titles_handler() {
+	check_ajax_referer( 'doodh_tmdb_nonce', 'nonce' );
+
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		wp_send_json_error( __( 'Permission denied.', 'vmtheme' ) );
+	}
+
+	$query = sanitize_text_field( $_POST['query'] ?? '' );
+	$type  = sanitize_text_field( $_POST['type'] ?? 'movie' );
+
+	if ( empty( $query ) ) {
+		wp_send_json_error( __( 'Search query cannot be empty.', 'vmtheme' ) );
+	}
+
+	$api_key     = doodhtheme_get_tmdb_api_key();
+	$lang        = get_option( 'doodh_tmdb_lang', 'en-US' );
+	$search_type = ( $type === 'tv' ) ? 'tv' : 'movie';
+	$search_url  = "https://api.themoviedb.org/3/search/{$search_type}?api_key={$api_key}&query=" . urlencode( $query ) . "&language={$lang}";
+
+	$resp = doodhtheme_tmdb_api_get( $search_url, 12 );
+	if ( is_wp_error( $resp ) ) {
+		wp_send_json_error( $resp->get_error_message() );
+	}
+
+	$body = json_decode( wp_remote_retrieve_body( $resp ), true );
+	if ( empty( $body['results'] ) ) {
+		wp_send_json_error( __( 'No titles found matching your search.', 'vmtheme' ) );
+	}
+
+	$results = array();
+	$items = array_slice( $body['results'], 0, 10 );
+	foreach ( $items as $item ) {
+		$title   = ( $type === 'tv' ) ? ( $item['name'] ?? '' ) : ( $item['title'] ?? '' );
+		$date    = ( $type === 'tv' ) ? ( $item['first_air_date'] ?? '' ) : ( $item['release_date'] ?? '' );
+		$year    = ! empty( $date ) ? date( 'Y', strtotime( $date ) ) : 'N/A';
+		$poster  = ! empty( $item['poster_path'] ) ? 'https://image.tmdb.org/t/p/w185' . $item['poster_path'] : '';
+		$rating  = number_format( (float) ( $item['vote_average'] ?? 0 ), 1 );
+
+		$results[] = array(
+			'id'          => $item['id'],
+			'title'       => $title,
+			'year'        => $year,
+			'poster'      => $poster,
+			'rating'      => $rating,
+			'overview'    => wp_trim_words( $item['overview'] ?? '', 20, '...' ),
+		);
+	}
+
+	wp_send_json_success( $results );
+}
+add_action( 'wp_ajax_doodhtheme_ajax_search_tmdb_titles', 'doodhtheme_ajax_search_tmdb_titles_handler' );
+
+/**
+ * AJAX Handler: Sideload TMDb Poster to Media Library and set Post Thumbnail
+ */
+function doodhtheme_ajax_sideload_featured_image_handler() {
+	check_ajax_referer( 'doodh_tmdb_nonce', 'nonce' );
+
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		wp_send_json_error( __( 'Permission denied.', 'vmtheme' ) );
+	}
+
+	$image_url = esc_url_raw( $_POST['image_url'] ?? '' );
+	$post_id   = (int) ( $_POST['post_id'] ?? 0 );
+	$title     = sanitize_text_field( $_POST['title'] ?? 'Movie Poster' );
+
+	if ( empty( $image_url ) ) {
+		wp_send_json_error( __( 'Image URL is required.', 'vmtheme' ) );
+	}
+
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+
+	$att_id = media_sideload_image( $image_url, $post_id, $title, 'id' );
+
+	if ( is_wp_error( $att_id ) ) {
+		wp_send_json_error( $att_id->get_error_message() );
+	}
+
+	if ( $post_id > 0 ) {
+		set_post_thumbnail( $post_id, $att_id );
+	}
+
+	$thumb_src = wp_get_attachment_image_src( $att_id, 'medium' );
+
+	wp_send_json_success( array(
+		'attachment_id' => $att_id,
+		'url'           => wp_get_attachment_url( $att_id ),
+		'thumb_url'     => $thumb_src ? $thumb_src[0] : $image_url,
+		'message'       => __( 'Poster successfully imported into Media Library and set as Featured Image!', 'vmtheme' ),
+	) );
+}
+add_action( 'wp_ajax_doodhtheme_ajax_sideload_featured_image', 'doodhtheme_ajax_sideload_featured_image_handler' );
+
+
 

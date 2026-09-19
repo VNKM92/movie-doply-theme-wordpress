@@ -97,24 +97,24 @@ while ( have_posts() ) :
 		<!-- Multi-Server Video Player -->
 		<section class="doodh-section">
 			<div class="doodh-section-header">
-				<h2 class="doodh-section-title"><i class="fas fa-play" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Watch Movie Online', 'vmtheme' ); ?></h2>
-				<div style="display:flex; gap:10px;">
+				<h2 class="doodh-section-title"><i class="fas fa-play" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Trailer', 'vmtheme' ); ?></h2>
+				<!-- <div style="display:flex; gap:10px;">
 					<?php doodhtheme_render_watchlist_btn( $movie_id ); ?>
-				</div>
+				</div> -->
 			</div>
 			<?php doodhtheme_render_player( $movie_id ); ?>
 		</section>
 
 		<!-- Ad Slot: Below Player -->
-		<?php doodhtheme_display_ad( 'player_bottom' ); ?>
+		<?php  doodhtheme_display_ad( 'player_bottom' ); ?>
 
 		<!-- Downloads Box -->
-		<?php doodhtheme_render_downloads( $movie_id ); ?>
+		<?php //doodhtheme_render_downloads( $movie_id ); ?>
 
 		<!-- Interactive Cast & Actors Section -->
 		<section class="doodh-section">
 			<div class="doodh-section-header">
-				<h3 class="doodh-section-title"><i class="fas fa-users" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Top Cast & Characters', 'vmtheme' ); ?></h3>
+				<h3 class="doodh-section-title"><i class="fas fa-users" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Cast & Characters', 'vmtheme' ); ?></h3>
 			</div>
 
 			<div class="doodh-cast-grid">
@@ -189,7 +189,7 @@ while ( have_posts() ) :
 		if ( $related_query->post_count < 6 ) {
 			$fallback_args = array(
 				'post_type'      => 'movies',
-				'posts_per_page' => 12,
+				'posts_per_page' => 6,
 				'post_status'    => 'publish',
 				'post__not_in'   => array( $movie_id ),
 				'orderby'        => 'date',
