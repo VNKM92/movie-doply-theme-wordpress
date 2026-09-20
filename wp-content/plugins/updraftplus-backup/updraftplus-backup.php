@@ -4,8 +4,8 @@
  * Plugin URI: https://wordpress.org/plugins/updraftplus/
  * Description: Complete WordPress backup and restore solution. Create full backups of your database, plugins, themes, uploads, and wp-content, download archives, and restore anytime with 1-click.
  * Version: 1.0.0
- * Author: UpdraftPlus & DoodhTheme Engineering
- * Author URI: https://doodhtheme.com/
+ * Author: UpdraftPlus & VMTheme Engineering
+ * Author URI: https://vmtheme.com/
  * License: GPLv2 or later
  * Text Domain: updraftplus-backup
  */
