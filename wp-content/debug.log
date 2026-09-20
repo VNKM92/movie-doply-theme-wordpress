@@ -89,3 +89,53 @@ Stack trace:
 [19-Sep-2026 05:24:39 UTC] Automatic updates complete.
 [19-Sep-2026 07:20:55 UTC] Automatic updates starting...
 [19-Sep-2026 07:20:55 UTC] Automatic updates complete.
+[19-Sep-2026 12:25:43 UTC] PHP Warning:  wp_version_check(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\xampp\htdocs\movie\wp-includes\functions.php on line 6260
+[19-Sep-2026 13:26:29 UTC] Cron reschedule event error for hook: wpseo_indexable_index_batch, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"fifteen_minutes","args":[],"interval":900}
+[19-Sep-2026 13:32:57 UTC] PHP Warning:  Undefined property: stdClass::$publish in C:\xampp\htdocs\movie\wp-content\plugins\vm-seo\inc\admin-dashboard.php on line 200
+[19-Sep-2026 13:32:57 UTC] PHP Warning:  Undefined property: stdClass::$publish in C:\xampp\htdocs\movie\wp-content\plugins\vm-seo\inc\admin-dashboard.php on line 201
+[19-Sep-2026 13:33:30 UTC] PHP Warning:  Undefined property: stdClass::$publish in C:\xampp\htdocs\movie\wp-content\plugins\vm-seo\inc\admin-dashboard.php on line 200
+[19-Sep-2026 13:33:30 UTC] PHP Warning:  Undefined property: stdClass::$publish in C:\xampp\htdocs\movie\wp-content\plugins\vm-seo\inc\admin-dashboard.php on line 201
+[19-Sep-2026 13:34:35 UTC] PHP Warning:  Undefined property: stdClass::$publish in C:\xampp\htdocs\movie\wp-content\plugins\vm-seo\inc\admin-dashboard.php on line 200
+[19-Sep-2026 13:34:35 UTC] PHP Warning:  Undefined property: stdClass::$publish in C:\xampp\htdocs\movie\wp-content\plugins\vm-seo\inc\admin-dashboard.php on line 201
+[19-Sep-2026 13:34:38 UTC] PHP Warning:  Undefined property: stdClass::$publish in C:\xampp\htdocs\movie\wp-content\plugins\vm-seo\inc\admin-dashboard.php on line 200
+[19-Sep-2026 13:34:38 UTC] PHP Warning:  Undefined property: stdClass::$publish in C:\xampp\htdocs\movie\wp-content\plugins\vm-seo\inc\admin-dashboard.php on line 201
+[19-Sep-2026 13:34:40 UTC] PHP Warning:  Undefined property: stdClass::$publish in C:\xampp\htdocs\movie\wp-content\plugins\vm-seo\inc\admin-dashboard.php on line 200
+[19-Sep-2026 13:34:40 UTC] PHP Warning:  Undefined property: stdClass::$publish in C:\xampp\htdocs\movie\wp-content\plugins\vm-seo\inc\admin-dashboard.php on line 201
+[19-Sep-2026 14:22:39 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[19-Sep-2026 14:47:45 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[19-Sep-2026 18:54:33 UTC] Automatic updates starting...
+[19-Sep-2026 18:54:34 UTC] Automatic updates complete.
+[19-Sep-2026 19:14:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function dd() in C:\xampp\htdocs\movie\wp-content\themes\vmtheme\index.php:148
+Stack trace:
+#0 C:\xampp\htdocs\movie\wp-content\themes\vmtheme\front-page.php(15): require()
+#1 C:\xampp\htdocs\movie\wp-includes\template-loader.php(132): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\movie\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\movie\index.php(17): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\movie\wp-content\themes\vmtheme\index.php on line 148
+[19-Sep-2026 19:14:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function dd() in C:\xampp\htdocs\movie\wp-content\themes\vmtheme\index.php:148
+Stack trace:
+#0 C:\xampp\htdocs\movie\wp-content\themes\vmtheme\front-page.php(15): require()
+#1 C:\xampp\htdocs\movie\wp-includes\template-loader.php(132): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\movie\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\movie\index.php(17): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\movie\wp-content\themes\vmtheme\index.php on line 148
+[19-Sep-2026 19:20:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function dd() in C:\xampp\htdocs\movie\wp-content\themes\vmtheme\index.php:319
+Stack trace:
+#0 C:\xampp\htdocs\movie\wp-content\themes\vmtheme\front-page.php(15): require()
+#1 C:\xampp\htdocs\movie\wp-includes\template-loader.php(132): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\movie\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\movie\index.php(17): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\movie\wp-content\themes\vmtheme\index.php on line 319
+[19-Sep-2026 19:22:46 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\xampp\htdocs\movie\wp-content\themes\vmtheme\index.php on line 319
+[20-Sep-2026 11:22:29 UTC] Automatic updates starting...
+[20-Sep-2026 11:22:31 UTC] Automatic updates complete.
+[20-Sep-2026 11:28:05 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[20-Sep-2026 11:29:20 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[20-Sep-2026 11:30:31 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[20-Sep-2026 11:31:35 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[20-Sep-2026 11:46:48 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\xampp\htdocs\movie\wp-content\themes\vmtheme\footer.php on line 72
+[20-Sep-2026 13:14:50 UTC] PHP Warning:  wp_version_check(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\xampp\htdocs\movie\wp-includes\functions.php on line 6260
+[20-Sep-2026 13:14:55 UTC] PHP Warning:  wp_update_plugins(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\xampp\htdocs\movie\wp-includes\functions.php on line 6260

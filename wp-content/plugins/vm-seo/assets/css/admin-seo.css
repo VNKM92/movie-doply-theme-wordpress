@@ -1,0 +1,245 @@
+/* VM SEO - Complete Yoast-Grade Admin Stylesheet */
+.vm-seo-metabox-wrap {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  margin: -6px -12px -12px -12px;
+}
+
+.vm-seo-tabs-nav {
+  display: flex;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 8px 12px 0;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.vm-seo-tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  padding: 9px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.vm-seo-tab-btn:hover {
+  color: #0f172a;
+  background: #e2e8f0;
+}
+
+.vm-seo-tab-btn.active {
+  background: #ffffff;
+  color: #e50914;
+  border-color: #e2e8f0;
+  border-bottom-color: #ffffff;
+  margin-bottom: -1px;
+}
+
+.vm-score-pill-sm {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+.vm-score-pill-sm.good { background: #10b981; }
+.vm-score-pill-sm.ok { background: #f59e0b; }
+.vm-score-pill-sm.poor { background: #ef4444; }
+
+.vm-seo-tab-content {
+  display: none;
+  padding: 22px;
+  background: #ffffff;
+}
+.vm-seo-tab-content.active {
+  display: block;
+}
+
+/* Variable Insertion Pills */
+.vm-var-pill-btn {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  padding: 2px 9px;
+  border-radius: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.vm-var-pill-btn:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* Google SERP Preview Card */
+.vm-google-preview-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 15px 0;
+}
+
+.vm-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 12px;
+}
+
+.vm-preview-devices {
+  display: flex;
+  gap: 4px;
+}
+
+.vm-device-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.vm-device-btn.active {
+  background: #e50914;
+  color: #ffffff;
+  border-color: #e50914;
+}
+
+.vm-serp-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  max-width: 600px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.vm-serp-site-meta {
+  font-size: 12px;
+  color: #202124;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.vm-serp-domain { font-weight: 500; }
+.vm-serp-breadcrumb { color: #5f6368; }
+
+.vm-serp-title {
+  color: #1a0dab;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+  cursor: pointer;
+}
+.vm-serp-title:hover { text-decoration: underline; }
+
+.vm-serp-desc {
+  color: #4d5156;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Field Inputs & Progress Bars */
+.vm-field-group .vm-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+.vm-char-count {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.vm-input, .vm-select {
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  padding: 7px 10px !important;
+}
+
+.vm-progress-bar {
+  height: 5px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+.vm-progress-fill {
+  height: 100%;
+  width: 50%;
+  background: #10b981;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Analysis Checklist */
+.vm-seo-analysis-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+}
+.vm-check-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.vm-check-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: #334155;
+}
+.vm-check-list li .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #10b981;
+  flex-shrink: 0;
+}
+.vm-check-list li.ok .dot { background: #f59e0b; }
+.vm-check-list li.poor .dot { background: #ef4444; }
+
+/* Admin Dashboard Hero & Cards */
+.vm-admin-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  padding: 28px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+.vm-admin-hero h1 { color: #ffffff !important; font-size: 24px; margin: 8px 0; }
+.vm-admin-hero p { color: #94a3b8; font-size: 14px; margin: 0; }
+.vm-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(229,9,20,0.2);
+  color: #ef4444;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
