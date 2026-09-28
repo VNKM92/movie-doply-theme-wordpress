@@ -912,7 +912,7 @@ function vmtheme_get_footer_about_text() {
 		return wp_kses_post( $custom );
 	}
 	$brand_name = vmtheme_get_brand_name();
-	return sprintf( __( '%s is your premier streaming portal to watch and discover thousands of movies, TV shows, and anime in crystal-clear 4K and Full HD resolution with multi-server playback.', 'vmtheme' ), esc_html( $brand_name ) );
+	return sprintf( __( '%s is a movie discovery and review platform for people who love cinema. Explore detailed movie information, reviews, ratings, release dates, genres, cast and crew details, trailers, upcoming releases, and the latest entertainment news.', 'vmtheme' ), esc_html( $brand_name ) );
 }
 
 if ( ! function_exists( 'doodhtheme_get_footer_about_text' ) ) {
@@ -925,7 +925,7 @@ if ( ! function_exists( 'doodhtheme_get_footer_about_text' ) ) {
  * Helper: Render Footer Feature Badges
  */
 function vmtheme_render_footer_feature_pills() {
-	$pills_str = get_option( 'vm_footer_feat_pills', '4K UltraHD, 4 Servers, Direct DL, Multi-Sub' );
+	$pills_str = get_option( 'vm_footer_feat_pills', 'Honest Movie Reviews, Ratings, Cast & Crew Information' );
 	$pills     = array_map( 'trim', explode( ',', $pills_str ) );
 	$icons     = array( 'fas fa-tv', 'fas fa-server', 'fas fa-download', 'fas fa-closed-captioning', 'fas fa-bolt', 'fas fa-shield-alt' );
 
@@ -947,11 +947,11 @@ if ( ! function_exists( 'doodhtheme_render_footer_feature_pills' ) ) {
 /**
  * Helper: Render Footer Dynamic Social Media Links
  */
-function vmtheme_render_footer_socials() {
+function vmtheme_render_footer_socials() {  
 	$socials = array(
-		'tg' => array( 'url' => get_option( 'vm_social_telegram' ), 'icon' => 'fab fa-telegram-plane', 'title' => 'Telegram' ),
-		'dc' => array( 'url' => get_option( 'vm_social_discord' ),  'icon' => 'fab fa-discord',        'title' => 'Discord' ),
-		'tw' => array( 'url' => get_option( 'vm_social_twitter' ),  'icon' => 'fab fa-x-twitter',      'title' => 'Twitter / X' ),
+		'tg' => array( 'url' => get_option( 'vm_social_telegram' ), 'icon' => 'fab fa-brands fa-medium', 'title' => 'medium' ),
+		// 'dc' => array( 'url' => get_option( 'vm_social_discord' ),  'icon' => 'fab fa-discord',        'title' => 'Discord' ),
+		// 'tw' => array( 'url' => get_option( 'vm_social_twitter' ),  'icon' => 'fab fa-x-twitter',      'title' => 'Twitter / X' ),
 		'rd' => array( 'url' => get_option( 'vm_social_reddit' ),   'icon' => 'fab fa-reddit-alien',   'title' => 'Reddit' ),
 		'yt' => array( 'url' => get_option( 'vm_social_youtube' ),  'icon' => 'fab fa-youtube',        'title' => 'YouTube' ),
 		'ig' => array( 'url' => get_option( 'vm_social_instagram' ),'icon' => 'fab fa-instagram',      'title' => 'Instagram' ),

@@ -23,7 +23,31 @@ function vmtheme_child_enqueue_styles() {
 		wp_get_theme()->get( 'Version' )
 	);
 }
+
+// Add %%currentyear%% variable to Yoast SEO.
+// add_action( 'wpseo_register_extra_replacements', function() {
+//     wpseo_register_var_replacement(
+//         '%%currentyear%%',
+//         'Current year',
+//         function() {
+//             return date( 'Y' );
+//         },
+//         'advanced'
+//     );
+// } );
+
 add_action( 'wp_enqueue_scripts', 'vmtheme_child_enqueue_styles', 20 );
+
+
+// add_filter( 'wpseo_replacements', 'my_custom_yoast_replacement', 10, 1 );
+
+// function my_custom_yoast_replacement( $replacements ) {
+//     // Check if the variable exists, then override its value
+//     if ( isset( $replacements['%%company_name%%'] ) ) {
+//         $replacements['%%company_name%%'] = 'Your New Custom Value';
+//     }
+//     return $replacements;
+// }
 
 /**
  * Add your custom hooks, filters, and functions below.

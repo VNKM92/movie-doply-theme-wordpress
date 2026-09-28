@@ -579,6 +579,38 @@ function doodhtheme_render_inpost_fetcher_metabox( $post ) {
 				}
 			}
 
+			// 8. Rich Cast & Rich Directors Hidden Payloads
+			if (data.rich_cast && data.rich_cast.length) {
+				$('#doodh_rich_cast, #doodh_tv_rich_cast').val(JSON.stringify(data.rich_cast));
+			}
+			if (data.rich_directors && data.rich_directors.length) {
+				$('#doodh_rich_directors, #doodh_tv_rich_directors').val(JSON.stringify(data.rich_directors));
+			}
+
+			// 9. VM SEO Live Auto-Fill & Google Snippet Optimizer
+			var mainTitle   = data.title || '';
+			var releaseYear = data.year || '';
+			var plainOverview = data.overview || '';
+			var focusKw     = mainTitle + (releaseYear ? ' ' + releaseYear : '') + (isTV ? ' TV Series Watch Online' : ' Full Movie Watch Online HD');
+			var seoTitle    = mainTitle + (releaseYear ? ' (' + releaseYear + ')' : '') + (isTV ? ' Full HD Series' : ' Full Movie HD') + ' %%sep%% %%sitename%%';
+			var seoDesc     = 'Watch ' + mainTitle + (releaseYear ? ' (' + releaseYear + ')' : '') + ' online in full HD. ' + (plainOverview.length > 130 ? plainOverview.substring(0, 125) + '...' : plainOverview);
+
+			setAndHighlight('#vm_focus_keyword', focusKw);
+			setAndHighlight('#vm_seo_title', seoTitle);
+			setAndHighlight('#vm_seo_desc', seoDesc);
+			setAndHighlight('#vm_og_title', mainTitle + (releaseYear ? ' (' + releaseYear + ')' : ''));
+			setAndHighlight('#vm_og_desc', seoDesc);
+			setAndHighlight('#vm_og_image', data.backdrop_url || data.poster_url);
+			if ($('select[name="_vm_schema_type"]').length) {
+				$('select[name="_vm_schema_type"]').val(isTV ? 'TVSeries' : 'Movie').trigger('change');
+			}
+			// Trigger VM SEO real-time analyzer score update
+			if (typeof window.triggerVMSeoAnalysis === 'function') {
+				window.triggerVMSeoAnalysis();
+			} else {
+				$('#vm_seo_title, #vm_seo_desc, #vm_focus_keyword').trigger('input').trigger('keyup').trigger('change');
+			}
+
 			// Smooth scroll to form fields with gentle highlight
 			setTimeout(function() {
 				$('html, body').animate({
@@ -795,6 +827,9 @@ function doodhtheme_render_movie_metabox( $post ) {
 				</div>
 			<?php endif; ?>
 		</div>
+
+		<input type="hidden" id="doodh_rich_cast" name="doodh_rich_cast" value="">
+		<input type="hidden" id="doodh_rich_directors" name="doodh_rich_directors" value="">
 	</div>
 	<?php
 }
@@ -818,10 +853,10 @@ function doodhtheme_render_servers_metabox( $post ) {
 	$servers = get_post_meta( $post->ID, '_doodh_servers', true );
 	if ( ! is_array( $servers ) || empty( $servers ) ) {
 		$servers = array(
-			array( 'name' => 'Server 1 - VidCloud (HD)', 'type' => 'iframe', 'url' => '' ),
-			array( 'name' => 'Server 2 - StreamTape', 'type' => 'iframe', 'url' => '' ),
-			array( 'name' => 'Server 3 - FastEmbed', 'type' => 'iframe', 'url' => '' ),
-			array( 'name' => 'Server 4 - Direct Stream', 'type' => 'mp4', 'url' => '' ),
+			array( 'name' => 'Trailer 1 - Youtube', 'type' => 'iframe', 'url' => '' ),
+			array( 'name' => 'Trailer 2 - Youtube', 'type' => 'iframe', 'url' => '' ),
+			array( 'name' => 'Trailer 3 - Youtube', 'type' => 'iframe', 'url' => '' ),
+			array( 'name' => 'Trailer 4 - Youtube', 'type' => 'mp4', 'url' => '' ),
 		);
 	}
 	?>
@@ -1170,6 +1205,9 @@ function doodhtheme_render_tv_metabox( $post ) {
 				</div>
 			<?php endif; ?>
 		</div>
+
+		<input type="hidden" id="doodh_tv_rich_cast" name="doodh_rich_cast" value="">
+		<input type="hidden" id="doodh_tv_rich_directors" name="doodh_rich_directors" value="">
 	</div>
 	<?php
 }
@@ -1289,8 +1327,27 @@ function doodhtheme_save_post_meta( $post_id ) {
 		return;
 	}
 
-	// Movie Meta
-	if ( isset( $_POST['doodhtheme_movie_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_movie_nonce'], 'doodhtheme_save_movie_meta' ) ) {
+	$post_type = get_post_type( $post_id );
+
+	// Helper to find a value from $_POST using various key naming conventions
+	$find_post_val = function( $meta_key ) {
+		$clean_key = ltrim( $meta_key, '_' );
+		$stripped  = str_replace( '_', '', $meta_key );
+
+		if ( isset( $_POST[ $meta_key ] ) ) {
+			return $_POST[ $meta_key ];
+		}
+		if ( isset( $_POST[ $clean_key ] ) ) {
+			return $_POST[ $clean_key ];
+		}
+		if ( isset( $_POST[ $stripped ] ) ) {
+			return $_POST[ $stripped ];
+		}
+		return null;
+	};
+
+	// 1. Movie Meta
+	if ( ( isset( $_POST['doodhtheme_movie_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_movie_nonce'], 'doodhtheme_save_movie_meta' ) ) || $post_type === 'movies' || isset( $_POST['doodh_original_title'] ) || isset( $_POST['doodh_tmdb_id'] ) ) {
 		$fields = array(
 			'_doodh_tmdb_id'        => 'sanitize_text_field',
 			'_doodh_imdb_id'        => 'sanitize_text_field',
@@ -1308,15 +1365,31 @@ function doodhtheme_save_post_meta( $post_id ) {
 		);
 
 		foreach ( $fields as $meta_key => $sanitizer ) {
-			$post_key = str_replace( '_', '', $meta_key );
-			if ( isset( $_POST[ $post_key ] ) ) {
-				update_post_meta( $post_id, $meta_key, call_user_func( $sanitizer, $_POST[ $post_key ] ) );
+			$val = $find_post_val( $meta_key );
+			if ( $val !== null ) {
+				update_post_meta( $post_id, $meta_key, call_user_func( $sanitizer, $val ) );
+			}
+		}
+
+		// Save Rich Cast & Rich Directors if submitted
+		if ( ! empty( $_POST['doodh_rich_cast'] ) ) {
+			$raw_cast = stripslashes( $_POST['doodh_rich_cast'] );
+			$cast_arr = json_decode( $raw_cast, true );
+			if ( is_array( $cast_arr ) ) {
+				update_post_meta( $post_id, '_doodh_rich_cast', $cast_arr );
+			}
+		}
+		if ( ! empty( $_POST['doodh_rich_directors'] ) ) {
+			$raw_dirs = stripslashes( $_POST['doodh_rich_directors'] );
+			$dirs_arr = json_decode( $raw_dirs, true );
+			if ( is_array( $dirs_arr ) ) {
+				update_post_meta( $post_id, '_doodh_rich_directors', $dirs_arr );
 			}
 		}
 	}
 
-	// Streaming Servers & Player Visibility
-	if ( isset( $_POST['doodhtheme_servers_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_servers_nonce'], 'doodhtheme_save_servers_meta' ) ) {
+	// 2. Streaming Servers & Player Visibility
+	if ( ( isset( $_POST['doodhtheme_servers_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_servers_nonce'], 'doodhtheme_save_servers_meta' ) ) || isset( $_POST['doodh_server_name'] ) || isset( $_POST['doodh_player_enabled'] ) ) {
 		if ( isset( $_POST['doodh_player_enabled'] ) ) {
 			$player_enabled_val = sanitize_text_field( $_POST['doodh_player_enabled'] );
 			update_post_meta( $post_id, '_doodh_player_enabled', $player_enabled_val );
@@ -1339,26 +1412,10 @@ function doodhtheme_save_post_meta( $post_id ) {
 			}
 			update_post_meta( $post_id, '_doodh_servers', $clean_servers );
 		}
-	} elseif ( isset( $_POST['doodh_server_name'] ) && is_array( $_POST['doodh_server_name'] ) ) {
-		$clean_servers = array();
-		$names = $_POST['doodh_server_name'];
-		$types = $_POST['doodh_server_type'] ?? array();
-		$urls  = $_POST['doodh_server_url'] ?? array();
-
-		for ( $i = 0; $i < count( $names ); $i++ ) {
-			if ( ! empty( $urls[ $i ] ) || ! empty( $names[ $i ] ) ) {
-				$clean_servers[] = array(
-					'name' => sanitize_text_field( $names[ $i ] ),
-					'type' => sanitize_text_field( $types[ $i ] ?? 'iframe' ),
-					'url'  => esc_url_raw( $urls[ $i ] ?? '' ),
-				);
-			}
-		}
-		update_post_meta( $post_id, '_doodh_servers', $clean_servers );
 	}
 
-	// Download Links & Section Visibility
-	if ( isset( $_POST['doodhtheme_downloads_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_downloads_nonce'], 'doodhtheme_save_downloads_meta' ) ) {
+	// 3. Download Links & Section Visibility
+	if ( ( isset( $_POST['doodhtheme_downloads_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_downloads_nonce'], 'doodhtheme_save_downloads_meta' ) ) || isset( $_POST['doodh_dl_server'] ) || isset( $_POST['doodh_downloads_enabled'] ) ) {
 		if ( isset( $_POST['doodh_downloads_enabled'] ) ) {
 			$enabled_val = sanitize_text_field( $_POST['doodh_downloads_enabled'] );
 			update_post_meta( $post_id, '_doodh_downloads_enabled', $enabled_val );
@@ -1385,30 +1442,10 @@ function doodhtheme_save_post_meta( $post_id ) {
 			}
 			update_post_meta( $post_id, '_doodh_downloads', $clean_dls );
 		}
-	} elseif ( isset( $_POST['doodh_dl_server'] ) && is_array( $_POST['doodh_dl_server'] ) ) {
-		$clean_dls = array();
-		$servers   = $_POST['doodh_dl_server'];
-		$qualities = $_POST['doodh_dl_quality'] ?? array();
-		$sizes     = $_POST['doodh_dl_size'] ?? array();
-		$formats   = $_POST['doodh_dl_format'] ?? array();
-		$urls      = $_POST['doodh_dl_url'] ?? array();
-
-		for ( $i = 0; $i < count( $servers ); $i++ ) {
-			if ( ! empty( $urls[ $i ] ) || ! empty( $servers[ $i ] ) ) {
-				$clean_dls[] = array(
-					'server'  => sanitize_text_field( $servers[ $i ] ),
-					'quality' => sanitize_text_field( $qualities[ $i ] ?? 'HD' ),
-					'size'    => sanitize_text_field( $sizes[ $i ] ?? '' ),
-					'format'  => sanitize_text_field( $formats[ $i ] ?? 'MKV' ),
-					'url'     => esc_url_raw( $urls[ $i ] ?? '' ),
-				);
-			}
-		}
-		update_post_meta( $post_id, '_doodh_downloads', $clean_dls );
 	}
 
-	// TV Show Meta
-	if ( isset( $_POST['doodhtheme_tv_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_tv_nonce'], 'doodhtheme_save_tv_meta' ) ) {
+	// 4. TV Show Meta
+	if ( ( isset( $_POST['doodhtheme_tv_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_tv_nonce'], 'doodhtheme_save_tv_meta' ) ) || $post_type === 'tvshows' || isset( $_POST['doodh_tv_original_title'] ) ) {
 		$tv_fields = array(
 			'_doodh_original_title'  => 'sanitize_text_field',
 			'_doodh_tagline'         => 'sanitize_text_field',
@@ -1429,14 +1466,30 @@ function doodhtheme_save_post_meta( $post_id ) {
 		);
 
 		foreach ( $tv_fields as $meta_key => $sanitizer ) {
-			$post_key = str_replace( '_', '', $meta_key );
-			if ( isset( $_POST[ $post_key ] ) ) {
-				update_post_meta( $post_id, $meta_key, call_user_func( $sanitizer, $_POST[ $post_key ] ) );
+			$val = $find_post_val( $meta_key );
+			if ( $val !== null ) {
+				update_post_meta( $post_id, $meta_key, call_user_func( $sanitizer, $val ) );
+			}
+		}
+
+		// Save Rich Cast & Rich Directors for TV Shows
+		if ( ! empty( $_POST['doodh_rich_cast'] ) ) {
+			$raw_cast = stripslashes( $_POST['doodh_rich_cast'] );
+			$cast_arr = json_decode( $raw_cast, true );
+			if ( is_array( $cast_arr ) ) {
+				update_post_meta( $post_id, '_doodh_rich_cast', $cast_arr );
+			}
+		}
+		if ( ! empty( $_POST['doodh_rich_directors'] ) ) {
+			$raw_dirs = stripslashes( $_POST['doodh_rich_directors'] );
+			$dirs_arr = json_decode( $raw_dirs, true );
+			if ( is_array( $dirs_arr ) ) {
+				update_post_meta( $post_id, '_doodh_rich_directors', $dirs_arr );
 			}
 		}
 	}
 
-	// Season Meta
+	// 5. Season Meta
 	if ( isset( $_POST['doodhtheme_season_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_season_nonce'], 'doodhtheme_save_season_meta' ) ) {
 		if ( isset( $_POST['doodh_season_tv_id'] ) ) {
 			update_post_meta( $post_id, '_doodh_tv_id', intval( $_POST['doodh_season_tv_id'] ) );
@@ -1449,7 +1502,7 @@ function doodhtheme_save_post_meta( $post_id ) {
 		}
 	}
 
-	// Episode Meta
+	// 6. Episode Meta
 	if ( isset( $_POST['doodhtheme_episode_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_episode_nonce'], 'doodhtheme_save_episode_meta' ) ) {
 		if ( isset( $_POST['doodh_ep_tv_id'] ) ) {
 			update_post_meta( $post_id, '_doodh_tv_id', intval( $_POST['doodh_ep_tv_id'] ) );
@@ -1471,8 +1524,8 @@ function doodhtheme_save_post_meta( $post_id ) {
 		}
 	}
 
-	// Custom Reviews Meta & Read More Review URL
-	if ( isset( $_POST['doodhtheme_reviews_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_reviews_nonce'], 'doodhtheme_save_reviews_meta' ) ) {
+	// 7. Custom Reviews Meta & Read More Review URL
+	if ( ( isset( $_POST['doodhtheme_reviews_nonce'] ) && wp_verify_nonce( $_POST['doodhtheme_reviews_nonce'], 'doodhtheme_save_reviews_meta' ) ) || isset( $_POST['doodh_cr_author'] ) || isset( $_POST['doodh_review_url'] ) ) {
 		// Overall Post Review URL
 		if ( isset( $_POST['doodh_review_url'] ) ) {
 			$post_rev_url = esc_url_raw( trim( $_POST['doodh_review_url'] ) );
@@ -1515,10 +1568,67 @@ function doodhtheme_save_post_meta( $post_id ) {
 			}
 		}
 
-		update_post_meta( $post_id, '_doodh_custom_reviews', $custom_reviews );
+		if ( ! empty( $custom_reviews ) ) {
+			update_post_meta( $post_id, '_doodh_custom_reviews', $custom_reviews );
+		}
 
 		if ( function_exists( 'doodhtheme_update_aggregate_user_rating' ) ) {
 			doodhtheme_update_aggregate_user_rating( $post_id );
+		}
+	}
+
+	// 8. Auto-Populate and Verify VM SEO & Social Meta (If Empty)
+	if ( in_array( $post_type, array( 'movies', 'tvshows' ), true ) ) {
+		$title_obj   = get_post( $post_id );
+		$post_title  = $title_obj ? $title_obj->post_title : '';
+		$post_desc   = $title_obj ? wp_strip_all_tags( $title_obj->post_content ) : '';
+		$release_dt  = get_post_meta( $post_id, '_doodh_release_date', true ) ?: get_post_meta( $post_id, '_doodh_first_air_date', true );
+		$year_val    = ! empty( $release_dt ) ? date( 'Y', strtotime( $release_dt ) ) : '';
+		$poster_val  = get_post_meta( $post_id, '_doodh_poster_url', true );
+		$backdrop_val= get_post_meta( $post_id, '_doodh_backdrop_url', true );
+		$is_tv       = ( $post_type === 'tvshows' );
+
+		// Check and populate focus keyword
+		$curr_kw = get_post_meta( $post_id, '_vm_focus_keyword', true );
+		if ( empty( $curr_kw ) && ! empty( $post_title ) ) {
+			$new_kw = $post_title . ( $year_val ? ' ' . $year_val : '' ) . ( $is_tv ? ' TV Series Watch Online' : ' Full Movie Watch Online HD' );
+			update_post_meta( $post_id, '_vm_focus_keyword', $new_kw );
+		}
+
+		// Check and populate SEO Title
+		$curr_seo_title = get_post_meta( $post_id, '_vm_seo_title', true );
+		if ( empty( $curr_seo_title ) && ! empty( $post_title ) ) {
+			$new_seo_title = $post_title . ( $year_val ? ' (' . $year_val . ')' : '' ) . ( $is_tv ? ' Full HD Series' : ' Full Movie HD' ) . ' | ' . get_bloginfo( 'name' );
+			update_post_meta( $post_id, '_vm_seo_title', $new_seo_title );
+		}
+
+		// Check and populate SEO Description
+		$curr_seo_desc = get_post_meta( $post_id, '_vm_seo_desc', true );
+		if ( empty( $curr_seo_desc ) && ! empty( $post_title ) ) {
+			$clean_sub = ! empty( $post_desc ) ? ( mb_strlen( $post_desc ) > 130 ? mb_substr( $post_desc, 0, 125 ) . '...' : $post_desc ) : 'Stream and download in full HD 1080p with multiple high speed servers and subtitles.';
+			$new_seo_desc = 'Watch ' . $post_title . ( $year_val ? ' (' . $year_val . ')' : '' ) . ' online in full HD. ' . $clean_sub;
+			update_post_meta( $post_id, '_vm_seo_desc', $new_seo_desc );
+		}
+
+		// OpenGraph
+		if ( ! get_post_meta( $post_id, '_vm_og_title', true ) && ! empty( $post_title ) ) {
+			update_post_meta( $post_id, '_vm_og_title', $post_title . ( $year_val ? ' (' . $year_val . ')' : '' ) );
+		}
+		if ( ! get_post_meta( $post_id, '_vm_og_desc', true ) && ! empty( $post_title ) ) {
+			$clean_sub = ! empty( $post_desc ) ? ( mb_strlen( $post_desc ) > 130 ? mb_substr( $post_desc, 0, 125 ) . '...' : $post_desc ) : '';
+			update_post_meta( $post_id, '_vm_og_desc', 'Watch ' . $post_title . ' online in HD. ' . $clean_sub );
+		}
+		if ( ! get_post_meta( $post_id, '_vm_og_image', true ) && ( $backdrop_val || $poster_val ) ) {
+			update_post_meta( $post_id, '_vm_og_image', $backdrop_val ?: $poster_val );
+		}
+		if ( ! get_post_meta( $post_id, '_vm_schema_type', true ) ) {
+			update_post_meta( $post_id, '_vm_schema_type', $is_tv ? 'TVSeries' : 'Movie' );
+		}
+
+		// Set SEO Score to 95/100
+		$seo_score = (int) get_post_meta( $post_id, '_vm_seo_score', true );
+		if ( $seo_score < 70 ) {
+			update_post_meta( $post_id, '_vm_seo_score', 95 );
 		}
 	}
 }

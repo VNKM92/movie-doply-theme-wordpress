@@ -53,7 +53,7 @@ while ( have_posts() ) :
 
 					<div class="doodh-meta-tags">
 						<span class="doodh-badge-imdb"><i class="fas fa-star"></i> <?php echo esc_html( $rating ); ?> <em>(<?php echo number_format( (int) $votes ); ?> votes)</em></span>
-						<span class="doodh-badge-quality"><?php echo esc_html( $quality ); ?></span>
+						<!-- <span class="doodh-badge-quality"><?php //echo esc_html( $quality ); ?></span> -->
 						<?php if ( ! empty( $release_date ) ) : ?>
 							<span class="doodh-tag-pill doodh-tag-release-date"><i class="far fa-calendar-alt"></i> <?php echo esc_html( $release_date ); ?></span>
 						<?php elseif ( ! empty( $year ) ) : ?>
@@ -62,8 +62,19 @@ while ( have_posts() ) :
 						<?php if ( $runtime ) : ?>
 							<span class="doodh-tag-pill"><i class="far fa-clock"></i> <?php echo esc_html( $runtime ); ?></span>
 						<?php endif; ?>
+						<span class="next-line"></span>
 						<span class="doodh-tag-pill"><?php echo esc_html( $certification ); ?></span>
+						
 					</div>
+					<!-- Release Date -->
+
+					<?php if ( ! empty( $release_date ) ) : ?>
+							 
+							<div class="doodh-release-info" style="margin-top: -12px; margin-bottom: 9px; font-size: smaller;">
+								<strong style="color:#fff;"><i class="far fa-calendar-check" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Release Date:', 'vmtheme' ); ?></strong>
+								<span style="color:var(--dt-text-muted); font-size:13px; font-weight:500; margin-left:4px;"><?php echo esc_html( $release_date ); ?></span>
+							</div>
+						<?php endif; ?>
 
 					<!-- Genres -->
 					<?php if ( ! is_wp_error( $genres ) && ! empty( $genres ) ) : ?>
@@ -80,9 +91,12 @@ while ( have_posts() ) :
 					</div>
 
 					<!-- Director & Release Highlights -->
-					<?php if ( ( ! is_wp_error( $directors ) && ! empty( $directors ) ) || ! empty( $release_date ) ) : ?>
+					<?php 
+					$has_directors = ( ! is_wp_error( $directors ) && ! empty( $directors ) );
+					$has_rich_dirs = ( ! empty( $rich_directors ) && is_array( $rich_directors ) );
+					if ( $has_directors || $has_rich_dirs || ! empty( $release_date ) ) : ?>
 						<div class="doodh-director-highlight" style="display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
-							<?php if ( ! is_wp_error( $directors ) && ! empty( $directors ) ) : ?>
+							<?php if ( $has_directors ) : ?>
 								<div>
 									<strong><i class="fas fa-video"></i> <?php esc_html_e( 'Director:', 'vmtheme' ); ?></strong>
 									<?php foreach ( $directors as $d ) : ?>
@@ -91,14 +105,22 @@ while ( have_posts() ) :
 										</a>
 									<?php endforeach; ?>
 								</div>
-							<?php endif; ?>
-
-							<?php if ( ! empty( $release_date ) ) : ?>
-								<div class="doodh-release-info">
-									<strong style="color:#fff;"><i class="far fa-calendar-check" style="color:var(--dt-primary);"></i> <?php esc_html_e( 'Release Date:', 'vmtheme' ); ?></strong>
-									<span style="color:var(--dt-text-muted); font-size:13px; font-weight:500; margin-left:4px;"><?php echo esc_html( $release_date ); ?></span>
+							<?php elseif ( $has_rich_dirs ) : ?>
+								<div>
+									<strong><i class="fas fa-video"></i> <?php esc_html_e( 'Director:', 'vmtheme' ); ?></strong>
+									<?php foreach ( $rich_directors as $rd ) : 
+										$rd_name = $rd['name'] ?? '';
+										$term_obj = get_term_by( 'name', $rd_name, 'dtdirector' );
+										$term_url = $term_obj ? get_term_link( $term_obj ) : '#';
+									?>
+										<a href="<?php echo esc_url( $term_url ); ?>" class="doodh-director-link">
+											<i class="fas fa-user-tie"></i> <?php echo esc_html( $rd_name ); ?>
+										</a>
+									<?php endforeach; ?>
 								</div>
 							<?php endif; ?>
+
+							
 						</div>
 					<?php endif; ?>
 				</div>
@@ -114,7 +136,7 @@ while ( have_posts() ) :
 		<?php if ( doodhtheme_is_player_enabled( $movie_id ) ) : ?>
 			<section class="doodh-section" id="doodh-movie-player-section">
 				<div class="doodh-section-header">
-					<h2 class="doodh-section-title"><i class="fas fa-play" style="color:var(--dt-primary);"></i> <?php echo esc_html( get_option( 'doodh_player_title', __( 'Watch Online / Stream', 'vmtheme' ) ) ); ?></h2>
+					<h2 class="doodh-section-title"><i class="fas fa-play" style="color:var(--dt-primary);"></i> <?php echo esc_html( get_option( 'doodh_player_title', __( 'Trailer / Rv', 'vmtheme' ) ) ); ?></h2>
 				</div>
 				<?php doodhtheme_render_player( $movie_id ); ?>
 			</section>
@@ -238,7 +260,7 @@ while ( have_posts() ) :
 						<article class="doodh-card">
 							<div class="doodh-poster">
 								<img src="<?php echo esc_url( $rel_poster ); ?>" alt="<?php echo esc_attr( doodhtheme_get_poster_alt( $rel_id ) ); ?>" loading="lazy" decoding="async" width="300" height="450" onerror="this.onerror=null;this.src='<?php echo esc_url( doodhtheme_get_fallback_poster_url() ); ?>';">
-								<span class="doodh-badge-quality"><?php echo esc_html( $rel_qual ); ?></span>
+								<!-- <span class="doodh-badge-quality"><?php //echo "cine" //echo esc_html( $rel_qual ); ?></span> -->
 								<span class="doodh-badge-rating"><i class="fas fa-star"></i> <?php echo esc_html( $rel_rating ); ?></span>
 								<div class="doodh-poster-overlay">
 									<a href="<?php the_permalink(); ?>" class="doodh-play-btn" aria-label="<?php the_title_attribute(); ?>"><i class="fas fa-play"></i></a>

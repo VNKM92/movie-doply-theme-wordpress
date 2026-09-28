@@ -22,7 +22,7 @@ $brand_name = doodhtheme_get_brand_name();
 		<!-- <div class="doodh-footer-cta-card">
 			<div class="doodh-footer-cta-left">
 				<span class="doodh-footer-badge">
-					<i class="fas fa-bolt"></i> <?php esc_html_e( 'Ultra HD Streaming & Fast Downloads', 'vmtheme' ); ?>
+					<i class="fas fa-bolt"></i> <?php esc_html_e( 'Movie News & Updatess', 'vmtheme' ); ?>
 				</span>
 				<h3 class="doodh-footer-cta-title">
 					<?php esc_html_e( 'Can\'t find what you are looking for?', 'vmtheme' ); ?>
@@ -158,15 +158,15 @@ $brand_name = doodhtheme_get_brand_name();
 		<!-- ══════════════════════════════════════════════════════════════
 		     3. Non-Hosting Compliance Disclaimer Card
 		     ══════════════════════════════════════════════════════════════ -->
-		<div class="doodh-footer-disclaimer-box">
+<!-- 		<div class="doodh-footer-disclaimer-box">
 			<div class="doodh-disclaimer-icon"><i class="fas fa-info-circle"></i></div>
 			<div class="doodh-disclaimer-content">
 				<strong><?php esc_html_e( 'Non-Hosting & Copyright Notice:', 'vmtheme' ); ?></strong>
 				<span>
-					<?php printf( esc_html__( '%s does not host, upload, or store any video files on its servers. All streaming links and media are provided by non-affiliated third-party platforms. If you have any legal issues please contact the appropriate media file owners or host sites, or submit a DMCA notice to our team for prompt link deletion.', 'vmtheme' ), esc_html( $brand_name ) ); ?>
+					<?php printf( esc_html__( '%s does not host, upload, or store any video files on its 	servers. All streaming links and media are provided by non-affiliated third-party platforms. If you have any legal issues please contact the appropriate media file owners or host sites, or submit a DMCA notice to our team for prompt link deletion.', 'vmtheme' ), esc_html( $brand_name ) ); ?>
 				</span>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- ══════════════════════════════════════════════════════════════
 		     4. Footer Bottom Bar
@@ -178,12 +178,12 @@ $brand_name = doodhtheme_get_brand_name();
 				</p>
 			</div>
 
-			<div class="doodh-footer-bottom-center">
+			<!--  <div class="doodh-footer-bottom-center">
 				<span class="doodh-footer-status-pill">
 					<span class="doodh-status-pulse"></span>
-					<?php esc_html_e( 'Cineladdoo Review', 'vmtheme' ); ?>
+					<?php // esc_html_e( 'Cineladdoo Review', 'vmtheme' ); ?>
 				</span>
-			</div>
+			</div> -->
 
 			<div class="doodh-footer-bottom-right">
 				<button type="button" class="doodh-footer-backtotop" id="doodh-footer-backtotop" title="<?php esc_attr_e( 'Back to top', 'vmtheme' ); ?>">

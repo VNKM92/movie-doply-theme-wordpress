@@ -763,6 +763,32 @@ function doodhtheme_fetch_and_create_tmdb_post( $query, $type = 'movie', $update
 			update_post_meta( $post_id, '_doodh_rich_directors', $rich_director_meta );
 		}
 
+		// Certification
+		$certification = '';
+		if ( $post_type === 'movies' && ! empty( $details['release_dates']['results'] ) ) {
+			foreach ( $details['release_dates']['results'] as $rd ) {
+				if ( in_array( $rd['iso_3166_1'] ?? '', array( 'US', 'GB', 'IN' ), true ) && ! empty( $rd['release_dates'] ) ) {
+					foreach ( $rd['release_dates'] as $item ) {
+						if ( ! empty( $item['certification'] ) ) {
+							$certification = $item['certification'];
+							break 2;
+						}
+					}
+				}
+			}
+		} elseif ( $post_type === 'tvshows' && ! empty( $details['content_ratings']['results'] ) ) {
+			foreach ( $details['content_ratings']['results'] as $cr ) {
+				if ( in_array( $cr['iso_3166_1'] ?? '', array( 'US', 'GB', 'IN' ), true ) && ! empty( $cr['rating'] ) ) {
+					$certification = $cr['rating'];
+					break;
+				}
+			}
+		}
+		if ( empty( $certification ) ) {
+			$certification = ( $post_type === 'tvshows' ) ? 'TV-14' : 'PG-13';
+		}
+		update_post_meta( $post_id, '_doodh_certification', $certification );
+
 		if ( $post_type === 'movies' ) {
 			update_post_meta( $post_id, '_doodh_runtime', $runtime );
 			update_post_meta( $post_id, '_doodh_release_date', $release_date );
@@ -774,6 +800,22 @@ function doodhtheme_fetch_and_create_tmdb_post( $query, $type = 'movie', $update
 			update_post_meta( $post_id, '_doodh_total_episodes', $details['number_of_episodes'] ?? 10 );
 			update_post_meta( $post_id, '_doodh_status', $details['status'] ?? 'Returning Series' );
 		}
+
+		// Auto-populate VM SEO & Social metadata
+		$year_val = ! empty( $release_date ) ? date( 'Y', strtotime( $release_date ) ) : date( 'Y' );
+		$focus_kw = $title . ' ' . $year_val . ( $post_type === 'tvshows' ? ' TV Series Watch Online' : ' Full Movie Watch Online HD' );
+		$seo_title = $title . ' (' . $year_val . ')' . ( $post_type === 'tvshows' ? ' Full HD Series' : ' Full Movie HD' ) . ' | ' . get_bloginfo( 'name' );
+		$clean_ov = ! empty( $overview ) ? ( mb_strlen( $overview ) > 130 ? mb_substr( $overview, 0, 125 ) . '...' : $overview ) : 'Stream and download in full HD 1080p with multiple high speed servers and subtitles.';
+		$seo_desc = 'Watch ' . $title . ' (' . $year_val . ') online in full HD. ' . $clean_ov;
+
+		update_post_meta( $post_id, '_vm_focus_keyword', $focus_kw );
+		update_post_meta( $post_id, '_vm_seo_title', $seo_title );
+		update_post_meta( $post_id, '_vm_seo_desc', $seo_desc );
+		update_post_meta( $post_id, '_vm_og_title', $title . ' (' . $year_val . ')' );
+		update_post_meta( $post_id, '_vm_og_desc', $seo_desc );
+		update_post_meta( $post_id, '_vm_og_image', $backdrop_path ?: $poster_path );
+		update_post_meta( $post_id, '_vm_schema_type', $post_type === 'tvshows' ? 'TVSeries' : 'Movie' );
+		update_post_meta( $post_id, '_vm_seo_score', 95 );
 	}
 
 	// 6. TV Shows: Sync Seasons & Episodes

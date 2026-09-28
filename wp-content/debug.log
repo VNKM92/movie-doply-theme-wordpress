@@ -149,3 +149,379 @@ Stack trace:
 [20-Sep-2026 17:17:08 UTC] WordPress database error Table 'doodhtheme.wp_vm_security_logs' doesn't exist for query SELECT COUNT(*) FROM wp_vm_security_logs WHERE threat_type='XSS_ATTACK' made by do_action('toplevel_page_vm-security-shield'), WP_Hook->do_action, WP_Hook->apply_filters, VM_Security_Shield->render_security_dashboard
 [20-Sep-2026 17:17:08 UTC] WordPress database error Table 'doodhtheme.wp_vm_security_logs' doesn't exist for query SELECT COUNT(*) FROM wp_vm_security_logs WHERE threat_type='MALICIOUS_SCANNER' made by do_action('toplevel_page_vm-security-shield'), WP_Hook->do_action, WP_Hook->apply_filters, VM_Security_Shield->render_security_dashboard
 [20-Sep-2026 17:17:08 UTC] WordPress database error Table 'doodhtheme.wp_vm_security_logs' doesn't exist for query SELECT * FROM wp_vm_security_logs ORDER BY id DESC LIMIT 15 made by do_action('toplevel_page_vm-security-shield'), WP_Hook->do_action, WP_Hook->apply_filters, VM_Security_Shield->render_security_dashboard
+[24-Sep-2026 17:09:04 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[24-Sep-2026 17:09:23 UTC] Automatic updates starting...
+[24-Sep-2026 17:09:24 UTC]   Automatic plugin updates starting...
+[24-Sep-2026 17:09:24 UTC]   Automatic plugin updates complete.
+[24-Sep-2026 17:09:25 UTC] Automatic updates complete.
+[24-Sep-2026 17:23:22 UTC] PHP Warning:  get_core_checksums(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\xampp\htdocs\movie\wp-includes\functions.php on line 6260
+[26-Sep-2026 14:53:49 UTC] PHP Warning:  mysqli_real_connect(): Error while reading greeting packet. PID=9608 in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[26-Sep-2026 14:53:49 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2006): MySQL server has gone away in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[26-Sep-2026 14:56:18 UTC] PHP Warning:  mysqli_real_connect(): Error while reading greeting packet. PID=11528 in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[26-Sep-2026 14:56:18 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2006): MySQL server has gone away in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[26-Sep-2026 15:10:41 UTC] PHP Warning:  mysqli_real_connect(): Error while reading greeting packet. PID=4916 in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[26-Sep-2026 15:10:41 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2006): MySQL server has gone away in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[26-Sep-2026 15:19:16 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No connection could be made because the target machine actively refused it in C:\xampp\htdocs\movie\wp-includes\class-wpdb.php on line 1990
+[26-Sep-2026 15:24:07 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query 
+		SELECT ID, post_name, post_parent, post_type
+		FROM wp_posts
+		WHERE post_name IN ('blog')
+		AND post_type IN ('page','attachment')
+	 made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, get_page_by_path
+[26-Sep-2026 15:24:07 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT   wp_posts.*
+					 FROM wp_posts 
+					 WHERE 1=1  AND wp_posts.post_name = 'blog' AND wp_posts.ID NOT IN (0) AND wp_posts.post_type IN ('post', 'page', 'attachment', 'movies', 'tvshows', 'seasons', 'episodes') AND ((wp_posts.post_status = 'trash'))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					  made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post, wp_add_trashed_suffix_to_post_name_for_trashed_posts, get_posts, WP_Query->query, WP_Query->get_posts
+[26-Sep-2026 15:24:07 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT post_name FROM wp_posts WHERE post_name = 'blog' AND post_type IN ( 'page', 'attachment' ) AND ID != 0 AND post_parent = 0 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post, wp_unique_post_slug
+[26-Sep-2026 15:24:07 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:07 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:07 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:07 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:07 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT SQL_CALC_FOUND_ROWS  wp_posts.ID
+					 FROM wp_posts 
+					 WHERE 1=1  AND ((wp_posts.post_type = 'post' AND (wp_posts.post_status = 'publish')))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					 LIMIT 0, 12 made by require('wp-blog-header.php'), wp, WP->main, WP->query_posts, WP_Query->query, WP_Query->get_posts
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('wp_theme') AND t.name IN ('vm-child')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), wp_head, do_action('wp_head'), WP_Hook->do_action, WP_Hook->apply_filters, wp_print_font_faces, WP_Font_Face_Resolver::get_fonts_from_theme_json, wp_get_global_settings, WP_Theme_JSON_Resolver::get_merged_data, WP_Theme_JSON_Resolver::get_user_data, WP_Theme_JSON_Resolver::get_user_data_from_wp_global_styles, WP_Query->query, WP_Query->get_posts, WP_Tax_Query->get_sql, WP_Tax_Query->get_sql_clauses, WP_Tax_Query->get_sql_for_query, WP_Tax_Query->get_sql_for_clause, WP_Tax_Query->clean_query, WP_Tax_Query->transform_query, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT   wp_posts.ID
+					 FROM wp_posts 
+					 WHERE 1=1  AND ( 
+  0 = 1
+) AND wp_posts.post_type = 'wp_global_styles' AND ((wp_posts.post_status = 'publish'))
+					 GROUP BY wp_posts.ID
+					 ORDER BY wp_posts.post_date DESC
+					 LIMIT 0, 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), wp_head, do_action('wp_head'), WP_Hook->do_action, WP_Hook->apply_filters, wp_print_font_faces, WP_Font_Face_Resolver::get_fonts_from_theme_json, wp_get_global_settings, WP_Theme_JSON_Resolver::get_merged_data, WP_Theme_JSON_Resolver::get_user_data, WP_Theme_JSON_Resolver::get_user_data_from_wp_global_styles, WP_Query->query, WP_Query->get_posts
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('genres')
+			 ORDER BY tt.count DESC
+			  made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2026')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2025')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2024')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2023')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2022')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2021')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2020')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2019')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2018')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2017')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2016')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2015')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2014')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2013')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2012')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2011')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2010')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT SQL_CALC_FOUND_ROWS  wp_posts.ID
+					 FROM wp_posts 
+					 WHERE 1=1  AND wp_posts.post_type IN ('movies', 'tvshows') AND ((wp_posts.post_status = 'publish'))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					 LIMIT 0, 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), WP_Query->__construct, WP_Query->query, WP_Query->get_posts
+[26-Sep-2026 15:24:08 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT SQL_CALC_FOUND_ROWS  wp_posts.ID
+					 FROM wp_posts 
+					 WHERE 1=1  AND wp_posts.post_type = 'movies' AND ((wp_posts.post_status = 'publish'))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					 LIMIT 0, 12 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), WP_Query->__construct, WP_Query->query, WP_Query->get_posts
+[26-Sep-2026 15:24:09 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('genres')
+			 ORDER BY tt.count DESC
+			  made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/front-page.php'), require('/themes/vmtheme/index.php'), get_footer, locate_template, load_template, require_once('/themes/vmtheme/footer.php'), get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:10 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query 
+		SELECT ID, post_name, post_parent, post_type
+		FROM wp_posts
+		WHERE post_name IN ('blog')
+		AND post_type IN ('page','attachment')
+	 made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, get_page_by_path
+[26-Sep-2026 15:24:10 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT   wp_posts.*
+					 FROM wp_posts 
+					 WHERE 1=1  AND wp_posts.post_name = 'blog' AND wp_posts.ID NOT IN (0) AND wp_posts.post_type IN ('post', 'page', 'attachment', 'movies', 'tvshows', 'seasons', 'episodes') AND ((wp_posts.post_status = 'trash'))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					  made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post, wp_add_trashed_suffix_to_post_name_for_trashed_posts, get_posts, WP_Query->query, WP_Query->get_posts
+[26-Sep-2026 15:24:10 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT post_name FROM wp_posts WHERE post_name = 'blog' AND post_type IN ( 'page', 'attachment' ) AND ID != 0 AND post_parent = 0 LIMIT 1 made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post, wp_unique_post_slug
+[26-Sep-2026 15:24:10 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:11 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:11 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:11 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:14 UTC] Automatic updates starting...
+[26-Sep-2026 15:24:16 UTC] Automatic updates complete.
+[26-Sep-2026 15:24:16 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT   wp_posts.ID
+					 FROM wp_posts 
+					 WHERE 1=1  AND ( 
+  wp_posts.post_modified < '2026-09-25 15:24:16'
+) AND wp_posts.post_type = 'user_request' AND ((wp_posts.post_status = 'request-pending'))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					  made by do_action_ref_array('wp_privacy_personal_data_cleanup_requests'), WP_Hook->do_action, WP_Hook->apply_filters, wp_privacy_personal_data_cleanup_requests, _wp_personal_data_cleanup_requests, WP_Query->__construct, WP_Query->query, WP_Query->get_posts
+[26-Sep-2026 15:24:16 UTC] WordPress database error Table 'doodhtheme.wp_postmeta' doesn't exist for query SELECT post_id FROM wp_postmeta WHERE meta_key = '_wp_trash_meta_time' AND meta_value < 1787844256 made by do_action_ref_array('wp_scheduled_delete'), WP_Hook->do_action, WP_Hook->apply_filters, wp_scheduled_delete
+[26-Sep-2026 15:24:16 UTC] WordPress database error Table 'doodhtheme.wp_commentmeta' doesn't exist for query SELECT comment_id FROM wp_commentmeta WHERE meta_key = '_wp_trash_meta_time' AND meta_value < 1787844256 made by do_action_ref_array('wp_scheduled_delete'), WP_Hook->do_action, WP_Hook->apply_filters, wp_scheduled_delete
+[26-Sep-2026 15:24:16 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT ID FROM wp_posts WHERE post_status = 'auto-draft' AND DATE_SUB( NOW(), INTERVAL 7 DAY ) > post_date made by do_action_ref_array('wp_scheduled_auto_draft_delete'), WP_Hook->do_action, WP_Hook->apply_filters, wp_delete_auto_drafts
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query 
+		SELECT ID, post_name, post_parent, post_type
+		FROM wp_posts
+		WHERE post_name IN ('blog')
+		AND post_type IN ('page','attachment')
+	 made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, get_page_by_path
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT   wp_posts.*
+					 FROM wp_posts 
+					 WHERE 1=1  AND wp_posts.post_name = 'blog' AND wp_posts.ID NOT IN (0) AND wp_posts.post_type IN ('post', 'page', 'attachment', 'movies', 'tvshows', 'seasons', 'episodes') AND ((wp_posts.post_status = 'trash'))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					  made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post, wp_add_trashed_suffix_to_post_name_for_trashed_posts, get_posts, WP_Query->query, WP_Query->get_posts
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT post_name FROM wp_posts WHERE post_name = 'blog' AND post_type IN ( 'page', 'attachment' ) AND ID != 0 AND post_parent = 0 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post, wp_unique_post_slug
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SHOW FULL COLUMNS FROM `wp_posts` made by require('wp-blog-header.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('init'), WP_Hook->do_action, WP_Hook->apply_filters, vmtheme_ensure_blog_page_exists, wp_insert_post
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT SQL_CALC_FOUND_ROWS  wp_posts.ID
+					 FROM wp_posts 
+					 WHERE 1=1  AND ((wp_posts.post_type = 'movies' AND (wp_posts.post_status = 'publish')))
+					 
+					 ORDER BY wp_posts.post_date DESC
+					 LIMIT 0, 12 made by require('wp-blog-header.php'), wp, WP->main, WP->query_posts, WP_Query->query, WP_Query->get_posts
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('wp_theme') AND t.name IN ('vm-child')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), wp_head, do_action('wp_head'), WP_Hook->do_action, WP_Hook->apply_filters, wp_print_font_faces, WP_Font_Face_Resolver::get_fonts_from_theme_json, wp_get_global_settings, WP_Theme_JSON_Resolver::get_merged_data, WP_Theme_JSON_Resolver::get_user_data, WP_Theme_JSON_Resolver::get_user_data_from_wp_global_styles, WP_Query->query, WP_Query->get_posts, WP_Tax_Query->get_sql, WP_Tax_Query->get_sql_clauses, WP_Tax_Query->get_sql_for_query, WP_Tax_Query->get_sql_for_clause, WP_Tax_Query->clean_query, WP_Tax_Query->transform_query, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_posts' doesn't exist for query SELECT   wp_posts.ID
+					 FROM wp_posts 
+					 WHERE 1=1  AND ( 
+  0 = 1
+) AND wp_posts.post_type = 'wp_global_styles' AND ((wp_posts.post_status = 'publish'))
+					 GROUP BY wp_posts.ID
+					 ORDER BY wp_posts.post_date DESC
+					 LIMIT 0, 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), wp_head, do_action('wp_head'), WP_Hook->do_action, WP_Hook->apply_filters, wp_print_font_faces, WP_Font_Face_Resolver::get_fonts_from_theme_json, wp_get_global_settings, WP_Theme_JSON_Resolver::get_merged_data, WP_Theme_JSON_Resolver::get_user_data, WP_Theme_JSON_Resolver::get_user_data_from_wp_global_styles, WP_Query->query, WP_Query->get_posts
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('genres')
+			 ORDER BY tt.count DESC
+			  made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2026')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2025')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2024')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2023')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2022')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2021')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2020')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2019')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2018')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2017')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2016')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2015')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2014')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2013')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2012')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2011')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year') AND t.slug IN ('2010')
+			 
+			 LIMIT 1 made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_header, locate_template, load_template, require_once('/themes/vmtheme/header.php'), get_term_by, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('genres')
+			 ORDER BY t.name ASC
+			  made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), doodhtheme_render_filter_bar, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('release-year')
+			 ORDER BY t.name DESC
+			  made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), doodhtheme_render_filter_bar, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('dtquality')
+			 ORDER BY t.name ASC
+			  made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), doodhtheme_render_filter_bar, get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:24:24 UTC] WordPress database error Table 'doodhtheme.wp_terms' doesn't exist for query SELECT  t.term_id
+			 FROM wp_terms AS t  INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			 WHERE tt.taxonomy IN ('genres')
+			 ORDER BY tt.count DESC
+			  made by require('wp-blog-header.php'), require_once('wp-includes/template-loader.php'), include('/themes/vmtheme/archive-movies.php'), get_footer, locate_template, load_template, require_once('/themes/vmtheme/footer.php'), get_terms, WP_Term_Query->query, WP_Term_Query->get_terms
+[26-Sep-2026 15:25:43 UTC] Automatic updates starting...
+[26-Sep-2026 15:25:46 UTC] Automatic updates complete.
+[26-Sep-2026 15:41:43 UTC] PHP Parse error:  Unmatched '}' in C:\xampp\htdocs\movie\wp-content\themes\vmtheme\inc\meta-boxes.php on line 1635
+[26-Sep-2026 15:41:44 UTC] PHP Notice:  Function _load_textdomain_just_in_time was called <strong>incorrectly</strong>. Translation loading for the <code>vmtheme</code> domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the <code>init</code> action or later. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 6.7.0.) in C:\xampp\htdocs\movie\wp-includes\functions.php on line 6260
+[26-Sep-2026 18:25:51 UTC] Automatic updates starting...
+[26-Sep-2026 18:25:53 UTC] Automatic updates complete.
+[26-Sep-2026 18:52:36 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:54:38 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:18 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:18 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:23 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:23 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:30 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:37 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:41 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:42 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:54 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:55 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:57 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:56:57 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:57:02 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:57:13 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:57:13 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:57:16 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:57:20 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:57:23 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:57:33 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:57:43 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:57:59 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:58:09 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 18:58:10 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 19:00:11 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 19:02:12 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[26-Sep-2026 19:04:02 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[27-Sep-2026 12:56:29 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[27-Sep-2026 12:56:44 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[27-Sep-2026 12:56:49 UTC] Automatic updates starting...
+[27-Sep-2026 12:56:51 UTC] Automatic updates complete.
+[27-Sep-2026 13:21:21 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[27-Sep-2026 13:21:22 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[27-Sep-2026 13:38:28 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[27-Sep-2026 13:38:28 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[27-Sep-2026 13:38:32 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124
+[27-Sep-2026 13:38:33 UTC] PHP Warning:  You cannot overrule a WPSEO standard variable replacement by registering a variable with the same name. Use the &quot;wpseo_replacements&quot; filter instead to adjust the replacement value. in C:\xampp\htdocs\movie\wp-content\plugins\wordpress-seo\inc\class-wpseo-replace-vars.php on line 124

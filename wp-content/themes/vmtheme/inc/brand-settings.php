@@ -39,7 +39,7 @@ function vmtheme_get_brand_tagline() {
 		return esc_html( $tagline );
 	}
 	$desc = get_bloginfo( 'description' );
-	return ! empty( $desc ) ? esc_html( $desc ) : 'Watch HD Movies & TV Shows Online Free';
+	return ! empty( $desc ) ? esc_html( $desc ) : 'Latest Movie Releases | Ratings & Reviews';
 }
 
 if ( ! function_exists( 'doodhtheme_get_brand_tagline' ) ) {
@@ -102,7 +102,7 @@ function vmtheme_get_footer_copyright() {
 		return str_replace( array( '%YEAR%', '%BRAND_NAME%' ), array( $year, $brand_name ), $custom );
 	}
 
-	return sprintf( '&copy; %s %s. All rights reserved. Watch Movies & TV Series in Ultra HD for Free.', esc_html( $year ), esc_html( $brand_name ) );
+	return sprintf( '&copy; %s %s.  All Rights Reserved', esc_html( $year ), esc_html( $brand_name ) );
 }
 
 if ( ! function_exists( 'doodhtheme_get_footer_copyright' ) ) {
@@ -276,7 +276,7 @@ function vmtheme_render_brand_settings_page() {
 	$tagline      = vmtheme_get_brand_tagline();
 	$logo_url     = get_option( 'vm_brand_logo', get_option( 'doodh_brand_logo', '' ) );
 	$badge_text   = vmtheme_get_brand_badge();
-	$copyright    = get_option( 'vm_footer_copyright', get_option( 'doodh_footer_copyright', '© %YEAR% %BRAND_NAME%. All Rights Reserved. Designed for Cinema Lovers.' ) );
+	$copyright    = get_option( 'vm_footer_copyright', get_option( 'doodh_footer_copyright', '© %YEAR% %BRAND_NAME%. All Rights Reserved.' ) );
 	$dmca_email   = vmtheme_get_dmca_email();
 	$support_email= vmtheme_get_support_email();
 	?>
